@@ -5,9 +5,9 @@ namespace PayItGlobal.Application.Interfaces
 {
     public interface IRefreshTokenService
     {
-        Task<string> GenerateRefreshToken(Guid userId, string createdByIp);
+        Task<string> GenerateRefreshToken(int userId, string createdByIp);
         Task<bool> IsValidRefreshToken(string token);
-        Task<Guid> GetUserIdFromRefreshToken(string token);
+        Task<int> GetUserIdFromRefreshToken(string token);
         Task RevokeRefreshToken(string refreshToken);
     }
 }

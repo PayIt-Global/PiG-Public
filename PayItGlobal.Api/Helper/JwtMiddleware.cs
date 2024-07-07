@@ -75,7 +75,7 @@ namespace PayEzPaymentApi.Helper
 
                 // Extract userId from the new access token
                 var userId = ExtractUserIdFromAccessToken(newAccessToken);
-                if (userId == Guid.Empty)
+                if (userId == 0)
                 {
                     throw new Exception("Failed to extract userId from access token.");
                 }
@@ -103,7 +103,7 @@ namespace PayEzPaymentApi.Helper
             }
         }
 
-        private Guid ExtractUserIdFromAccessToken(string accessToken)
+        private int ExtractUserIdFromAccessToken(string accessToken)
         {
             // Remove the 'Bearer ' prefix if it exists
             accessToken = accessToken.Replace("Bearer ", "");
@@ -117,13 +117,13 @@ namespace PayEzPaymentApi.Helper
             // Attempt to extract the 'UserId' claim
             var userIdClaim = jwtToken.Claims.FirstOrDefault(claim => claim.Type == "UserId" || claim.Type == "sub");
 
-            if (userIdClaim != null && Guid.TryParse(userIdClaim.Value, out Guid userId))
+            if (userIdClaim != null)
             {
-                return userId;
+                return int.Parse(userIdClaim.Value);
             }
 
             // Return an empty Guid if the 'UserId' claim is not found or cannot be parsed
-            return Guid.Empty;
+            return 0;
         }
 
 

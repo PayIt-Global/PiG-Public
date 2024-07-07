@@ -64,7 +64,7 @@ namespace PayItGlobal.Application.Services
         }
 
 
-        public async Task<string> GenerateRefreshToken(Guid userId)
+        public async Task<string> GenerateRefreshToken(int userId)
         {
             // Generate a secure random token using RandomNumberGenerator
             using (var rng = RandomNumberGenerator.Create())
@@ -89,7 +89,7 @@ namespace PayItGlobal.Application.Services
         }
 
 
-        public string GenerateJwtToken(Guid userId)
+        public string GenerateJwtToken(int userId)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);

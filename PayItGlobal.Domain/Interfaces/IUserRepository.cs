@@ -6,6 +6,6 @@ namespace PayItGlobal.Domain.Interfaces
     public partial interface IUserRepository 
     {
 
-        Task<(bool IsValid, Guid UserId)> ValidateRefreshToken(string refreshToken);
+        Task<(bool IsValid, int UserId)> ValidateRefreshToken(string refreshToken);
     }
 }

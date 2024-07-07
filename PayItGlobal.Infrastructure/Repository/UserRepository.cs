@@ -25,7 +25,7 @@ namespace PayItGlobal.Infrastructure.Repository
 
 
         // Method to validate and refresh a JWT token using a refresh token
-        public async Task<(bool IsValid, Guid UserId)> ValidateRefreshToken(string refreshToken)
+        public async Task<(bool IsValid, int UserId)> ValidateRefreshToken(string refreshToken)
         {
             var tokenRecord = await _context.RefreshTokens
                                             .FirstOrDefaultAsync(t => t.Token == refreshToken && t.Expires > DateTime.UtcNow && t.Revoked == null);
@@ -33,7 +33,7 @@ namespace PayItGlobal.Infrastructure.Repository
             if (tokenRecord == null)
             {
                 // Token is invalid, expired, or revoked
-                return (false, Guid.Empty);
+                return (false, 0);
             }
 
    

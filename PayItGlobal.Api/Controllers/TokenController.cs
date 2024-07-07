@@ -43,8 +43,8 @@ namespace PayEzPaymentApi.Controllers
 
             if (await _userManager.CheckPasswordAsync(user, model.Password))
             {
-                var token = _tokenService.GenerateJwtToken(Guid.Parse(user.Id));
-                var refreshToken = await _refreshTokenService.GenerateRefreshToken(Guid.Parse(user.Id), Request.HttpContext.Connection.RemoteIpAddress.ToString());
+                var token = _tokenService.GenerateJwtToken(user.Id);
+                var refreshToken = await _refreshTokenService.GenerateRefreshToken(user.Id, Request.HttpContext.Connection.RemoteIpAddress.ToString());
                 return Ok(new { Token = token, RefreshToken = refreshToken });
             }
             return Unauthorized();
@@ -72,7 +72,7 @@ namespace PayEzPaymentApi.Controllers
                 return BadRequest("Refresh token is required.");
             }
 
-            Guid userId;
+            int userId;
             try
             {
                 userId = await _refreshTokenService.GetUserIdFromRefreshToken(model.RefreshToken);

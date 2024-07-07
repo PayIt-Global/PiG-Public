@@ -125,8 +125,8 @@
     <id name="Id" type="Int32" p1:inheritance-modifier="Virtual" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="b7654f54-517a-4f0b-862f-a56e0dca8913">
       <column name="id" not-null="True" sql-type="serial" p1:unicode="False" />
     </id>
-    <property name="UserId" type="Guid" p1:inheritance-modifier="Virtual" p1:ValidateRequired="true" p1:Guid="48a49e48-8eb7-42f7-bf51-db47fd639c33">
-      <column name="user_id" not-null="True" sql-type="uuid" p1:unicode="False" />
+    <property name="UserId" type="Int32" p1:inheritance-modifier="Virtual" p1:ValidateRequired="true" p1:Guid="48a49e48-8eb7-42f7-bf51-db47fd639c33">
+      <column name="user_id" not-null="True" sql-type="int4" p1:unicode="False" />
     </property>
     <property name="Token" type="String" p1:inheritance-modifier="Virtual" p1:ValidateRequired="true" p1:Guid="80689dc9-0e42-4c11-9278-caf91b193fb8">
       <column name="token" not-null="True" sql-type="text" p1:unicode="True" />
@@ -217,6 +217,14 @@
         <property name="Id" />
       </end1>
       <end2 multiplicity="Many" name="AspNetUserTokens" class="AspNetUser" relation-class="AspNetUserToken" lazy="False" p1:Guid="0e4f1cfb-bbdd-482b-a7a1-cd8fc30efc0b">
+        <property name="UserId" />
+      </end2>
+    </association>
+    <association name="AspNetUser_RefreshToken" cardinality="OneToMany" p1:Guid="45eeeb14-f08e-4216-8419-5e3b9fdfdd81">
+      <end1 multiplicity="One" name="AspNetUser" class="RefreshToken" relation-class="AspNetUser" constrained="True" lazy="False" p1:Guid="52d64109-c2ef-4106-aaa2-d93a77aea621">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="RefreshTokens" class="AspNetUser" relation-class="RefreshToken" lazy="False" p1:Guid="e5fdfa80-313f-42b0-b187-5b4cb4df7d1d">
         <property name="UserId" />
       </end2>
     </association>

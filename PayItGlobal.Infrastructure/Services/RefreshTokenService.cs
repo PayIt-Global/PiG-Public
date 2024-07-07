@@ -24,7 +24,7 @@ namespace PayItGlobal.Infrastructure.Services
                 await _refreshTokenRepository.UpdateRefreshTokenAsync(token);
             }
         }
-        public async Task<string> GenerateRefreshToken(Guid userId, string createdByIp)
+        public async Task<string> GenerateRefreshToken(int userId, string createdByIp)
         {
             var refreshToken = new RefreshToken
             {
@@ -45,7 +45,7 @@ namespace PayItGlobal.Infrastructure.Services
             return refreshToken != null && refreshToken.Expires > DateTime.UtcNow && refreshToken.Revoked == null;
         }
 
-        public async Task<Guid> GetUserIdFromRefreshToken(string token)
+        public async Task<int> GetUserIdFromRefreshToken(string token)
         {
             var refreshToken = await _refreshTokenRepository.GetRefreshTokenAsync(token);
             if (refreshToken != null && refreshToken.Expires > DateTime.UtcNow && refreshToken.Revoked == null)

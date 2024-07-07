@@ -1,7 +1,8 @@
 namespace PayItGlobal.Domain.Models
 {
     public interface IApplicationUser
-    {
-        string FullName { get; set; }
+    {   
+        //
+        //string FullName { get; set; }
     }
 }
