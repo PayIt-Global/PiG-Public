@@ -1,28 +1,52 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-//using PayEz.Application.Interfaces;
-//using PayEz.Domain.Entities;
-//using PayEz.Domain.Interfaces;
+﻿using System.Net.Http.Json;
 
-//namespace PayEz.Application.Services
-//{
-//    public class AuthenticationService : IAuthenticationService
-//    {
-//        private readonly IUserRepository _userRepository;
+namespace PayItGlobal.Application.Services
+{
+    public class AuthenticationService
+    {
+        private readonly HttpClient _httpClient;
+        private const string LoginUrl = "your_api_base_url/login";
+        private const string RefreshTokenUrl = "your_api_base_url/refresh";
 
-//        public AuthenticationService(IUserRepository userRepository)
-//        {
-//            _userRepository = userRepository;
-//        }
+        public AuthenticationService(HttpClient httpClient)
+        {
+            _httpClient = httpClient;
+        }
 
-//        public async Task<User> AuthenticateUserAsync(string username, string password)
-//        {
-//            // Delegate the call to the UserRepository's AuthenticateUser method
-//            var user = await _userRepository.AuthenticateUser(username, password);
-//            return user;
-//        }
-//    }
-//}
+        public async Task<bool> LoginAsync(string username, string password)
+        {
+            var response = await _httpClient.PostAsJsonAsync(LoginUrl, new { Username = username, Password = password });
+            if (response.IsSuccessStatusCode)
+            {
+                var tokens = await response.Content.ReadFromJsonAsync<TokenResponse>();
+                // Assuming an alternative method to securely store tokens
+                if (tokens.Token != null)
+                {
+                    // Securely store the JWT token
+                    StoreTokenSecurely("jwt_token", tokens.Token);
+                }
+                if (tokens.RefreshToken != null)
+                {
+                    // Securely store the refresh token
+                    StoreTokenSecurely("refresh_token", tokens.RefreshToken);
+                }
+                return true;
+            }
+            return false;
+        }
+
+        private void StoreTokenSecurely(string key, string value)
+        {
+            // Implement secure storage logic here
+            // This is a placeholder for your secure storage logic
+        }
+
+        // Method to refresh JWT token, check authentication status, etc.
+    }
+
+    public class TokenResponse
+    {
+        public string? Token { get; set; } // Made nullable
+        public string? RefreshToken { get; set; } // Made nullable
+    }
+}
