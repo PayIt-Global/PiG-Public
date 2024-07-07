@@ -5,9 +5,9 @@ using PayItGlobal.Infrastructure.Context;
 
 public class MiscRepository : IMiscRepository
 {
-    private readonly PayEzDb _context;
+    private readonly PayItGlobalDb _context;
 
-    public MiscRepository(PayEzDb context)
+    public MiscRepository(PayItGlobalDb context)
     {
         _context = context;
     }

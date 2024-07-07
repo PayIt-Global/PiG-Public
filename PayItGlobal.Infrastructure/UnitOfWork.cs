@@ -10,12 +10,12 @@ namespace PayItGlobal.Infrastructure
 {
     public partial class UnitOfWork : IUnitOfWork
     {
-        private readonly PayEzDb _context;
+        private readonly PayItGlobalDb _context;
         private readonly ApplicationDbContext _appContext; // Add this line
         private IUserRepository _users;
 
         // Modify the constructor to accept both contexts
-        public UnitOfWork(PayEzDb context, ApplicationDbContext appContext)
+        public UnitOfWork(PayItGlobalDb context, ApplicationDbContext appContext)
         {
             _context = context;
             _appContext = appContext; // Initialize the new field

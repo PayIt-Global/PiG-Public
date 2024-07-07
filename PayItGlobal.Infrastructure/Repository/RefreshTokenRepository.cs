@@ -7,9 +7,9 @@ namespace PayItGlobal.Infrastructure.Repository
 {
     public class RefreshTokenRepository : IRefreshTokenRepository
     {
-        private readonly PayEzDb _context;
+        private readonly PayItGlobalDb _context;
 
-        public RefreshTokenRepository(PayEzDb context)
+        public RefreshTokenRepository(PayItGlobalDb context)
         {
             _context = context;
         }

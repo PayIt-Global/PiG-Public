@@ -8,6 +8,7 @@
 // the code is regenerated.
 //------------------------------------------------------------------------------
 
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,7 +19,8 @@ using System.Linq.Expressions;
 
 namespace PayItGlobal.Domain.Entities
 {
-    public partial class AspNetRoleClaim {
+    public partial class AspNetRoleClaim : IdentityRoleClaim<Guid>
+    {
 
         public AspNetRoleClaim()
         {

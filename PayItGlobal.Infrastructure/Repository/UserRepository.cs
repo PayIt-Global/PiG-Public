@@ -11,10 +11,10 @@ namespace PayItGlobal.Infrastructure.Repository
 {
     public class UserRepository : IUserRepository
     {
-        private readonly PayEzDb _context;
+        private readonly PayItGlobalDb _context;
         private readonly ApplicationDbContext _appContext;
 
-        public UserRepository(ApplicationDbContext _appContext, PayEzDb context)
+        public UserRepository(ApplicationDbContext _appContext, PayItGlobalDb context)
         {
             _appContext = _appContext;
             _context = context;
@@ -22,11 +22,7 @@ namespace PayItGlobal.Infrastructure.Repository
 
 
         #region User Methods
-        public IQueryable<User> GetByIdAsQueryable(string id)
-        {
-            // Note: We're not executing the query here, just constructing it
-            return _context.Users.Where(u => u.AspNetUserId == id);
-        }
+
 
         // Method to validate and refresh a JWT token using a refresh token
         public async Task<(bool IsValid, Guid UserId)> ValidateRefreshToken(string refreshToken)
@@ -40,14 +36,10 @@ namespace PayItGlobal.Infrastructure.Repository
                 return (false, Guid.Empty);
             }
 
-            // Assuming tokenRecord.UserId is of type string and needs to be parsed to Guid
-            if (Guid.TryParse(tokenRecord.UserId, out Guid userId))
-            {
-                // Optionally, you might want to revoke the old refresh token here and issue a new one
-                return (true, userId);
-            }
-
-            return (false, Guid.Empty);
+   
+            // Optionally, you might want to revoke the old refresh token here and issue a new one
+            return (true, tokenRecord.UserId);
+            
         }
 
         #endregion

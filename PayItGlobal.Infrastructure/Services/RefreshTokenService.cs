@@ -28,7 +28,7 @@ namespace PayItGlobal.Infrastructure.Services
         {
             var refreshToken = new RefreshToken
             {
-                UserId = userId.ToString(),
+                UserId = userId,
                 Token = Guid.NewGuid().ToString(),
                 Expires = DateTime.UtcNow.AddDays(7), // Set expiration to 7 days, adjust as needed
                 Created = DateTime.UtcNow,
@@ -54,7 +54,7 @@ namespace PayItGlobal.Infrastructure.Services
                 refreshToken.Revoked = DateTime.UtcNow;
                 await _refreshTokenRepository.UpdateRefreshTokenAsync(refreshToken);
 
-                return Guid.Parse(refreshToken.UserId);
+                return refreshToken.UserId;
             }
 
             throw new InvalidOperationException("Invalid refresh token");

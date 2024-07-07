@@ -25,7 +25,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
-builder.Services.AddDbContextPool<PayEzDb>(
+builder.Services.AddDbContextPool<PayItGlobalDb>(
    options => options.UsePostgreSql(builder.Configuration.GetConnectionString("PayEzConnection")));
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

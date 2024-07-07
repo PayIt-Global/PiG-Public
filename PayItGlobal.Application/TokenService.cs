@@ -76,7 +76,7 @@ namespace PayItGlobal.Application.Services
                 // Create a new RefreshToken entity and associate it with the userId
                 var refreshTokenEntity = new RefreshToken
                 {
-                    UserId = userId.ToString(),
+                    UserId = userId,
                     Token = refreshToken,
                     // Set other necessary properties, such as expiry date
                 };
