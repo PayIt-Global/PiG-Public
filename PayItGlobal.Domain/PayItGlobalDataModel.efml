@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <efcore context-namespace="PayItGlobal.Infrastructure.Context" namespace="PayItGlobal.Domain.Entities" p1:name="PayItGlobalDb" p1:Guid="fb80c20f-ad97-4a6c-8454-39b259d930a9" xmlns:p1="http://devart.com/schemas/EntityDeveloper/1.0">
   <class name="AspNetUser" entity-set="AspNetUsers" table="asp_net_users" schema="core_identity" p1:Guid="c0dc2d3f-dd8b-4a2a-9e8f-43509743234d" p1:EntityBase="IdentityUser&lt;string&gt;">
-    <id name="Id" type="Guid" p1:inheritance-modifier="Virtual" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="07e64d67-8c04-442b-8e61-6a9cc7dcd741">
-      <column name="id" default="gen_random_uuid()" not-null="True" sql-type="uuid" p1:unicode="False" />
+    <id name="Id" type="Int32" p1:inheritance-modifier="Virtual" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="07e64d67-8c04-442b-8e61-6a9cc7dcd741">
+      <column name="id" not-null="True" sql-type="serial" p1:unicode="False" />
     </id>
     <property name="UserName" type="String" p1:inheritance-modifier="Virtual" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="c9ab17a3-3508-41d4-89e7-6359690ce1dc">
       <column name="user_name" not-null="False" sql-type="text" p1:unicode="True" />
@@ -58,15 +58,15 @@
       <column name="normalized_name" not-null="False" sql-type="text" p1:unicode="True" />
     </property>
     <property name="ConcurrencyStamp" type="String" p1:inheritance-modifier="Virtual" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="de3e4fd4-f8b7-4d13-83ab-ece0bd72fe15">
-      <column name="concurrency_stamp" not-null="False" sql-type="text" p1:unicode="True" />
+      <column name="concurrency_stamp" not-null="False" sql-type="text" unique="True" p1:unicode="True" />
     </property>
   </class>
   <class name="AspNetUserClaim" entity-set="AspNetUserClaims" table="asp_net_user_claims" schema="core_identity" p1:Guid="50333328-7c93-4ddf-a968-109f44e75e01" p1:EntityBase="IdentityUserClaim&lt;string&gt;">
     <id name="Id" type="Int32" p1:inheritance-modifier="Virtual" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="6623309a-7a69-46f4-99ed-be1dab0b61d5">
       <column name="id" not-null="True" sql-type="serial" p1:unicode="False" />
     </id>
-    <property name="UserId" type="Guid" p1:inheritance-modifier="Virtual" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="146a84dd-1d3b-4fdb-a674-4b7a1056fdd6">
-      <column name="user_id" not-null="False" sql-type="uuid" p1:unicode="False" />
+    <property name="UserId" type="Int32" p1:inheritance-modifier="Virtual" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="146a84dd-1d3b-4fdb-a674-4b7a1056fdd6">
+      <column name="user_id" not-null="False" sql-type="int4" p1:unicode="False" />
     </property>
     <property name="ClaimType" type="String" p1:inheritance-modifier="Virtual" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="28b0085e-7315-415c-8529-1e7494eb0da1">
       <column name="claim_type" not-null="False" sql-type="text" p1:unicode="True" />
@@ -87,14 +87,14 @@
     <property name="ProviderDisplayName" type="String" p1:inheritance-modifier="Virtual" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="a24195ad-2ff9-4a25-a88e-44d0e270c39d">
       <column name="provider_display_name" not-null="False" sql-type="text" p1:unicode="True" />
     </property>
-    <property name="UserId" type="Guid" p1:inheritance-modifier="Virtual" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="9486799d-b3f8-47f6-8076-facc18c157cf">
-      <column name="user_id" not-null="False" sql-type="uuid" p1:unicode="False" />
+    <property name="UserId" type="Int32" p1:inheritance-modifier="Virtual" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="9486799d-b3f8-47f6-8076-facc18c157cf">
+      <column name="user_id" not-null="False" sql-type="int4" p1:unicode="False" />
     </property>
   </class>
   <class name="AspNetUserToken" entity-set="AspNetUserTokens" table="asp_net_user_tokens" schema="core_identity" p1:Guid="77682118-7070-4917-8540-2e78c452a060" p1:EntityBase="IdentityUserToken&lt;string&gt;">
     <composite-id>
-      <key-property name="UserId" type="Guid" p1:inheritance-modifier="Virtual" p1:ValidateRequired="true" p1:Guid="a376251a-d9c6-45e9-ac8b-e7fe40ef05b0">
-        <column name="user_id" not-null="True" sql-type="uuid" p1:unicode="False" />
+      <key-property name="UserId" type="Int32" p1:inheritance-modifier="Virtual" p1:ValidateRequired="true" p1:Guid="a376251a-d9c6-45e9-ac8b-e7fe40ef05b0">
+        <column name="user_id" not-null="True" sql-type="int4" p1:unicode="False" />
       </key-property>
       <key-property name="LoginProvider" type="String" p1:inheritance-modifier="Virtual" primary-key-index="1" p1:ValidateRequired="true" p1:Guid="abf839d4-8300-4fcc-90c8-137b8d53ebd3">
         <column name="login_provider" not-null="True" sql-type="text" p1:unicode="True" />
@@ -196,35 +196,27 @@
         <property name="RoleId" />
       </end2>
     </association>
-    <association name="AspNetUser_AspNetUserClaim" cardinality="OneToMany" on-delete="Cascade" p1:Guid="f1589ca3-30b8-4107-96cc-5e57374f7b96">
-      <end1 multiplicity="ZeroOrOne" name="AspNetUser" class="AspNetUserClaim" relation-class="AspNetUser" constrained="True" lazy="False" p1:Guid="4627f905-4b7b-4747-b351-d561b73feb54">
+    <association name="AspNetUser_AspNetUserClaim" cardinality="OneToMany" on-delete="Cascade" p1:Guid="b0295c85-9964-4706-b8c5-0216127f0514">
+      <end1 multiplicity="ZeroOrOne" name="AspNetUser" class="AspNetUserClaim" relation-class="AspNetUser" constrained="True" lazy="False" p1:Guid="b1a5d807-1459-4681-9580-ad7bcae713d7">
         <property name="Id" />
       </end1>
-      <end2 multiplicity="Many" name="AspNetUserClaims" class="AspNetUser" relation-class="AspNetUserClaim" lazy="False" p1:Guid="e37601f3-0944-4b4a-8223-7c7e5289ce7d">
+      <end2 multiplicity="Many" name="AspNetUserClaims" class="AspNetUser" relation-class="AspNetUserClaim" lazy="False" p1:Guid="1fa5d03f-c48d-4758-93d3-5ce419cb7fbb">
         <property name="UserId" />
       </end2>
     </association>
-    <association name="AspNetUser_AspNetUserLogin" cardinality="OneToMany" on-delete="Cascade" p1:Guid="38c0dc40-e17f-4e1d-92dd-6b970da3441f">
-      <end1 multiplicity="ZeroOrOne" name="AspNetUser" class="AspNetUserLogin" relation-class="AspNetUser" constrained="True" lazy="False" p1:Guid="d46f98d2-4ddf-483e-b0cd-d5c8adbd4f98">
+    <association name="AspNetUser_AspNetUserLogin" cardinality="OneToMany" on-delete="Cascade" p1:Guid="fcff42a1-bde1-4802-ab12-ae72366fe526">
+      <end1 multiplicity="ZeroOrOne" name="AspNetUser" class="AspNetUserLogin" relation-class="AspNetUser" constrained="True" lazy="False" p1:Guid="c1f04266-c45b-4744-933a-a0add94cc6ce">
         <property name="Id" />
       </end1>
-      <end2 multiplicity="Many" name="AspNetUserLogins" class="AspNetUser" relation-class="AspNetUserLogin" lazy="False" p1:Guid="08bbfc3a-300a-4f91-9d51-87d80b3819f0">
+      <end2 multiplicity="Many" name="AspNetUserLogins" class="AspNetUser" relation-class="AspNetUserLogin" lazy="False" p1:Guid="dbad213b-cf48-49cd-a7d5-e37ce4b8878b">
         <property name="UserId" />
       </end2>
     </association>
-    <association name="AspNetUser_AspNetUserToken" cardinality="OneToMany" on-delete="Cascade" p1:Guid="88672157-4893-4b60-9df1-84c08ac6c3cb">
-      <end1 multiplicity="One" name="AspNetUser" class="AspNetUserToken" relation-class="AspNetUser" constrained="True" lazy="False" p1:Guid="72431c92-0762-4927-9440-673f521382ea">
+    <association name="AspNetUser_AspNetUserToken" cardinality="OneToMany" on-delete="Cascade" p1:Guid="eb1ae3b6-6f1d-4bdf-99cb-42f0980dba55">
+      <end1 multiplicity="One" name="AspNetUser" class="AspNetUserToken" relation-class="AspNetUser" constrained="True" lazy="False" p1:Guid="f6a72514-5550-419f-abcf-7cbc39af3f5d">
         <property name="Id" />
       </end1>
-      <end2 multiplicity="Many" name="AspNetUserTokens" class="AspNetUser" relation-class="AspNetUserToken" lazy="False" p1:Guid="91b7a364-1f9a-47f8-9664-9f6fd7d88e62">
-        <property name="UserId" />
-      </end2>
-    </association>
-    <association name="AspNetUser_RefreshToken" cardinality="OneToMany" on-delete="Cascade" p1:Guid="8ccf5cb3-9d59-43d0-9949-32cfccec6f24">
-      <end1 multiplicity="One" name="AspNetUser" class="RefreshToken" relation-class="AspNetUser" constrained="True" lazy="False" p1:Guid="5b502e29-567a-40fd-95c8-b22d1720b34a">
-        <property name="Id" />
-      </end1>
-      <end2 multiplicity="Many" name="RefreshTokens" class="AspNetUser" relation-class="RefreshToken" lazy="False" p1:Guid="860bba78-7c60-4c00-8cf5-24a4b2e347ab">
+      <end2 multiplicity="Many" name="AspNetUserTokens" class="AspNetUser" relation-class="AspNetUserToken" lazy="False" p1:Guid="0e4f1cfb-bbdd-482b-a7a1-cd8fc30efc0b">
         <property name="UserId" />
       </end2>
     </association>

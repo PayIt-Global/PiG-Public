@@ -1,14 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <EntityDeveloper Version="7.2.21.0">
   <ModelSettings xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" ConnectionStringInAppConfig="False" TargetFramework="Net80" DetectTPTInheritance="True" EntityFrameworkCoreVersion="Version8" DetectFunctionBasedColumnDefault="True">
-    <Connection ConnectionString="" Provider="" />
-    <Generation />
+    <Connection ConnectionString="User Id=postgres;Password=password;Host=192.168.0.16;Database=pay_it_global;Persist Security Info=True;Initial Schema=core_identity" Provider="Devart.Data.PostgreSql" />
+    <Generation>
+      <GeneratedFiles>
+        <File Name="PayItGlobalDb.cs" DestinationFolder="E:\Repos\PiG-Private\PayItGlobal.Infrastructure\Context" />
+        <File Name="AspNetUser.cs" DestinationFolder="E:\Repos\PiG-Private\PayItGlobal.Domain\Entities" />
+        <File Name="AspNetRole.cs" DestinationFolder="E:\Repos\PiG-Private\PayItGlobal.Domain\Entities" />
+        <File Name="AspNetUserClaim.cs" DestinationFolder="E:\Repos\PiG-Private\PayItGlobal.Domain\Entities" />
+        <File Name="AspNetUserLogin.cs" DestinationFolder="E:\Repos\PiG-Private\PayItGlobal.Domain\Entities" />
+        <File Name="AspNetUserToken.cs" DestinationFolder="E:\Repos\PiG-Private\PayItGlobal.Domain\Entities" />
+        <File Name="AspNetRoleClaim.cs" DestinationFolder="E:\Repos\PiG-Private\PayItGlobal.Domain\Entities" />
+        <File Name="RefreshToken.cs" DestinationFolder="E:\Repos\PiG-Private\PayItGlobal.Domain\Entities" />
+        <File Name="StateProvince.cs" DestinationFolder="E:\Repos\PiG-Private\PayItGlobal.Domain\Entities" />
+        <File Name="AspNetUserDto.cs" DestinationFolder="E:\Repos\PiG-Private\PayItGlobal.Services\PayItGlobal.DTOs\Generated" />
+        <File Name="AspNetRoleDto.cs" DestinationFolder="E:\Repos\PiG-Private\PayItGlobal.Services\PayItGlobal.DTOs\Generated" />
+        <File Name="AspNetUserClaimDto.cs" DestinationFolder="E:\Repos\PiG-Private\PayItGlobal.Services\PayItGlobal.DTOs\Generated" />
+        <File Name="AspNetUserLoginDto.cs" DestinationFolder="E:\Repos\PiG-Private\PayItGlobal.Services\PayItGlobal.DTOs\Generated" />
+        <File Name="AspNetUserTokenDto.cs" DestinationFolder="E:\Repos\PiG-Private\PayItGlobal.Services\PayItGlobal.DTOs\Generated" />
+        <File Name="AspNetRoleClaimDto.cs" DestinationFolder="E:\Repos\PiG-Private\PayItGlobal.Services\PayItGlobal.DTOs\Generated" />
+        <File Name="RefreshTokenDto.cs" DestinationFolder="E:\Repos\PiG-Private\PayItGlobal.Services\PayItGlobal.DTOs\Generated" />
+        <File Name="StateProvinceDto.cs" DestinationFolder="E:\Repos\PiG-Private\PayItGlobal.Services\PayItGlobal.DTOs\Generated" />
+        <File Name="AspNetUserConverter.cs" DestinationFolder="E:\Repos\PiG-Private\PayItGlobal.Services\PayItGlobal.DTOs\Converters" />
+        <File Name="AspNetRoleConverter.cs" DestinationFolder="E:\Repos\PiG-Private\PayItGlobal.Services\PayItGlobal.DTOs\Converters" />
+        <File Name="AspNetUserClaimConverter.cs" DestinationFolder="E:\Repos\PiG-Private\PayItGlobal.Services\PayItGlobal.DTOs\Converters" />
+        <File Name="AspNetUserLoginConverter.cs" DestinationFolder="E:\Repos\PiG-Private\PayItGlobal.Services\PayItGlobal.DTOs\Converters" />
+        <File Name="AspNetUserTokenConverter.cs" DestinationFolder="E:\Repos\PiG-Private\PayItGlobal.Services\PayItGlobal.DTOs\Converters" />
+        <File Name="AspNetRoleClaimConverter.cs" DestinationFolder="E:\Repos\PiG-Private\PayItGlobal.Services\PayItGlobal.DTOs\Converters" />
+        <File Name="RefreshTokenConverter.cs" DestinationFolder="E:\Repos\PiG-Private\PayItGlobal.Services\PayItGlobal.DTOs\Converters" />
+        <File Name="StateProvinceConverter.cs" DestinationFolder="E:\Repos\PiG-Private\PayItGlobal.Services\PayItGlobal.DTOs\Converters" />
+      </GeneratedFiles>
+    </Generation>
     <DatabaseFirstNamingRules>
       <EntitySet PluralizationName="Pluralize" />
       <Class UseSchemaAsPrefix="False" PluralizeCollectionNavigationPropertyName="True" AddConstraintColumnsToNavigationPropertyName="False" RemoveUnderscores="True" AddUnderscores="False" RemoveInvalidCharacters="True" CodeCase="FirstLetterUppercase" AddPrefix="" AddSuffix="" RemovePrefixes="" RemoveSuffixes="" PluralizationName="Singularize" />
       <Property RemoveUnderscores="True" AddUnderscores="False" RemoveInvalidCharacters="True" CodeCase="FirstLetterUppercase" AddPrefix="" AddSuffix="" RemovePrefixes="" RemoveSuffixes="" PluralizationName="Unchanged" />
     </DatabaseFirstNamingRules>
-    <ModelFirst StorageSynchronizationEnabled="False">
+    <ModelFirst StorageSynchronizationEnabled="False" TargetSchema="core_identity" TargetProviderName="Devart.Data.PostgreSql">
+      <TargetServer Server="PostgreSQL" ServerVersion="15.7" />
       <ModelFirstNamingRules>
         <Table RemoveUnderscores="False" AddUnderscores="False" RemoveInvalidCharacters="True" CodeCase="Unchanged" AddPrefix="" AddSuffix="" RemovePrefixes="" RemoveSuffixes="" PluralizationName="Pluralize" />
         <Column RemoveUnderscores="False" AddUnderscores="False" RemoveInvalidCharacters="True" CodeCase="Unchanged" AddPrefix="" AddSuffix="" RemovePrefixes="" RemoveSuffixes="" PluralizationName="Unchanged" />

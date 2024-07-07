@@ -16,6 +16,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayItGlobal.Infrastructure", "PayItGlobal.Infrastructure\PayItGlobal.Infrastructure.csproj", "{83E64013-4E5A-4C4A-B119-6B2BEC55F2D8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AD292C22-263F-40A4-8653-3C5C9478A0B2}"
+	ProjectSection(SolutionItems) = preProject
+		.vs\PayItGlobal\config\applicationhost.config = .vs\PayItGlobal\config\applicationhost.config
+		PayItGlobal.Schema\entire_db.sql = PayItGlobal.Schema\entire_db.sql
+		PayItGlobal.Schema\identity_tables.sql = PayItGlobal.Schema\identity_tables.sql
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{801F6443-226F-4923-B04C-E1A1DAC7DCA8}"
 EndProject

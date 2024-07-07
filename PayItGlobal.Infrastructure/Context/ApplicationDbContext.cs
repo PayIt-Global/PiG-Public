@@ -4,9 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using PayItGlobal.Domain.Entities;
 using PayItGlobal.Infrastructure.Identity;
 
+
 namespace PayItGlobal.Infrastructure.Context
 {
-    public class ApplicationDbContext : IdentityDbContext<AspNetUser, AspNetRole, Guid, AspNetUserClaim, IdentityUserRole<Guid>, AspNetUserLogin, AspNetRoleClaim, AspNetUserToken>
+    // Adjust the generic type parameters to use int for the role key type
+    public class ApplicationDbContext : IdentityDbContext<AspNetUser, AspNetRole, int, AspNetUserClaim, IdentityUserRole<int>, AspNetUserLogin, AspNetRoleClaim, AspNetUserToken>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -17,17 +19,50 @@ namespace PayItGlobal.Infrastructure.Context
         {
             base.OnModelCreating(modelBuilder);
 
-            // ApplicationUser entity
+            // Customizing table names for ASP.NET Core Identity
             modelBuilder.Entity<AspNetUser>(entity =>
             {
-                entity.ToTable("asp_net_users", "core_identity");
-                entity.Property(e => e.Id).HasColumnName("id");
-                // No need to explicitly set default value for UUID; ensure your database is configured correctly
-                // Other properties remain unchanged
+                entity.ToTable(name: "asp_net_users", schema: "core_identity");
+                entity.Property(e => e.Email).HasMaxLength(256);
+                entity.Property(e => e.UserName).HasMaxLength(256);
             });
 
-            // Other entity configurations remain the same as your previous setup
-            // No explicit call to HasPostgresExtension is needed
+            modelBuilder.Entity<AspNetRole>(entity =>
+            {
+                entity.ToTable(name: "asp_net_roles", schema: "core_identity");
+            });
+
+            modelBuilder.Entity<AspNetUserClaim>(entity =>
+            {
+                entity.ToTable(name: "asp_net_user_claims", schema: "core_identity");
+            });
+
+            modelBuilder.Entity<IdentityUserRole<int>>(entity =>
+            {
+                entity.ToTable(name: "asp_net_user_roles", schema: "core_identity");
+            });
+
+            modelBuilder.Entity<AspNetUserLogin>(entity =>
+            {
+                entity.ToTable(name: "asp_net_user_logins", schema: "core_identity");
+            });
+
+            modelBuilder.Entity<AspNetRoleClaim>(entity =>
+            {
+                entity.ToTable(name: "asp_net_role_claims", schema: "core_identity");
+            });
+
+            modelBuilder.Entity<AspNetUserToken>(entity =>
+            {
+                entity.ToTable(name: "asp_net_user_tokens", schema: "core_identity");
+            });
+
+            // Example of configuring a unique index
+            modelBuilder.Entity<AspNetUser>()
+                .HasIndex(u => u.Email)
+                .IsUnique();
+
+            // Add any additional configuration as needed
         }
     }
 }
