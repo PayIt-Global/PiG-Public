@@ -8,11 +8,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Generated\Converters\" />
+    <Compile Remove="Generated\Converters\**" />
+    <EmbeddedResource Remove="Generated\Converters\**" />
+    <None Remove="Generated\Converters\**" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\PayItGlobal.Domain\PayItGlobal.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Converters\" />
+    <Folder Include="Generated\" />
   </ItemGroup>
 
 </Project>

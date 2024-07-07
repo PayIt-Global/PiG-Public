@@ -15,17 +15,11 @@ namespace PayEzPaymentApi.Helper
         public static void RegisterServices(this IServiceCollection services)
         {
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<ICreditCardUtility, CreditCardUtility>();
-            services.AddScoped<IPaymentRepository, PaymentRepository>();
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IPaymentService, PaymentService>();
             services.AddScoped<IMiscRepository, MiscRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IRefreshTokenService, RefreshTokenService>();
             services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
-            services.AddScoped<IPortalRepository, PortalRepository>();
-            services.AddScoped<IPortalService, PortalService>();
         }
     }
 }
