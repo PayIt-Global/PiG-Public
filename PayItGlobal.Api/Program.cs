@@ -1,4 +1,4 @@
-using PayEzPaymentApi.Helper;
+using PayItGlobalApi.Helper;
 using Microsoft.OpenApi.Models;
 using PayItGlobal.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
@@ -26,10 +26,10 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddDbContextPool<PayItGlobalDb>(
-   options => options.UsePostgreSql(builder.Configuration.GetConnectionString("PayEzConnection")));
+   options => options.UsePostgreSql(builder.Configuration.GetConnectionString("PiGConnection")));
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-      options.UsePostgreSql(builder.Configuration.GetConnectionString("PayEzConnection")));
+      options.UsePostgreSql(builder.Configuration.GetConnectionString("PiGConnection")));
 
 // Bind AppSettings section from appsettings.json to AppSettings class
 var appSettingsSection = builder.Configuration.GetSection("AppSettings");
@@ -49,7 +49,7 @@ builder.Services.AddSwaggerGen(c => {
     c.IncludeXmlComments(xmlPath);
     c.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "PayEz Payment Api enabled with JWT Bearer",
+        Title = "PayIt.Global Merchant Services Api enabled with JWT Bearer",
         Version = "v1"
     });
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()

@@ -1,4 +1,4 @@
-namespace PayEzPaymentApi.Helper
+namespace PayItGlobalApi.Helper
 {
     public class CustomLoggingMiddleware
     {

@@ -7,7 +7,7 @@ using PayItGlobal.Application;
 using PayItGlobal.Application.Services;
 using PayItGlobal.Infrastructure.Services;
 
-namespace PayEzPaymentApi.Helper
+namespace PayItGlobalApi.Helper
 {
     public static class ServiceCollectionExtension
     {

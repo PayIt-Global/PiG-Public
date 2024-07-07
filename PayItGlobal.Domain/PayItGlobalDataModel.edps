@@ -130,7 +130,7 @@
           <OutputInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <Project />
             <ProjectFolder />
-            <DestinationFolder>E:\Repos\PiG-Private\PayEz.Data</DestinationFolder>
+            <DestinationFolder>E:\Repos\PiG-Private\PayItGlobal.Domain</DestinationFolder>
           </OutputInfo>
         </ed:Property>
         <ed:Property Name="SerializationLibrary" Type="EntityDeveloper.SerializationLibrary, EntityDeveloper.Orm.Common, Version=7.2.21.0, Culture=neutral, PublicKeyToken=09af7300eec23701">

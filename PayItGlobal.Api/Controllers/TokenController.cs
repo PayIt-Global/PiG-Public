@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PayItGlobal.Application.Interfaces;
 using PayItGlobal.Infrastructure.Identity;
-using PayEzPaymentApi.Models;
+using PayItGlobalApi.Models;
 using System;
 using System.Threading.Tasks;
 
-namespace PayEzPaymentApi.Controllers
+namespace PayItGlobalApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]

@@ -1,4 +1,4 @@
-﻿namespace PayEzPaymentApi.Models
+﻿namespace PayItGlobalApi.Models
 {
     public class AuthenticateResponse
     {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PayEzPaymentApi.Models
+namespace PayItGlobalApi.Models
 {
     public partial class ACHPayment
     {

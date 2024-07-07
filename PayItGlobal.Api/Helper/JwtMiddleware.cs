@@ -11,7 +11,7 @@ using System.Security.Claims;
 using System.Text;
 
 
-namespace PayEzPaymentApi.Helper
+namespace PayItGlobalApi.Helper
 {
     public class JwtMiddleware
     {
