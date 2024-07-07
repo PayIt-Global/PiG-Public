@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using PayItGlobal.App.ConfigurationModels;
 using PayItGlobal.App.Pages;
 using System;
+using System.IO;
 
 namespace PayItGlobal.App;
 
@@ -28,29 +29,16 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-SemiBold.ttf", "OpenSansSemiBold");
             });
 
-        // Load configuration
-        var assembly = typeof(MauiProgram).Assembly;
+        // Load configuration from appsettings.json
         string appSettingsFileName = "appsettings.json";
-        using var stream = assembly.GetManifestResourceStream($"{assembly.GetName().Name}.{appSettingsFileName}");
-        if (stream != null)
-        {
-            var configBuilder = new ConfigurationBuilder()
-                .AddJsonStream(stream);
-            var configuration = configBuilder.Build();
+        var appSettingsFullPath = Path.Combine(AppContext.BaseDirectory, appSettingsFileName);
+        builder.Configuration.AddJsonFile(appSettingsFullPath, optional: true, reloadOnChange: true);
 
-            // Register configuration
-            builder.Configuration.AddConfiguration(configuration);
+        // Register ApiSettings with the DI container
+        builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection("ApiSettings"));
 
-            // Register services
-            builder.Services.AddSingleton<ApiSettings>(sp =>
-                sp.GetRequiredService<IConfiguration>().GetSection("ApiSettings").Get<ApiSettings>());
-        }
-        else
-        {
-            // Handle the case where the appsettings.json file is not found
-            // For example, log an error or throw an exception
-            Console.WriteLine("appsettings.json not found.");
-        }
+        // Register other services
+        // e.g., builder.Services.AddSingleton<IMyService, MyService>();
 
 #if DEBUG
         builder.Logging.AddDebug();
@@ -58,4 +46,5 @@ public static class MauiProgram
 
         return builder.Build();
     }
+
 }
