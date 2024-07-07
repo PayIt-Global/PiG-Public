@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\PayEz.Data\PayEz.Domain.csproj" />
+    <ProjectReference Include="..\..\WPO.Services\WPO.TSYSCore\PayEz.TSYSCore.csproj" />
+    <ProjectReference Include="..\PayEz.DTOs\PayEz.DTOs.csproj" />
+  </ItemGroup>
+
+</Project>

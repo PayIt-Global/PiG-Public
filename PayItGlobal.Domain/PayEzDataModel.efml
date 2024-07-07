@@ -1,0 +1,1152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<efcore context-namespace="PayEz.Infrastructure.Context" namespace="PayEz.Domain.Entities" p1:name="PayEzDb" p1:Guid="fb80c20f-ad97-4a6c-8454-39b259d930a9" xmlns:p1="http://devart.com/schemas/EntityDeveloper/1.0">
+  <class name="User" entity-set="Users" table="users" schema="public" p1:Guid="6813f064-91e0-48df-95a5-aaa66026b0d5">
+    <id name="UserID" type="Guid" p1:ValidateRequired="true" p1:Guid="459d51a7-cc3f-44dd-8db2-45ac58a8f9c0">
+      <column name="userid" not-null="True" sql-type="uuid" p1:unicode="False" />
+    </id>
+    <property name="Name" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="ca8ef1f7-a40b-4f5d-ab2a-c71f52d88399">
+      <column name="`name`" not-null="False" length="50" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="CreationDate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="7203f2fd-5085-42d2-bfe9-8d1c6f979fe8">
+      <column name="creationdate" not-null="False" sql-type="timestamp" p1:unicode="False" />
+    </property>
+    <property name="UserName" type="String" p1:ValidateMaxLength="50" p1:ValidateRequired="true" p1:Guid="c98b90bd-8205-4959-91b1-efcc3f14c597">
+      <column name="username" not-null="True" length="50" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="ApplicationName" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="6054a03f-3f57-4af9-bda9-7f146491467c">
+      <column name="applicationname" not-null="False" length="100" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="Email" type="String" p1:ValidateMaxLength="100" p1:ValidateRequired="true" p1:Guid="f5fb5c31-bac2-43ca-b61c-f35957e65b6c">
+      <column name="email" not-null="True" length="100" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="Password" type="String" p1:nullable="True" p1:ValidateMaxLength="100" p1:ValidateRequired="false" p1:Guid="06cfecc1-f451-4b58-84dc-9b5636bbba4a">
+      <column name="`password`" not-null="False" length="100" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="PasswordQuestion" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="4491094c-be0e-41d1-b931-ea2354000d2d">
+      <column name="passwordquestion" not-null="False" length="255" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="PasswordAnswer" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="70d4b301-5a12-4d6c-94b2-b084f49e249c">
+      <column name="passwordanswer" not-null="False" length="255" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="IsApproved" type="Boolean" p1:ValidateRequired="true" p1:Guid="3b35f822-4d97-41e8-bbf8-b31e3a4f5156">
+      <column name="isapproved" default="true" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="LastActivityDate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="3ba870df-3c56-40f3-a6cb-325d2a7049c7">
+      <column name="lastactivitydate" not-null="False" sql-type="timestamp" p1:unicode="False" />
+    </property>
+    <property name="LastLoginDate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="50df42fa-99f3-48a1-85e2-156cf9f98715">
+      <column name="lastlogindate" not-null="False" sql-type="timestamp" p1:unicode="False" />
+    </property>
+    <property name="LastPasswordChangedDate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="4005f624-7832-4300-963c-1651c34f8414">
+      <column name="lastpasswordchangeddate" not-null="False" sql-type="timestamp" p1:unicode="False" />
+    </property>
+    <property name="IsOnline" type="Boolean" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="28e95011-14f5-4c90-b1c3-b68e1b3981a1">
+      <column name="isonline" not-null="False" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="IsLockedOut" type="Boolean" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="22289695-d4ea-4ce3-aaa5-fbd313a5907f">
+      <column name="islockedout" not-null="False" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="LastLockedOutDate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="c833a634-f99e-4c3e-8fdd-8aef0f806b87">
+      <column name="lastlockedoutdate" not-null="False" sql-type="timestamp" p1:unicode="False" />
+    </property>
+    <property name="FailedPasswordAttemptCount" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="696190fd-1491-4d22-bda5-b1cf98ecc82e">
+      <column name="failedpasswordattemptcount" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="FailedPasswordAttemptWindowStart" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="698d272e-99e8-486e-88c7-d85686e3edf7">
+      <column name="failedpasswordattemptwindowstart" not-null="False" sql-type="timestamp" p1:unicode="False" />
+    </property>
+    <property name="FailedPasswordAnswerAttemptCount" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="13fd13b1-bea1-413f-866d-7af8db01fdaf">
+      <column name="failedpasswordanswerattemptcount" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="FailedPasswordAnswerAttemptWindowStart" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="73601e02-310f-4b17-a7ca-158e50fbbf08">
+      <column name="failedpasswordanswerattemptwindowstart" not-null="False" sql-type="timestamp" p1:unicode="False" />
+    </property>
+    <property name="LastModified" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="57b32361-3baa-4a7d-a437-4dac77470822">
+      <column name="lastmodified" not-null="False" sql-type="timestamp" p1:unicode="False" />
+    </property>
+    <property name="Comment" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="e9df0b80-e052-44e8-b0de-8f0470f768e8">
+      <column name="`comment`" not-null="False" length="255" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="PortalID" type="Int32" p1:ValidateRequired="true" p1:Guid="d292e24e-44e5-4ca9-abe0-a3a0a2d61d78">
+      <column name="portalid" not-null="True" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="OpenId" type="String" p1:nullable="True" p1:ValidateMaxLength="128" p1:ValidateRequired="false" p1:Guid="55878f27-73f2-4f03-bb76-39067faa5a84">
+      <column name="openid" not-null="False" length="128" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="FireFileKey" type="String" p1:nullable="True" p1:ValidateMaxLength="350" p1:ValidateRequired="false" p1:Guid="9488a500-c359-410d-834c-a51c2bfc5908">
+      <column name="firefilekey" not-null="False" length="350" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="ClientID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="a7bc06ed-a4c4-4c67-a383-d6e8d288368c">
+      <column name="clientid" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="ClientCustomerID" type="String" p1:nullable="True" p1:ValidateMaxLength="150" p1:ValidateRequired="false" p1:Guid="d3844bb8-9556-41f2-8c3a-be06784fe6b9">
+      <column name="clientcustomerid" not-null="False" length="150" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="SecurityStamp" type="String" p1:nullable="True" p1:ValidateMaxLength="256" p1:ValidateRequired="false" p1:Guid="c67bc1b7-670f-4572-b727-3067d030f1ef">
+      <column name="security_stamp" not-null="False" length="256" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="EmailConfirmed" type="Boolean" p1:ValidateRequired="true" p1:Guid="2ecb2296-e27b-42f3-99df-eb667d6e527b">
+      <column name="email_confirmed" default="false" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="EncKeyId" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="c3fffca3-bf56-4768-9ef4-c0a22a09ba83">
+      <column name="enc_key_id" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="UsesBeta" type="Boolean" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="19b68710-78ec-47cf-bef3-3053a5094be8">
+      <column name="uses_beta" not-null="False" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="AspNetUserId" type="String" p1:nullable="True" p1:ValidateMaxLength="450" p1:ValidateRequired="false" p1:Guid="0fae7d37-7b20-46c5-bec2-bc9adb0b81f9">
+      <column name="asp_net_user_id" not-null="False" length="450" sql-type="varchar" p1:unicode="True" />
+    </property>
+  </class>
+  <class name="Client" entity-set="Clients" table="payonline_clients" schema="public" p1:Guid="ceef429e-3a55-4072-8f27-42e4eb01a3d5">
+    <id name="ClientID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="9b6a7b81-711e-4a2a-9916-2f89584c660f">
+      <column name="clientid" default="nextval('payonline_clients_clientid_seq'::regclass)" not-null="True" sql-type="int4" p1:unicode="False" />
+    </id>
+    <property name="FranchiseID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="e6c29c17-a4bc-4ded-850a-f881bd948e5e">
+      <column name="franchiseid" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="Name" type="String" p1:ValidateMaxLength="256" p1:ValidateRequired="true" p1:Guid="0e54b957-153e-48e6-8360-2c544040ab42">
+      <column name="`name`" not-null="True" length="256" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="AddedByID" type="Guid" p1:ValidateRequired="true" p1:Guid="e57268c6-37df-4b79-ba5d-bf1c1f5adeec">
+      <column name="addedbyid" not-null="True" sql-type="uuid" p1:unicode="False" />
+    </property>
+    <property name="AddedDate" type="DateTime" p1:ValidateRequired="true" p1:Guid="be914352-4327-4529-bec6-d4b60d0d6892">
+      <column name="addeddate" not-null="True" sql-type="timestamp" p1:unicode="False" />
+    </property>
+    <property name="AddressLine1" type="String" p1:ValidateMaxLength="60" p1:ValidateRequired="true" p1:Guid="727d5c1a-eaf7-497a-83cf-05fd1d2cb60a">
+      <column name="addressline1" not-null="True" length="60" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="AddressLine2" type="String" p1:nullable="True" p1:ValidateMaxLength="60" p1:ValidateRequired="false" p1:Guid="762b2ca1-7f5d-447d-bbaa-302aec5a0c4a">
+      <column name="addressline2" not-null="False" length="60" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="City" type="String" p1:ValidateMaxLength="30" p1:ValidateRequired="true" p1:Guid="9be51fab-9bef-4591-97a3-e061fb6df73b">
+      <column name="city" not-null="True" length="30" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="StateProvinceID" type="Int32" p1:ValidateRequired="true" p1:Guid="9bac3f65-8e7f-453e-adf5-a2f8517c0f9d">
+      <column name="stateprovinceid" not-null="True" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="Phone" type="String" p1:ValidateMaxLength="25" p1:ValidateRequired="true" p1:Guid="0d387c1e-f0b9-42b1-bfcf-81f52cfd2a29">
+      <column name="phone" not-null="True" length="25" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="Fax" type="String" p1:nullable="True" p1:ValidateMaxLength="25" p1:ValidateRequired="false" p1:Guid="8c9609f7-47ef-4ba6-80f0-31c66357e198">
+      <column name="fax" not-null="False" length="25" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="PostalCode" type="String" p1:ValidateMaxLength="15" p1:ValidateRequired="true" p1:Guid="22e58cd9-4ed9-4138-8b90-c4cf857b8d3f">
+      <column name="postalcode" not-null="True" length="15" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="ModifiedDate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="ac91a4d3-50cb-4d2d-a4ca-39dc5d25b169">
+      <column name="modifieddate" not-null="False" sql-type="timestamp" p1:unicode="False" />
+    </property>
+    <property name="Email" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="8f75f58c-0a9a-4505-8766-018c8b7d85f7">
+      <column name="email" not-null="False" length="255" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="ContactFname" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="4bae713b-4804-4a34-89ed-a0cf649e1fd0">
+      <column name="contactfname" not-null="False" length="50" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="MvcCmsPortalID" type="Int32" p1:ValidateRequired="true" p1:Guid="027e98fb-0800-45b5-884e-11ef815fb23e">
+      <column name="mvccmsportalid" not-null="True" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="ContactLname" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="5d43be71-3262-4019-9b10-b1a0cf54691a">
+      <column name="contactlname" not-null="False" length="50" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="SetupIsComplete" type="Boolean" p1:ValidateRequired="true" p1:Guid="3e3ab6cd-5b64-4ac9-904c-fada4506f67f">
+      <column name="setupiscomplete" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="Active" type="Boolean" p1:ValidateRequired="true" p1:Guid="05b14091-f39c-47af-a470-c841f4997f1e">
+      <column name="active" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="UsesSalesReceipts" type="Boolean" p1:ValidateRequired="true" p1:Guid="166e343a-ba21-41ea-a955-f1a0edccf742">
+      <column name="usessalesreceipts" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="UsesQB" type="Boolean" p1:ValidateRequired="true" p1:Guid="57f40b32-f209-48ae-87d2-72aa8827f54e">
+      <column name="usesqb" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="UsesQBOE" type="Boolean" p1:ValidateRequired="true" p1:Guid="60bb7fc7-e5ec-43e7-981b-2745833833f4">
+      <column name="usesqboe" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="ConnectionTicket" type="String" p1:nullable="True" p1:ValidateMaxLength="350" p1:ValidateRequired="false" p1:Guid="21ba3d62-858a-4429-b35d-3f5f545b7446">
+      <column name="connectionticket" not-null="False" length="350" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="UsesUnitQuantity" type="Boolean" p1:ValidateRequired="true" p1:Guid="0ef1774d-b5ba-458f-a3b5-62c67bbe18c2">
+      <column name="usesunitquantity" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="UsesQBOEOld" type="Boolean" p1:ValidateRequired="true" p1:Guid="b0259bf0-0136-43a7-8de9-743767802fb2">
+      <column name="usesqboeold" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="InvoicesToRemember" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="608cd4c1-6730-48d9-865a-07fc1c7f2c0e">
+      <column name="invoicestoremember" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="QBInvoiceEachJob" type="Boolean" p1:ValidateRequired="true" p1:Guid="38bf0448-0b11-48ff-8438-d49a693ca11f">
+      <column name="qbinvoiceeachjob" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="QBNameLastFirst" type="Boolean" p1:ValidateRequired="true" p1:Guid="e81a9aac-40c1-4e81-bbb2-2bd98939f44c">
+      <column name="qbnamelastfirst" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="QBSkippBillingAddrLine1" type="Boolean" p1:ValidateRequired="true" p1:Guid="c15504b6-efe9-41f6-83c3-9ce15e7fc785">
+      <column name="qbskippbillingaddrline1" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="QBDefaultOnDemand" type="Boolean" p1:ValidateRequired="true" p1:Guid="488ce31f-cfb4-40f1-9c4c-8cc11d9d980e">
+      <column name="qbdefaultondemand" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="QBDefaultInvoiceStyleOnly" type="Boolean" p1:ValidateRequired="true" p1:Guid="8eb8dd2e-53a6-4554-a06e-e54b4dc70907">
+      <column name="qbdefaultinvoicestyleonly" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="InitialSyncIsDone" type="Boolean" p1:ValidateRequired="true" p1:Guid="cf15a7e6-fbc4-4d57-9a74-a4fc3a7952ce">
+      <column name="initialsyncisdone" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="QBUsesClasses" type="Boolean" p1:ValidateRequired="true" p1:Guid="ca61db10-b86c-4520-b06a-c2872fca1966">
+      <column name="qbusesclasses" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="UsesOnlineRegistration" type="Boolean" p1:ValidateRequired="true" p1:Guid="0794eb91-6bb5-4949-b0b8-b89d76bffebe">
+      <column name="usesonlineregistration" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="UsesCardSwipe" type="Boolean" p1:ValidateRequired="true" p1:Guid="6430f683-cee6-48a8-a22c-2533bb1840c7">
+      <column name="usescardswipe" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="UsesWebGenPOS" type="Boolean" p1:ValidateRequired="true" p1:Guid="16681bf3-8199-4e58-a45d-066ecd939f2d">
+      <column name="useswebgenpos" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="UsesQBNonInvoiced" type="Boolean" p1:ValidateRequired="true" p1:Guid="0f31d08b-15b9-473d-8590-e06668f883d9">
+      <column name="usesqbnoninvoiced" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="SkipCustomersFromQB" type="Boolean" p1:ValidateRequired="true" p1:Guid="893cdaaf-7dc8-413e-ab1f-7dc3833c7452">
+      <column name="skipcustomersfromqb" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="QBLoadInitialPrice" type="Boolean" p1:ValidateRequired="true" p1:Guid="f2992b5b-7f55-499c-a59f-516c4740cc9d">
+      <column name="qbloadinitialprice" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="UsesConvenienceFee" type="Boolean" p1:ValidateRequired="true" p1:Guid="eb91e79f-d7c1-4e5d-bbd2-0d580e426478">
+      <column name="usesconveniencefee" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="SendFailMailOnlyToClient" type="Boolean" p1:ValidateRequired="true" p1:Guid="424aac15-c99e-47c6-9c43-822aaf97055f">
+      <column name="sendfailmailonlytoclient" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="Ccforallreceipts" type="String" p1:nullable="True" p1:ValidateMaxLength="255" p1:ValidateRequired="false" p1:Guid="81efb981-f011-47c1-a6dd-bc6fad2151ea">
+      <column name="ccforallreceipts" not-null="False" length="255" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="Usesemployeepay" type="Boolean" p1:ValidateRequired="true" p1:Guid="c09d2c5f-1b6b-45ae-b1e5-124d55bf0ba5">
+      <column name="usesemployeepay" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="Srpriceperhour" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="bddab95d-8109-480d-bae2-536934c19a61">
+      <column name="srpriceperhour" not-null="False" precision="9" scale="2" sql-type="numeric" p1:unicode="False" />
+    </property>
+    <property name="Srpricepershift" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="49bef0ec-c51b-4c5e-adfd-727f76c3a544">
+      <column name="srpricepershift" not-null="False" precision="9" scale="2" sql-type="numeric" p1:unicode="False" />
+    </property>
+    <property name="ConvenienceFeeAmount" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="08e64261-25ec-46a7-88db-a93783132557">
+      <column name="conveniencefeeamount" not-null="False" precision="9" scale="2" sql-type="numeric" p1:unicode="False" />
+    </property>
+    <property name="QBCreateInvoiceOnFail" type="Boolean" p1:ValidateRequired="true" p1:Guid="2566df9b-9d80-4f1f-ab76-fff682309c49">
+      <column name="qb_create_invoice_on_fail" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="CombinedSettlement" type="Boolean" p1:ValidateRequired="true" p1:Guid="780a98b7-906d-4397-9c65-530bb1228933">
+      <column name="combined_settlement" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="UsesClientCustomerID" type="Boolean" p1:ValidateRequired="true" p1:Guid="d9057f7e-28c9-43d7-b2ba-e062a6e12be9">
+      <column name="uses_client_customer_id" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="ConvenienceFeeMaxCCAmount" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="23e2f617-f548-46a6-a67d-3ff363ab88eb">
+      <column name="convenience_fee_max_cc_amount" not-null="False" precision="9" scale="2" sql-type="numeric" p1:unicode="False" />
+    </property>
+    <property name="UsesZeeWiseImport" type="Boolean" p1:ValidateRequired="true" p1:Guid="2e107c8d-6cbc-4f91-b7dd-7e3201a87ded">
+      <column name="uses_zee_wise_import" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="NameOnApplication" type="String" p1:nullable="True" p1:ValidateMaxLength="350" p1:ValidateRequired="false" p1:Guid="cc4e8845-06eb-4cd5-95e2-c4bebb2022f7">
+      <column name="name_on_application" not-null="False" length="350" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="UsesFromExternalCheckout" type="Boolean" p1:ValidateRequired="true" p1:Guid="ecafc867-0ea3-4b95-98c8-c2189c29ba42">
+      <column name="uses_from_external_checkout" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="ConvenienceFeeIsPercent" type="Boolean" p1:ValidateRequired="true" p1:Guid="d8f3e0c8-c3ea-4920-b6a9-33b9d7182bc7">
+      <column name="convenience_fee_is_percent" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="QboeOauthAccessToken" type="String" p1:nullable="True" p1:ValidateMaxLength="350" p1:ValidateRequired="false" p1:Guid="5d8f10e1-028d-4b16-93d8-4fdefbd84df7">
+      <column name="qboe_oauth_access_token" not-null="False" length="350" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="QboeOauthAccessTokenSecret" type="String" p1:nullable="True" p1:ValidateMaxLength="350" p1:ValidateRequired="false" p1:Guid="9588233d-d316-4ee8-ac2a-982058d1a620">
+      <column name="qboe_oauth_access_token_secret" not-null="False" length="350" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="UsesSlCreatePublicUser" type="Boolean" p1:ValidateRequired="true" p1:Guid="6eaeed71-55f9-43d3-bf10-14dfbfa46464">
+      <column name="uses_sl_create_public_user" default="false" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="QboeOauthRealmId" type="String" p1:nullable="True" p1:ValidateMaxLength="350" p1:ValidateRequired="false" p1:Guid="fb92ee1f-07c1-4f89-b0d9-ee17de27cd5d">
+      <column name="qboe_oauth_realm_id" not-null="False" length="350" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="QboeOauthDataSource" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="4888bd17-f1de-45a2-86d3-7bcae3c804ba">
+      <column name="qboe_oauth_data_source" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="PauseCardVerify" type="Boolean" p1:ValidateRequired="true" p1:Guid="7f0d1978-171e-4e16-ad5c-8351a9f0a468">
+      <column name="pause_card_verify" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="QBCreateInvoiceOnRecurFail" type="Boolean" p1:ValidateRequired="true" p1:Guid="006b7788-aafd-452a-a092-9c8e7fbebc5a">
+      <column name="qb_create_invoice_on_recur_fail" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="InfoFromClientNeeded" type="Boolean" p1:ValidateRequired="true" p1:Guid="b7265745-6779-47e2-a288-1318cd10d075">
+      <column name="info_from_client_needed" default="false" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="PreInvoiceMonthlyRecur" type="Boolean" p1:ValidateRequired="true" p1:Guid="5558c0b5-0ff7-4a4b-94a2-8bc541011173">
+      <column name="pre_invoice_monthly_recur" default="false" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="UsesSchoolLeader" type="Boolean" p1:ValidateRequired="true" p1:Guid="6609bc23-1246-4013-b00f-a765a5bbb4c3">
+      <column name="uses_school_leader" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="UsesSalesForce" type="Boolean" p1:ValidateRequired="true" p1:Guid="a24b19f6-f50c-4875-878d-b35b1f6f367a">
+      <column name="uses_sales_force" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="UsesSfCreatePublicUser" type="Boolean" p1:ValidateRequired="true" p1:Guid="299682d4-c5ac-476d-b4da-b926eceee0ec">
+      <column name="uses_sf_create_public_user" default="false" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="UsesAmexBlue" type="Boolean" p1:ValidateRequired="true" p1:Guid="32b1a89c-6618-400d-ad5b-ef4e7bb061cf">
+      <column name="uses_amex_blue" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="UsesAdobeSign" type="Boolean" p1:ValidateRequired="true" p1:Guid="b08a13d0-265e-4710-9c3a-e03436f5fabd">
+      <column name="uses_adobe_sign" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="ProcessSptAsSingleTransaction" type="Boolean" p1:ValidateRequired="true" p1:Guid="09be2008-c3c6-457f-8fe3-6275be05074b">
+      <column name="process_spt_as_single_transaction" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="UsesQbLocations" type="Boolean" p1:ValidateRequired="true" p1:Guid="50dacfbb-3c73-41ee-8ae0-6b1da019dd49">
+      <column name="uses_qb_locations" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="UsesSchoolLeaderArOnly" type="Boolean" p1:ValidateRequired="true" p1:Guid="80e2c55d-38ff-424a-84e1-f9d5ec8cf5bf">
+      <column name="uses_school_leader_ar_only" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="QboeOauthVersion" type="String" p1:nullable="True" p1:ValidateMaxLength="4" p1:ValidateRequired="false" p1:Guid="9be9b97a-4927-4b6e-aff4-cac5e6b5b199">
+      <column name="qboe_oauth_version" not-null="False" length="4" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="QboeOauthLastConnectTime" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="ce58e028-8589-4d36-bd39-f9efb6f921b0">
+      <column name="qboe_oauth_last_connect_time" not-null="False" sql-type="date" p1:unicode="False" />
+    </property>
+    <property name="QboeOauthLastRefreshTime" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="58162a7a-7943-4f81-bba8-7a399bf77b5a">
+      <column name="qboe_oauth_last_refresh_time" not-null="False" sql-type="timestamp" p1:unicode="False" />
+    </property>
+    <property name="QboeOauth2AccessToken" type="String" p1:nullable="True" p1:ValidateMaxLength="900" p1:ValidateRequired="false" p1:Guid="5ad38bf4-7637-4c31-9342-d98b7697eea7">
+      <column name="qboe_oauth2_access_token" not-null="False" length="900" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="QboeOauth2LastConnectTime" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="8a54d2c0-a433-4fed-befe-5e882732451d">
+      <column name="qboe_oauth2_last_connect_time" not-null="False" sql-type="timestamp" p1:unicode="False" />
+    </property>
+    <property name="UsesDocusign" type="Boolean" p1:ValidateRequired="true" p1:Guid="22c8a2a4-cf79-49dd-b762-b91659543e31">
+      <column name="uses_docusign" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="EncKeyID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="6cd404da-5efd-4f6d-85e5-1af20aa3a41c">
+      <column name="enc_key_id" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="AffiliateID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="5276ec07-3fb8-4663-a1b5-329435f18962">
+      <column name="affiliate_id" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="UsesProcare" type="Boolean" p1:ValidateRequired="true" p1:Guid="bd0f583f-ad83-4e7e-899c-e0b62ccd2748">
+      <column name="uses_procare" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="AchConvenienceFeeAmount" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="67da2014-1986-45b1-bd7c-5bd012f687d4">
+      <column name="ach_convenience_fee_amount" not-null="False" precision="9" scale="2" sql-type="numeric" p1:unicode="False" />
+    </property>
+    <property name="LateFeeCc" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="abb085e9-33bc-42ee-a20f-27da2bad8ee4">
+      <column name="late_fee_cc" not-null="False" precision="9" scale="2" sql-type="numeric" p1:unicode="False" />
+    </property>
+    <property name="LateFeeAch" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="fddf538c-6a41-4476-af9b-7458f72c4bc0">
+      <column name="late_fee_ach" not-null="False" precision="9" scale="2" sql-type="numeric" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="PayOnlineMerchantCredential" entity-set="PayOnlineMerchantCredentials" table="payonline_merchant_credentials" schema="public" p1:Guid="7a86e4ed-c678-4198-bac0-e55b0a220d5f">
+    <id name="CredentialID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="d7302a38-f180-462c-a97e-b55db11ac739">
+      <column name="credential_id" default="nextval('payonline_merchant_credentials_credential_id_seq'::regclass)" not-null="True" sql-type="int4" p1:unicode="False" />
+    </id>
+    <property name="PortalID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="91ccfc02-c08f-47b4-8575-c54029b1f7aa">
+      <column name="portal_id" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="PayonlineProcessorID" type="Int32" p1:ValidateRequired="true" p1:Guid="a588ad3d-274d-48a5-8c2b-545e570640f3">
+      <column name="payonline_processor_id" not-null="True" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="CreateDate" type="DateTime" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="9be99c50-69b5-46bc-bc00-401b6df66080">
+      <column name="create_date" default="now()" not-null="True" sql-type="timestamp" p1:unicode="False" />
+    </property>
+    <property name="CreatedBy" type="Guid" p1:ValidateRequired="true" p1:Guid="ad6bc9df-9332-4a39-8cb2-bded342c99b1">
+      <column name="created_by" not-null="True" sql-type="uuid" p1:unicode="False" />
+    </property>
+    <property name="EditDate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="057d32a0-df1b-4b77-94bc-5e274a235c34">
+      <column name="edit_date" not-null="False" sql-type="timestamp" p1:unicode="False" />
+    </property>
+    <property name="EditedBy" type="Guid" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="f9578055-6e4b-4cb6-946b-687125025593">
+      <column name="edited_by" not-null="False" sql-type="uuid" p1:unicode="False" />
+    </property>
+    <property name="LastPwdChg" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="885256a1-502f-4542-bba5-542d783db4a5">
+      <column name="last_pwd_chg" not-null="False" sql-type="date" p1:unicode="False" />
+    </property>
+    <property name="ProcessorID" type="String" p1:nullable="True" p1:ValidateMaxLength="205" p1:ValidateRequired="false" p1:Guid="613dfd55-618f-423d-8e82-6817ae6deb8c">
+      <column name="processor_id" not-null="False" length="205" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="UserName" type="String" p1:nullable="True" p1:ValidateMaxLength="205" p1:ValidateRequired="false" p1:Guid="2ea56565-5c81-4537-a7a5-42278ea0ad2e">
+      <column name="user_name" not-null="False" length="205" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="Password" type="String" p1:nullable="True" p1:ValidateMaxLength="250" p1:ValidateRequired="false" p1:Guid="69b97da9-8e21-46ae-bffa-07ffbae4271c">
+      <column name="`password`" not-null="False" length="250" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="MerchantID" type="String" p1:nullable="True" p1:ValidateMaxLength="20" p1:ValidateRequired="false" p1:Guid="726fe440-03cd-4dea-b8a8-104285633b2b">
+      <column name="merchant_id" not-null="False" length="20" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="Key" type="String" p1:nullable="True" p1:ValidateMaxLength="250" p1:ValidateRequired="false" p1:Guid="e77c66d3-6adf-41e4-9752-6411134789a2">
+      <column name="`key`" not-null="False" length="250" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="WPOCredentialID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="77a73b9c-1345-4d48-a9c8-56d00818c254">
+      <column name="wpo_credential_id" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="MobileWorkerID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="7a70fd7c-cf99-4f10-b17a-0b590364a7d1">
+      <column name="mobile_worker_id" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="ProcessTypeID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="4c64aa28-2bb1-4075-ad6d-46d515e7c3a9">
+      <column name="process_type_id" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="EncKeyID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="7efba018-c8fc-446b-8a73-0a7cc5c35b8e">
+      <column name="enc_key_id" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="Payment" entity-set="Payments" table="payonline_payments" schema="public" p1:Guid="dac37a8b-9d27-4880-99a8-2752877f8159">
+    <id name="PaymentID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="280e7419-d56f-4553-9a0d-ab9a1bdbf780">
+      <column name="paymentid" default="nextval('payonline_payments_paymentid_seq'::regclass)" not-null="True" sql-type="int4" p1:unicode="False" />
+    </id>
+    <property name="UserID" type="Guid" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="f280bd3b-7fa9-4fb2-9083-a01f3d74663c">
+      <column name="userid" not-null="False" sql-type="uuid" p1:unicode="False" />
+    </property>
+    <property name="Last4CC" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="fb7c2cd5-0ff0-45cd-9b9d-c7a4cfc14cf4">
+      <column name="last4cc" not-null="False" length="50" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="CreatedOn" type="DateTime" p1:ValidateRequired="true" p1:Guid="746d8659-4a12-4f79-8368-dfd5d95858b1">
+      <column name="createdon" not-null="True" sql-type="timestamp" p1:unicode="False" />
+    </property>
+    <property name="ModifiedOn" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="63200f43-11a5-4123-97d6-ea98da3f5702">
+      <column name="modifiedon" not-null="False" sql-type="timestamp" p1:unicode="False" />
+    </property>
+    <property name="BusinessName" type="String" p1:nullable="True" p1:ValidateMaxLength="150" p1:ValidateRequired="false" p1:Guid="f11eb7f8-5627-4153-8a36-65e3affc4ab9">
+      <column name="nameofbusiness" not-null="False" length="150" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="InvoiceNumber" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="5d4dfeac-5b6a-414f-b9f5-2b434e9bac7f">
+      <column name="invoicenumber" not-null="False" length="50" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="DynamicFieldVal" type="String" p1:nullable="True" p1:ValidateMaxLength="350" p1:ValidateRequired="false" p1:Guid="699e89ed-5e78-4484-a808-2922a42db73f">
+      <column name="dynamicfieldval" not-null="False" length="350" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="DynamicFieldVal2" type="String" p1:nullable="True" p1:ValidateMaxLength="350" p1:ValidateRequired="false" p1:Guid="09695996-a85f-4151-907d-7fa987690187">
+      <column name="dynamicfieldval2" not-null="False" length="350" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="PortalID" type="Int32" p1:ValidateRequired="true" p1:Guid="0352016e-6419-482b-9396-d171e6f3c6b6">
+      <column name="payonlineportalid" not-null="True" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="PayerFirstName" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="87f8ff39-f961-4b70-884e-c44b7ea5907b">
+      <column name="payerfirstname" not-null="False" length="50" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="PayerLastName" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="222da2a6-9c31-438d-8859-1734a0dd2a6e">
+      <column name="payerlastname" not-null="False" length="50" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="ACHName" type="String" p1:nullable="True" p1:ValidateMaxLength="150" p1:ValidateRequired="false" p1:Guid="4fea2593-c064-4bf8-97ca-4b2eb6882695">
+      <column name="achname" not-null="False" length="150" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="ARProfileID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="434d6bf2-e2ca-42f0-9a81-889c3a6ff48d">
+      <column name="arprofileid" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="SubscriptionID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="0ae0fd16-16cf-4364-9c75-708c190566f8">
+      <column name="subscriptionid" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="SentToQB" type="Boolean" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="1e3ddc05-5eea-4974-9da8-1a0bce7289e9">
+      <column name="senttoqb" not-null="False" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="LoyaltyCampaignID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="b229dc29-ec61-4034-850c-8e9d14343a8a">
+      <column name="loyaltycampaignid" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="LastQBTransferMessage" type="String" p1:nullable="True" p1:ValidateMaxLength="850" p1:ValidateRequired="false" p1:Guid="8c5d22d4-4fd0-4891-bb15-eae4e7d9532f">
+      <column name="lastqbtransfermessage" not-null="False" length="850" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="IsFromMobile" type="Boolean" p1:ValidateRequired="true" p1:Guid="46de7ac1-5fa6-4ef8-b77c-720d6298857c">
+      <column name="isfrommobile" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="SpecialTypeID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="8ab09fc6-a426-40e6-8cb8-3370a0012422">
+      <column name="specialtypeid" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="Total" type="Decimal" p1:ValidateRequired="true" p1:Guid="b9d70395-51c8-475b-99c9-fb893b528f3c">
+      <column name="total" default="0" not-null="True" precision="9" scale="2" sql-type="numeric" p1:unicode="False" />
+    </property>
+    <property name="SpecialTypeOptionID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="4e317b68-9867-4d42-8f09-210bb79f8dcd">
+      <column name="special_type_option_id" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="PayOnlinePortal" entity-set="PayOnlinePortals" table="payonline_portals" schema="public" p1:Guid="01ceeec6-da98-4228-882f-690121011939">
+    <id name="PayOnlinePortalID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="270895b1-e720-4d88-8963-aa4cd32387b9">
+      <column name="payonlineportalid" default="nextval('payonline_portals_payonlineportalid_seq'::regclass)" not-null="True" sql-type="int4" p1:unicode="False" />
+    </id>
+    <property name="Title" type="String" p1:ValidateMaxLength="50" p1:ValidateRequired="true" p1:Guid="3b5d0fc0-278e-4666-a176-3d78463b5b83">
+      <column name="title" not-null="True" length="50" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="AddedDate" type="DateTime" p1:ValidateRequired="true" p1:Guid="e21b497c-b74a-452b-a125-d96911506980">
+      <column name="addeddate" not-null="True" sql-type="timestamp" p1:unicode="False" />
+    </property>
+    <property name="EditDate" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="09e1771a-1d9a-4373-a693-25d41e583bb4">
+      <column name="editdate" not-null="False" sql-type="timestamp" p1:unicode="False" />
+    </property>
+    <property name="AdminUserID" type="Guid" p1:ValidateRequired="true" p1:Guid="12169c95-a3e4-455c-9724-eae8e00462ed">
+      <column name="userid" not-null="True" sql-type="uuid" p1:unicode="False" />
+    </property>
+    <property name="HeaderColor" type="String" p1:nullable="True" p1:ValidateMaxLength="10" p1:ValidateRequired="false" p1:Guid="d4241144-347e-4d1f-817c-a6047661b5e1">
+      <column name="headercolor" not-null="False" length="10" sql-type="char" p1:fixed-length="True" p1:unicode="True" />
+    </property>
+    <property name="LogoWidth" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="438c5f3e-762e-4a08-ba8e-7e983e324cb2">
+      <column name="logowidth" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="LogoHeight" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="e72b3810-7d67-49ca-a4ec-b7e044f6fc4a">
+      <column name="logoheight" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="BGTextColor" type="String" p1:nullable="True" p1:ValidateMaxLength="10" p1:ValidateRequired="false" p1:Guid="f79d3c8c-ccc1-46ea-93f4-4516f7d3d4c2">
+      <column name="bgtextcolor" not-null="False" length="10" sql-type="char" p1:fixed-length="True" p1:unicode="True" />
+    </property>
+    <property name="RefundPolicy" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="c7774621-9bca-4d97-b2b5-1be366fc19c2">
+      <column name="refundpolicy" not-null="False" sql-type="text" p1:unicode="True" />
+    </property>
+    <property name="UsesNameOfBusiness" type="Boolean" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="09095e50-0cd0-4ec5-abcc-43919f3d0597">
+      <column name="usesnameofbusiness" not-null="False" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="UsesInvoiceNumber" type="Boolean" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="3c9cfce9-c30f-4631-b5ad-f6c63a395fa8">
+      <column name="usesinvoicenumber" not-null="False" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="UsesDynamicField" type="Boolean" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="ebd7140e-b483-4735-a0f1-ed276ea01947">
+      <column name="usesdynamicfield" not-null="False" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="DynamicFieldTitle" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="4c4b47d1-900f-4365-adee-e76ed0feeba0">
+      <column name="dynamicfieldtitle" not-null="False" length="50" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="DynamicFieldRequired" type="Boolean" p1:ValidateRequired="true" p1:Guid="f1d034b1-18dd-4d4b-ae2a-44571055a33e">
+      <column name="dynamicfieldrequired" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="UsesDynamicField2" type="Boolean" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="22c045ef-95f6-45f0-8c37-1fd525742383">
+      <column name="usesdynamicfield2" not-null="False" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="DynamicField2Title" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="0dd4e50d-d362-4f68-b2cd-8d9dd8a7bfba">
+      <column name="dynamicfield2title" not-null="False" length="50" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="DynamicField2Required" type="Boolean" p1:ValidateRequired="true" p1:Guid="478d33a7-9ba6-4e9b-8795-86cdb29bd646">
+      <column name="dynamicfield2required" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="URLSlug" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="f5523609-ad0b-4a18-ac62-9aa1422375d9">
+      <column name="urlslug" not-null="False" length="50" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="ClientID" type="Int32" p1:ValidateRequired="true" p1:Guid="0854826e-06c7-4931-94d9-29a4dd730143">
+      <column name="clientid" not-null="True" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="PortalTypeID" type="Int32" p1:ValidateRequired="true" p1:Guid="3c37ebc1-e47d-4f8e-aa36-c633a8a8690a">
+      <column name="portaltypeid" not-null="True" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="HomepageInstructions" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="4a6cac76-1b87-49ae-98a0-4f01ab74215a">
+      <column name="homepageinstructions" not-null="False" sql-type="text" p1:unicode="True" />
+    </property>
+    <property name="PaymentPageInstructions" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="c3c4a0f1-c3eb-45d8-a16b-7cfb0a415f6c">
+      <column name="paymentpageinstructions" not-null="False" sql-type="text" p1:unicode="True" />
+    </property>
+    <property name="ReceiptExtraText" type="String" p1:nullable="True" p1:ValidateMaxLength="4000" p1:ValidateRequired="false" p1:Guid="9d8d0c39-a9d1-4060-a19d-f315a7b8c20f">
+      <column name="receiptextratext" not-null="False" length="4000" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="PaymentTypesAllowed" type="String" p1:ValidateMaxLength="50" p1:ValidateRequired="true" p1:Guid="58d9dd71-1df2-45b2-80e9-bd4f88d38d9a">
+      <column name="paymenttypesallowed" not-null="True" length="50" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="UsesInvoices" type="Boolean" p1:ValidateRequired="true" p1:Guid="5c481b94-088f-4204-bcbb-3ead65a7a0d4">
+      <column name="usesinvoices" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="BannerText" type="String" p1:nullable="True" p1:ValidateMaxLength="350" p1:ValidateRequired="false" p1:Guid="e5bd5cda-0caa-4a74-a18f-f8b291a38347">
+      <column name="bannertext" not-null="False" length="350" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="UseMasterCard" type="Boolean" p1:ValidateRequired="true" p1:Guid="1b6bac8d-438e-473b-a649-323eae4adf1e">
+      <column name="usemastercard" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="UseVisa" type="Boolean" p1:ValidateRequired="true" p1:Guid="fb843659-f6db-4708-851b-5d0ce772f1c7">
+      <column name="usevisa" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="UseAmex" type="Boolean" p1:ValidateRequired="true" p1:Guid="f1f52afe-dc92-4565-a502-bd0b4e90e23c">
+      <column name="useamex" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="UsesLoyaltyProgram" type="Boolean" p1:ValidateRequired="true" p1:Guid="97e7a030-8b6d-44c0-b20a-fecb86f220b7">
+      <column name="usesloyaltyprogram" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="CSCOptional" type="Boolean" p1:ValidateRequired="true" p1:Guid="e20c15ed-7bf9-49bf-affe-b518b598954f">
+      <column name="cscoptional" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="UseAnyDaySubscriptions" type="Boolean" p1:ValidateRequired="true" p1:Guid="77ea1812-5ab8-4c7b-9d91-1d0c8ae61f48">
+      <column name="useanydaysubscriptions" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="UseWeeklySubscriptions" type="Boolean" p1:ValidateRequired="true" p1:Guid="962929ef-44b9-4863-a9d6-f7cf33c8f412">
+      <column name="useweeklysubscriptions" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="UseDelayPay" type="Boolean" p1:ValidateRequired="true" p1:Guid="3f5eb541-b351-48b0-abba-ff8cdbe23e86">
+      <column name="usedelaypay" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="Processor" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="23e38041-f8e6-4d08-a003-11758c5d4f29">
+      <column name="processor" not-null="False" length="50" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="ACHProcessor" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="f3a708fc-1fc4-48f1-a65a-02d985d4a490">
+      <column name="achprocessor" not-null="False" length="50" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="BackgroundImage" type="String" p1:nullable="True" p1:ValidateMaxLength="250" p1:ValidateRequired="false" p1:Guid="27ee463b-495c-46f1-9b6c-5ed25fbceff5">
+      <column name="backgroundimage" not-null="False" length="250" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="PublicSitePayContainerHeader" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="4713761b-7014-4f5f-bc76-fd345cd336c6">
+      <column name="publicsitepaycontainerheader" not-null="False" sql-type="text" p1:unicode="True" />
+    </property>
+    <property name="UseDiscover" type="Boolean" p1:ValidateRequired="true" p1:Guid="8e01d39a-b118-4b58-a9c8-358571a9858a">
+      <column name="usediscover" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="UseSplitPay" type="Boolean" p1:ValidateRequired="true" p1:Guid="abed3f92-b5ed-4fb8-aff9-90b09a4740c8">
+      <column name="usesplitpay" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="SendARReceiptToCustomer" type="Boolean" p1:ValidateRequired="true" p1:Guid="1ff2c16a-89f9-4f0a-ad41-f863ff6cd16c">
+      <column name="sendarreceipttocustomer" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="SendARReceiptToClient" type="Boolean" p1:ValidateRequired="true" p1:Guid="c614df32-1160-4b08-ac4e-dfd3ab2bdb0c">
+      <column name="sendarreceipttoclient" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="SendPublicReceiptToClient" type="Boolean" p1:ValidateRequired="true" p1:Guid="69d6c1dc-8eca-493c-9850-9410c2f3a3dd">
+      <column name="sendpublicreceipttoclient" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="UseNagMail" type="Boolean" p1:ValidateRequired="true" p1:Guid="116c77e7-8d7c-4c52-b355-b630478dbf2b">
+      <column name="usenagmail" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="ReceiptTitle" type="String" p1:nullable="True" p1:ValidateMaxLength="250" p1:ValidateRequired="false" p1:Guid="cfed821b-2738-4e9e-bfa5-328ea17d4789">
+      <column name="receipttitle" not-null="False" length="250" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="UseQBNames" type="Boolean" p1:ValidateRequired="true" p1:Guid="fed35e9d-653f-41a2-9f7c-85420a8ed6f5">
+      <column name="useqbnames" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="UseClientEmailForReceipt" type="Boolean" p1:ValidateRequired="true" p1:Guid="52c4ad44-0224-494f-9e2a-42796f88d9ba">
+      <column name="useclientemailforreceipt" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="ClassIDToFilterFor" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="fcd48e4d-67a0-4ccc-8a87-3a83c3e1e054">
+      <column name="classidtofilterfor" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="ReceiptEmail" type="String" p1:nullable="True" p1:ValidateMaxLength="80" p1:ValidateRequired="false" p1:Guid="83029748-33a8-4a74-990d-a4da40a48a09">
+      <column name="receiptemail" not-null="False" length="80" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="UsesCustomAmountTabulation" type="Boolean" p1:ValidateRequired="true" p1:Guid="ccd5ef4f-dc3e-4689-8054-ad803ac24541">
+      <column name="usescustomamounttabulation" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="CustomAmountText" type="String" p1:nullable="True" p1:ValidateMaxLength="150" p1:ValidateRequired="false" p1:Guid="39edb41f-d6c8-4516-b1d3-d2711b0ba6e4">
+      <column name="customamounttext" not-null="False" length="150" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="ECommTheme" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="cc80fe8f-c08a-49f9-85a9-32736a436b8a">
+      <column name="ecommtheme" not-null="False" length="50" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="LastTsysPwdChg" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="855228b1-527d-4ffc-a1f1-c0027cef5549">
+      <column name="last_tsys_pwd_chg" not-null="False" sql-type="date" p1:unicode="False" />
+    </property>
+    <property name="ACHPayonlineProcessorID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="d1e76a61-46c2-4e64-a0c5-c6fe4fc11d3e">
+      <column name="ach_payonline_processor_id" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="CCPayonlineProcessorID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="4c16d7c6-4bd3-457f-8b6d-fbcf8afd181c">
+      <column name="cc_payonline_processor_id" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="RetailPayonlineProcessorID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="a686b534-497a-4eba-aab6-85871001904c">
+      <column name="retail_payonline_processor_id" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="FailEmail" type="String" p1:nullable="True" p1:ValidateMaxLength="80" p1:ValidateRequired="false" p1:Guid="9403449d-b344-405b-b63c-5a87be4cdc8e">
+      <column name="fail_email" not-null="False" length="80" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="Active" type="Boolean" p1:ValidateRequired="true" p1:Guid="a7ac1105-ec4f-4c59-8a03-acaf78f5308e">
+      <column name="active" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="ConvFeeExclude" type="Boolean" p1:ValidateRequired="true" p1:Guid="afa555d5-07ca-4ffd-a3ae-071b8cc79d66">
+      <column name="conv_fee_exclude" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="InvoiceNumberRequired" type="Boolean" p1:ValidateRequired="true" p1:Guid="b176fb3d-1c2a-4213-90ee-c629c59b22a5">
+      <column name="invoice_number_required" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="AdobeSignAbbreviation" type="String" p1:nullable="True" p1:ValidateMaxLength="10" p1:ValidateRequired="false" p1:Guid="3866f23c-a4b9-4e13-a617-3bdaf200e61a">
+      <column name="adobe_sign_abbreviation" not-null="False" length="10" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="LocationId" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="fd82eb1c-57a1-42f4-b36c-ea83a61bc2a8">
+      <column name="location_id" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="ProcessACHAsCCD" type="Boolean" p1:ValidateRequired="true" p1:Guid="80d4c926-93fc-455f-a944-71bf6eea95fa">
+      <column name="process_ach_as_ccd" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="PayOnlinePortaltype" entity-set="PayOnlinePortaltypes" table="payonline_portaltypes" schema="public" p1:Guid="ee1dca23-d420-405e-9687-bda16ffb2884">
+    <id name="PortaltypeID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="400c0ffe-ff61-4b65-9c39-3afc2c4dcaab">
+      <column name="portaltypeid" default="nextval('payonline_portaltypes_portaltypeid_seq'::regclass)" not-null="True" sql-type="int4" p1:unicode="False" />
+    </id>
+    <property name="Name" type="String" p1:ValidateMaxLength="50" p1:ValidateRequired="true" p1:Guid="205babd8-fb84-435c-a550-351fb6e3fa22">
+      <column name="`name`" not-null="True" length="50" sql-type="varchar" p1:unicode="True" />
+    </property>
+  </class>
+  <class name="Transaction" entity-set="Transactions" table="payonline_transactions" schema="public" p1:Guid="9cb3cdf4-3095-46ae-92b3-fefdbd1cb92e">
+    <id name="TransactionID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="2160e104-fff0-4f6f-8e55-33b7350d37fc">
+      <column name="transactionid" default="nextval('payonline_transactions_transactionid_seq'::regclass)" not-null="True" sql-type="int4" p1:unicode="False" />
+    </id>
+    <property name="PaymentID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="db70bea7-153b-466a-ab42-da7b97489a9b">
+      <column name="paymentid" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="TransactionDate" type="DateTime" p1:ValidateRequired="true" p1:Guid="8ac95e2b-022e-4412-9dc8-ed8bb0c9d3a7">
+      <column name="transactiondate" not-null="True" sql-type="timestamp" p1:unicode="False" />
+    </property>
+    <property name="Response" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="6d4d5ef8-083e-4d41-afa6-a6039d87dbfc">
+      <column name="response" not-null="False" length="50" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="ResponseText" type="String" p1:nullable="True" p1:ValidateMaxLength="1500" p1:ValidateRequired="false" p1:Guid="a5721244-8eac-4538-ba8e-fd8807601583">
+      <column name="responsetext" not-null="False" length="1500" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="AuthCode" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="90b61b69-10c4-45e7-a3ec-560a89eb0e05">
+      <column name="authcode" not-null="False" length="50" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="TDTransactionID" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="4622651b-27c2-4d88-b438-6d76c5304d42">
+      <column name="tdtransactionid" not-null="False" length="50" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="AVSResponse" type="String" p1:nullable="True" p1:ValidateMaxLength="10" p1:ValidateRequired="false" p1:Guid="aeef96af-96be-4243-94e0-f9287252c951">
+      <column name="avsresponse" not-null="False" length="10" sql-type="char" p1:fixed-length="True" p1:unicode="True" />
+    </property>
+    <property name="CVVResponse" type="String" p1:nullable="True" p1:ValidateMaxLength="10" p1:ValidateRequired="false" p1:Guid="346ad367-0f3a-4f8d-87eb-b60e3b05c727">
+      <column name="cvvresponse" not-null="False" length="10" sql-type="char" p1:fixed-length="True" p1:unicode="True" />
+    </property>
+    <property name="ResponseCode" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="01d4889c-9658-42f7-b2b4-d3760f7054ef">
+      <column name="responsecode" not-null="False" length="50" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="TransactionType" type="String" p1:ValidateMaxLength="50" p1:ValidateRequired="true" p1:Guid="478aef79-db07-4105-8c88-034dc4e8de55">
+      <column name="transactiontype" not-null="True" length="50" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="SubscriptionID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="cb1d6593-7d4b-4ead-a22c-540b4e9ce138">
+      <column name="subscriptionid" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="RebateID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="85effd2a-e614-4b9e-9091-a20361f969b2">
+      <column name="rebateid" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="CardType" type="String" p1:nullable="True" p1:ValidateMaxLength="10" p1:ValidateRequired="false" p1:Guid="62767585-6d76-40b8-9898-e5ba25c936ae">
+      <column name="cardtype" not-null="False" length="10" sql-type="char" p1:fixed-length="True" p1:unicode="True" />
+    </property>
+    <property name="PortalID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="40cb3736-dfb0-44bd-b143-d67b2b63fca0">
+      <column name="portalid" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="PayeeID" type="String" p1:nullable="True" p1:ValidateMaxLength="150" p1:ValidateRequired="false" p1:Guid="e9581185-df7f-4a57-83fb-19f51a4b2e86">
+      <column name="payeeid" not-null="False" length="150" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="Last4CC" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="4de74017-7253-40d3-8e65-a6c81b8f1398">
+      <column name="last4cc" not-null="False" length="50" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="Name" type="String" p1:nullable="True" p1:ValidateMaxLength="150" p1:ValidateRequired="false" p1:Guid="148a7699-5644-49dd-9561-5a67e06b1c86">
+      <column name="`name`" not-null="False" length="150" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="IPAddress" type="String" p1:nullable="True" p1:ValidateMaxLength="50" p1:ValidateRequired="false" p1:Guid="f3862cd8-81a6-49d8-803a-bdc7209bff46">
+      <column name="ipaddress" not-null="False" length="50" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="Amount" type="Decimal" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="8ba9c853-fd25-4b9f-ada6-158e6284c4b1">
+      <column name="amount" not-null="False" precision="9" scale="2" sql-type="numeric" p1:unicode="False" />
+    </property>
+    <property name="EmployeePaymentID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="9b97ad6c-e41d-4dfa-8197-9d051bd4c9ef">
+      <column name="employee_payment_id" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="EmployeePayoutID" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="d8adc535-16a1-4f2e-baf1-773ff88f718e">
+      <column name="employee_payout_id" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="SentToQb" type="Boolean" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="849ef6cb-1143-42a1-a4a0-d8a083e134a8">
+      <column name="sent_to_qb" default="false" not-null="False" sql-type="bool" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="Role" entity-set="Roles" table="roles" schema="public" p1:Guid="7e96d90f-459b-45f7-a01b-3e369f37e2c7">
+    <id name="RoleID" type="Guid" p1:ValidateRequired="true" p1:Guid="42351ebd-75b2-4a41-8058-e4f84457c8d3">
+      <column name="roleid" not-null="True" sql-type="uuid" p1:unicode="False" />
+    </id>
+    <property name="RoleName" type="String" p1:ValidateMaxLength="256" p1:ValidateRequired="true" p1:Guid="8d7a8a2d-77d8-4b11-af1d-a0f4ec505a00">
+      <column name="rolename" not-null="True" length="256" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="LoweredRoleName" type="String" p1:ValidateMaxLength="256" p1:ValidateRequired="true" p1:Guid="6db2eea7-b81a-4305-8653-543333c41779">
+      <column name="loweredrolename" not-null="True" length="256" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="Description" type="String" p1:nullable="True" p1:ValidateMaxLength="256" p1:ValidateRequired="false" p1:Guid="bf6e8013-8051-45a2-acb5-29413dca95d0">
+      <column name="description" not-null="False" length="256" sql-type="varchar" p1:unicode="True" />
+    </property>
+  </class>
+  <class name="StateProvince" entity-set="StateProvinces" table="state_provinces" schema="public" p1:Guid="58dbc653-2ec6-40b7-a46b-6ae1358d4cfc">
+    <id name="StateProvinceID" type="Int32" p1:ValidateRequired="true" p1:Guid="7019cd7e-d176-46a1-b458-b361339bb0b7">
+      <column name="stateprovinceid" not-null="True" sql-type="int4" p1:unicode="False" />
+    </id>
+    <property name="StateProvinceCode" type="String" p1:ValidateMaxLength="3" p1:ValidateRequired="true" p1:Guid="3f0b0c04-fa1a-47eb-867e-b2e621477216">
+      <column name="stateprovincecode" not-null="True" length="3" sql-type="char" p1:fixed-length="True" p1:unicode="True" />
+    </property>
+    <property name="CountryRegionCode" type="String" p1:ValidateMaxLength="3" p1:ValidateRequired="true" p1:Guid="deac931c-5ec1-40ec-b969-1ebd7431c6ba">
+      <column name="countryregioncode" not-null="True" length="3" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="IsOnlyStateProvinceFlag" type="Boolean" p1:ValidateRequired="true" p1:Guid="8ffc70df-aea7-47a2-9b34-60334b04ec92">
+      <column name="isonlystateprovinceflag" not-null="True" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="Name" type="String" p1:ValidateMaxLength="50" p1:ValidateRequired="true" p1:Guid="21486a1c-8e6e-4517-8136-0f5fa7433500">
+      <column name="`name`" not-null="True" length="50" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="TerritoryID" type="Int32" p1:ValidateRequired="true" p1:Guid="f6fb6e2d-5e78-425d-9a23-033b31c862a1">
+      <column name="territoryid" not-null="True" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="RowGuid" type="Guid" p1:ValidateRequired="true" p1:Guid="ad4e47f0-3217-41ca-8e85-5d739765bcd4">
+      <column name="rowguid" not-null="True" sql-type="uuid" p1:unicode="False" />
+    </property>
+    <property name="ModifiedDate" type="DateTime" p1:ValidateRequired="true" p1:Guid="58a7d2b9-4e1f-4575-aa4e-512009db9395">
+      <column name="modifieddate" not-null="True" sql-type="timestamp" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="PayonlineProcessor" entity-set="PayonlineProcessors" table="payonline_processors" schema="public" p1:Guid="eef0e618-9473-4326-8f5f-71bb78aac7fd">
+    <id name="ProcessorID" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="0ac3bfd6-b2c8-4a34-baf7-695d3ad946ca">
+      <column name="processor_id" default="nextval('payonline_processors_processor_id_seq'::regclass)" not-null="True" sql-type="int4" p1:unicode="False" />
+    </id>
+    <property name="Name" type="String" p1:ValidateMaxLength="50" p1:ValidateRequired="true" p1:Guid="317f7489-b104-4cef-9287-e29d92ccd73b">
+      <column name="`name`" not-null="True" length="50" sql-type="varchar" p1:unicode="True" />
+    </property>
+  </class>
+  <class name="PayonlineProcessType" entity-set="PayonlineProcessTypes" table="payonline_process_types" schema="public" p1:Guid="b873bad8-bca6-4b75-a435-37674ef1982e">
+    <id name="ProcessTypeId" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="4380a5b8-ee08-4195-b29e-a53df1b065c6">
+      <column name="process_type_id" default="nextval('payonline_process_types_process_type_id_seq'::regclass)" not-null="True" sql-type="int4" p1:unicode="False" />
+    </id>
+    <property name="Name" type="String" p1:ValidateMaxLength="50" p1:ValidateRequired="true" p1:Guid="371f9bb2-3965-4204-9dc0-b548c1475ea5">
+      <column name="`name`" not-null="True" length="50" sql-type="varchar" p1:unicode="True" />
+    </property>
+  </class>
+  <class name="AspNetUser" entity-set="AspNetUsers" table="asp_net_users" schema="core_identity" p1:Guid="c0dc2d3f-dd8b-4a2a-9e8f-43509743234d" p1:EntityBase="IdentityUser&lt;string&gt;">
+    <id name="Id" type="String" p1:ValidateMaxLength="450" p1:ValidateRequired="true" p1:Guid="07e64d67-8c04-442b-8e61-6a9cc7dcd741">
+      <column name="id" not-null="True" length="450" sql-type="varchar" p1:unicode="True" />
+    </id>
+    <property name="UserName" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="c9ab17a3-3508-41d4-89e7-6359690ce1dc">
+      <column name="user_name" not-null="False" sql-type="text" p1:unicode="True" />
+    </property>
+    <property name="NormalizedUserName" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="30723b83-6430-4a06-8649-3556dcfcf645">
+      <column name="normalized_user_name" not-null="False" sql-type="text" unique="True" p1:unicode="True" />
+    </property>
+    <property name="Email" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="f23c26b8-a7a0-41d0-9522-71554c0620ef">
+      <column name="email" not-null="False" sql-type="text" p1:unicode="True" />
+    </property>
+    <property name="NormalizedEmail" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="f1c75019-6309-4159-b829-45badb37426c">
+      <column name="normalized_email" not-null="False" sql-type="text" unique="True" p1:unicode="True" />
+    </property>
+    <property name="EmailConfirmed" type="Boolean" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="9382d1fb-d01b-4770-a33c-8eadc813befa">
+      <column name="email_confirmed" not-null="False" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="PasswordHash" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="2edc7a25-679c-4892-89d5-4965d30d66f5">
+      <column name="password_hash" not-null="False" sql-type="text" p1:unicode="True" />
+    </property>
+    <property name="SecurityStamp" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="fac3d876-b876-4c06-954e-e6dbd672f9fe">
+      <column name="security_stamp" not-null="False" sql-type="text" p1:unicode="True" />
+    </property>
+    <property name="ConcurrencyStamp" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="61f90b8c-7cd7-4542-a5ad-bed8eb16d399">
+      <column name="concurrency_stamp" not-null="False" sql-type="text" unique="True" p1:unicode="True" />
+    </property>
+    <property name="PhoneNumber" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="f1368789-9fba-48a1-8d6e-c782d3e7eee7">
+      <column name="phone_number" not-null="False" sql-type="text" p1:unicode="True" />
+    </property>
+    <property name="PhoneNumberConfirmed" type="Boolean" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="df50fea4-6912-4ccd-98af-524ebb468eaf">
+      <column name="phone_number_confirmed" not-null="False" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="TwoFactorEnabled" type="Boolean" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="2dfac742-ab9a-47c8-9efc-495e2003c69e">
+      <column name="two_factor_enabled" not-null="False" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="LockoutEnd" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="26b8eac3-f4fb-44bf-a7b2-ebf73592935e">
+      <column name="lockout_end" not-null="False" sql-type="timestamptz" p1:unicode="False" />
+    </property>
+    <property name="LockoutEnabled" type="Boolean" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="8c404a1e-801a-47ac-ad20-0cbdb5cc35dd">
+      <column name="lockout_enabled" not-null="False" sql-type="bool" p1:unicode="False" />
+    </property>
+    <property name="AccessFailedCount" type="Int32" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="3227b7f7-4504-4b4d-a665-5726978a1488">
+      <column name="access_failed_count" not-null="False" sql-type="int4" p1:unicode="False" />
+    </property>
+    <property name="FullName" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="2a54ca52-0bc5-4c92-9dd7-63f49709e81a">
+      <column name="full_name" not-null="False" sql-type="text" p1:unicode="True" />
+    </property>
+  </class>
+  <class name="AspNetRole" entity-set="AspNetRoles" table="asp_net_roles" schema="core_identity" p1:Guid="d004dd72-1476-4ff0-9e3c-cc70c1b94aa3" p1:EntityBase="IdentityRole">
+    <id name="Id" type="String" p1:ValidateMaxLength="450" p1:ValidateRequired="true" p1:Guid="56b14ed5-0668-4999-89ed-395c2e58722f">
+      <column name="id" not-null="True" length="450" sql-type="varchar" p1:unicode="True" />
+    </id>
+    <property name="Name" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="ce0fdb1c-6b04-4f31-b82a-c804474d6d1a">
+      <column name="`name`" not-null="False" sql-type="text" p1:unicode="True" />
+    </property>
+    <property name="NormalizedName" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="1ef6230d-3cf3-4d09-9561-2df634e10c56">
+      <column name="normalized_name" not-null="False" sql-type="text" unique="True" p1:unicode="True" />
+    </property>
+    <property name="ConcurrencyStamp" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="de3e4fd4-f8b7-4d13-83ab-ece0bd72fe15">
+      <column name="concurrency_stamp" not-null="False" sql-type="text" unique="True" p1:unicode="True" />
+    </property>
+  </class>
+  <class name="AspNetUserClaim" entity-set="AspNetUserClaims" table="asp_net_user_claims" schema="core_identity" p1:Guid="50333328-7c93-4ddf-a968-109f44e75e01" p1:EntityBase="IdentityUserClaim&lt;string&gt;">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="6623309a-7a69-46f4-99ed-be1dab0b61d5">
+      <column name="id" not-null="True" sql-type="serial" p1:unicode="False" />
+    </id>
+    <property name="UserId" type="String" p1:nullable="True" p1:ValidateMaxLength="450" p1:ValidateRequired="false" p1:Guid="146a84dd-1d3b-4fdb-a674-4b7a1056fdd6">
+      <column name="user_id" not-null="False" length="450" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="ClaimType" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="28b0085e-7315-415c-8529-1e7494eb0da1">
+      <column name="claim_type" not-null="False" sql-type="text" p1:unicode="True" />
+    </property>
+    <property name="ClaimValue" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="b9b47bb0-77a5-4136-9904-7df315ec99f3">
+      <column name="claim_value" not-null="False" sql-type="text" p1:unicode="True" />
+    </property>
+  </class>
+  <class name="AspNetUserLogin" entity-set="AspNetUserLogins" table="asp_net_user_logins" schema="core_identity" p1:Guid="f1a0eb26-9c02-4808-a158-77fb8157edcb" p1:EntityBase="IdentityUserLogin&lt;string&gt;">
+    <composite-id>
+      <key-property name="LoginProvider" type="String" p1:ValidateRequired="true" p1:Guid="33449ded-36cd-4c80-8e95-f9294469567a">
+        <column name="login_provider" not-null="True" sql-type="text" p1:unicode="True" />
+      </key-property>
+      <key-property name="ProviderKey" type="String" primary-key-index="1" p1:ValidateRequired="true" p1:Guid="199e37f5-c880-40b4-93d9-95d601add9f2">
+        <column name="provider_key" not-null="True" sql-type="text" p1:unicode="True" />
+      </key-property>
+    </composite-id>
+    <property name="ProviderDisplayName" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="a24195ad-2ff9-4a25-a88e-44d0e270c39d">
+      <column name="provider_display_name" not-null="False" sql-type="text" p1:unicode="True" />
+    </property>
+    <property name="UserId" type="String" p1:nullable="True" p1:ValidateMaxLength="450" p1:ValidateRequired="false" p1:Guid="9486799d-b3f8-47f6-8076-facc18c157cf">
+      <column name="user_id" not-null="False" length="450" sql-type="varchar" p1:unicode="True" />
+    </property>
+  </class>
+  <class name="AspNetUserToken" entity-set="AspNetUserTokens" table="asp_net_user_tokens" schema="core_identity" p1:Guid="77682118-7070-4917-8540-2e78c452a060" p1:EntityBase="IdentityUserToken&lt;string&gt;">
+    <composite-id>
+      <key-property name="UserId" type="String" p1:ValidateMaxLength="450" p1:ValidateRequired="true" p1:Guid="a376251a-d9c6-45e9-ac8b-e7fe40ef05b0">
+        <column name="user_id" not-null="True" length="450" sql-type="varchar" p1:unicode="True" />
+      </key-property>
+      <key-property name="LoginProvider" type="String" primary-key-index="1" p1:ValidateRequired="true" p1:Guid="abf839d4-8300-4fcc-90c8-137b8d53ebd3">
+        <column name="login_provider" not-null="True" sql-type="text" p1:unicode="True" />
+      </key-property>
+      <key-property name="Name" type="String" primary-key-index="2" p1:ValidateRequired="true" p1:Guid="6c60c495-eed8-4d18-8429-278c42b5aa6e">
+        <column name="`name`" not-null="True" sql-type="text" p1:unicode="True" />
+      </key-property>
+    </composite-id>
+    <property name="Value" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="68058a61-23b7-4ac9-95fb-514bd2f531d0">
+      <column name="`value`" not-null="False" sql-type="text" p1:unicode="True" />
+    </property>
+  </class>
+  <class name="AspNetRoleClaim" entity-set="AspNetRoleClaims" table="asp_net_role_claims" schema="core_identity" p1:Guid="b4b083e0-19b3-4acd-9908-07081f69a5b4" p1:EntityBase="IdentityRoleClaim&lt;string&gt;">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="4ba37595-7c73-47b3-ae03-0151f28030ba">
+      <column name="id" not-null="True" sql-type="serial" p1:unicode="False" />
+    </id>
+    <property name="RoleId" type="String" p1:nullable="True" p1:ValidateMaxLength="450" p1:ValidateRequired="false" p1:Guid="c77068c3-841d-4d26-9dbb-94a96c508e37">
+      <column name="role_id" not-null="False" length="450" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="ClaimType" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="8e81b52d-fd2a-481c-a0fb-aaed8c657371">
+      <column name="claim_type" not-null="False" sql-type="text" p1:unicode="True" />
+    </property>
+    <property name="ClaimValue" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="905838aa-4249-4489-9706-9114250a2ae1">
+      <column name="claim_value" not-null="False" sql-type="text" p1:unicode="True" />
+    </property>
+  </class>
+  <class name="RefreshToken" entity-set="RefreshTokens" table="refresh_tokens" schema="core_identity" p1:Guid="a7ad348e-8a13-4778-badd-e65c886caa1f">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="b7654f54-517a-4f0b-862f-a56e0dca8913">
+      <column name="id" not-null="True" sql-type="serial" p1:unicode="False" />
+    </id>
+    <property name="UserId" type="String" p1:ValidateMaxLength="450" p1:ValidateRequired="true" p1:Guid="48a49e48-8eb7-42f7-bf51-db47fd639c33">
+      <column name="user_id" not-null="True" length="450" sql-type="varchar" p1:unicode="True" />
+    </property>
+    <property name="Token" type="String" p1:ValidateRequired="true" p1:Guid="80689dc9-0e42-4c11-9278-caf91b193fb8">
+      <column name="token" not-null="True" sql-type="text" p1:unicode="True" />
+    </property>
+    <property name="Expires" type="DateTime" p1:ValidateRequired="true" p1:Guid="d5ba9fe0-b42c-4b69-8e83-71b65b93b516">
+      <column name="expires" not-null="True" sql-type="timestamptz" p1:unicode="False" />
+    </property>
+    <property name="Created" type="DateTime" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="cb5c6a6e-ae78-441d-8a17-5f94c07416cc">
+      <column name="created" default="now()" not-null="True" sql-type="timestamptz" p1:unicode="False" />
+    </property>
+    <property name="CreatedByIp" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="fde0a8a3-ca2b-424b-85de-c5ab38d43a1e">
+      <column name="created_by_ip" not-null="False" sql-type="text" p1:unicode="True" />
+    </property>
+    <property name="Revoked" type="DateTime" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="5f999815-dfd3-44aa-b0c1-d915901d3c51">
+      <column name="revoked" not-null="False" sql-type="timestamptz" p1:unicode="False" />
+    </property>
+    <property name="RevokedByIp" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="53780523-fcf2-4cc8-aa64-1ad5ac002a04">
+      <column name="revoked_by_ip" not-null="False" sql-type="text" p1:unicode="True" />
+    </property>
+    <property name="ReplacedByToken" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="167cfa21-748c-459b-9c95-2c05cc9ec3a6">
+      <column name="replaced_by_token" not-null="False" sql-type="text" p1:unicode="True" />
+    </property>
+    <property name="ReasonRevoked" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="9cebd153-8d72-4681-b80c-5286afd3aadc">
+      <column name="reason_revoked" not-null="False" sql-type="text" p1:unicode="True" />
+    </property>
+  </class>
+  <associations>
+    <association name="User_PayonlineClient" cardinality="OneToMany" p1:Guid="c99cf7e6-4a83-4b92-abf3-34d9764d9e9a">
+      <end1 multiplicity="One" name="PayEzCreator" class="Client" relation-class="User" constrained="True" lazy="False" p1:Guid="4fc58523-6aed-4855-bd19-fbb93118aab3">
+        <property name="UserID" />
+      </end1>
+      <end2 multiplicity="Many" name="AdminClients" class="User" relation-class="Client" lazy="False" p1:Guid="d79de058-ca26-44d1-aaab-f7c164f89ded">
+        <property name="AddedByID" />
+      </end2>
+    </association>
+    <association name="PayonlinePortal_PayonlineMerchantCredential" cardinality="OneToMany" on-delete="Cascade" p1:Guid="9b3f1ce2-bb55-42d4-8e78-567c7c35fb07">
+      <end1 multiplicity="ZeroOrOne" name="PayonlinePortal" class="PayOnlineMerchantCredential" relation-class="PayOnlinePortal" constrained="True" lazy="False" p1:Guid="023282d9-0df8-459c-a65e-26588406b359">
+        <property name="PayOnlinePortalID" />
+      </end1>
+      <end2 multiplicity="Many" name="PayonlineMerchantCredentials" class="PayOnlinePortal" relation-class="PayOnlineMerchantCredential" lazy="False" p1:Guid="44b716ee-3654-4e1b-8802-9fcc76495e01">
+        <property name="PortalID" />
+      </end2>
+    </association>
+    <association name="PayonlinePortal_PayonlinePayment" cardinality="OneToMany" p1:Guid="b942b9ab-a15f-47b5-a1e1-bd346f6766ae">
+      <end1 multiplicity="One" name="Portal" class="Payment" relation-class="PayOnlinePortal" constrained="True" lazy="False" p1:Guid="160a71da-a235-424b-89be-14e687c4ba85">
+        <property name="PayOnlinePortalID" />
+      </end1>
+      <end2 multiplicity="Many" name="PayonlinePayments" class="PayOnlinePortal" relation-class="Payment" lazy="False" p1:Guid="4b25f6a1-959a-49d0-ac09-b0278de8fca1">
+        <property name="PortalID" />
+      </end2>
+    </association>
+    <association name="User_PayonlinePayment" cardinality="OneToMany" p1:Guid="f39241d0-3396-4799-bd99-d4d7e560c9ae">
+      <end1 multiplicity="ZeroOrOne" name="User" class="Payment" relation-class="User" constrained="True" lazy="False" p1:Guid="db26a354-69ea-4b92-8621-effc908f337c">
+        <property name="UserID" />
+      </end1>
+      <end2 multiplicity="Many" name="Payments" class="User" relation-class="Payment" lazy="False" p1:Guid="b96c5289-230c-44d2-8937-a810d8354738">
+        <property name="UserID" />
+      </end2>
+    </association>
+    <association name="PayonlineClient_PayonlinePortal" cardinality="OneToMany" on-delete="Cascade" p1:Guid="3ee13d24-5e13-44d7-933c-ee5cdf98347b">
+      <end1 multiplicity="One" name="PayonlineClient" class="PayOnlinePortal" relation-class="Client" constrained="True" lazy="False" p1:Guid="260203cb-d093-4e45-b415-6115b2d5c14a">
+        <property name="ClientID" />
+      </end1>
+      <end2 multiplicity="Many" name="Portals" class="Client" relation-class="PayOnlinePortal" lazy="False" p1:Guid="fe0f5f2d-4f1a-4a02-a9b0-c8f3ee16a4db">
+        <property name="ClientID" />
+      </end2>
+    </association>
+    <association name="PayonlinePortaltype_PayonlinePortal" cardinality="OneToMany" p1:Guid="32708025-d1c6-4dd9-ae59-504244bcb737">
+      <end1 multiplicity="One" name="PayonlinePortaltype" class="PayOnlinePortal" relation-class="PayOnlinePortaltype" constrained="True" lazy="False" p1:Guid="bcca58f6-0b46-4ab4-a6cf-2802542a0219">
+        <property name="PortaltypeID" />
+      </end1>
+      <end2 multiplicity="Many" name="PayOnlinePortals" class="PayOnlinePortaltype" relation-class="PayOnlinePortal" lazy="False" p1:Guid="16048408-da79-45b3-bec6-19febbab506c">
+        <property name="PortalTypeID" />
+      </end2>
+    </association>
+    <association name="User_PayonlinePortal" cardinality="OneToMany" on-delete="Cascade" p1:Guid="02a31d92-aa07-4a55-a795-a87e2f972919">
+      <end1 multiplicity="One" name="User" class="PayOnlinePortal" relation-class="User" constrained="True" lazy="False" p1:Guid="39a0a024-3c5a-42de-938e-4d6a6326a956">
+        <property name="UserID" />
+      </end1>
+      <end2 multiplicity="Many" name="Portals" class="User" relation-class="PayOnlinePortal" lazy="False" p1:Guid="470c365b-7238-4b96-9d64-7954e54185b4">
+        <property name="AdminUserID" />
+      </end2>
+    </association>
+    <association name="PayonlinePayment_PayonlineTransaction" cardinality="OneToMany" on-delete="Cascade" p1:Guid="a09d3de6-fb89-41ca-bb5a-0a433d71d94e">
+      <end1 multiplicity="ZeroOrOne" name="Payment" class="Transaction" relation-class="Payment" constrained="True" lazy="False" p1:Guid="94995f08-33a0-4021-9311-3f90435e1baf">
+        <property name="PaymentID" />
+      </end1>
+      <end2 multiplicity="Many" name="Transactions" class="Payment" relation-class="Transaction" lazy="False" p1:Guid="fe5e9d8b-4f85-425d-ad9a-bfcee2761b08">
+        <property name="PaymentID" />
+      </end2>
+    </association>
+    <association name="Role_User" cardinality="ManyToMany" table="usersinroles" schema="public" p1:Guid="db12110d-694c-4ec1-bfc3-046bf5c6b7fd">
+      <end1 multiplicity="Many" name="Roles" class="User" relation-class="Role" lazy="False" p1:Guid="503e11ee-1528-449e-9c5d-2903229e52ab">
+        <property name="RoleID" column="roleid" />
+      </end1>
+      <end2 multiplicity="Many" name="Users" class="Role" relation-class="User" lazy="False" p1:Guid="5feced5c-27a3-451e-b68d-aab760eea646">
+        <property name="UserID" column="userid" />
+      </end2>
+    </association>
+    <association name="Client_User" cardinality="OneToMany" p1:Guid="8caa306b-26ca-44bc-9010-436a5ad95dd6">
+      <end1 multiplicity="ZeroOrOne" name="Client" class="User" relation-class="Client" constrained="True" lazy="False" p1:Guid="bf67e091-f34e-44b0-9a48-c377d6d480b0">
+        <property name="ClientID" />
+      </end1>
+      <end2 multiplicity="Many" name="Users_ClientID" class="Client" relation-class="User" lazy="False" p1:Guid="5d45ce33-0477-4da4-9756-5f14e2b1db71">
+        <property name="ClientID" />
+      </end2>
+    </association>
+    <association name="StateProvince_Client" cardinality="OneToMany" p1:Guid="b302e36b-2e8c-4573-ac89-b5c0a891c629">
+      <end1 multiplicity="One" name="StateProvince" class="Client" relation-class="StateProvince" constrained="True" lazy="False" p1:Guid="e3ab76e7-3cd5-4a64-a3c4-cf35537a1961">
+        <property name="StateProvinceID" />
+      </end1>
+      <end2 multiplicity="Many" name="Clients" class="StateProvince" relation-class="Client" lazy="False" p1:Guid="0ccae4ff-2ef2-4017-b6ee-48999cd4e1cd">
+        <property name="StateProvinceID" />
+      </end2>
+    </association>
+    <association name="PayonlineProcessor_PayOnlineMerchantCredential" cardinality="OneToMany" p1:Guid="e2c6734a-3560-4ef4-af12-d5cbc5e8037b">
+      <end1 multiplicity="One" name="CC_Credentail" class="PayOnlineMerchantCredential" relation-class="PayonlineProcessor" constrained="True" lazy="False" p1:Guid="0ca6ea5d-d55f-43b2-85e8-b5e758fc9062">
+        <property name="ProcessorID" />
+      </end1>
+      <end2 multiplicity="Many" name="MerchantCredentials" class="PayonlineProcessor" relation-class="PayOnlineMerchantCredential" lazy="False" p1:Guid="44eb7a5b-7ada-45e0-8c45-26a800150080">
+        <property name="PayonlineProcessorID" />
+      </end2>
+    </association>
+    <association name="PayonlineProcessor_PayOnlineMerchantCredential1" cardinality="OneToMany" p1:Guid="35d0f46f-d78b-4df7-8ddc-a188ce8b302e">
+      <end1 multiplicity="One" name="ACH_Credential" class="PayOnlineMerchantCredential" relation-class="PayonlineProcessor" constrained="True" lazy="False" p1:Guid="2dc77280-2e52-48c6-b90d-9863b59c14d1">
+        <property name="ProcessorID" />
+      </end1>
+      <end2 multiplicity="Many" name="PayOnlineMerchantCredentials_PayonlineProcessorID1" class="PayonlineProcessor" relation-class="PayOnlineMerchantCredential" lazy="False" p1:Guid="17c8d02f-4437-472a-aa85-c9ce2fe185d9">
+        <property name="PayonlineProcessorID" />
+      </end2>
+    </association>
+    <association name="PayonlineProcessor_PayOnlinePortal" cardinality="OneToMany" p1:Guid="d9b51bfd-eb89-46d0-bdbc-27f9d8ff912e">
+      <end1 multiplicity="ZeroOrOne" name="ACHPayOnlineProcessor" class="PayOnlinePortal" relation-class="PayonlineProcessor" constrained="True" lazy="False" p1:Guid="3ba12363-3164-4d32-b777-edbd5a1a1a6e">
+        <property name="ProcessorID" />
+      </end1>
+      <end2 multiplicity="Many" name="ACHPortals" class="PayonlineProcessor" relation-class="PayOnlinePortal" lazy="False" p1:Guid="0fd8a16b-9447-4492-8112-e37c9d740724">
+        <property name="ACHPayonlineProcessorID" />
+      </end2>
+    </association>
+    <association name="PayonlineProcessor_PayOnlinePortal1" cardinality="OneToMany" p1:Guid="71ba69a5-a80a-4b5a-9904-76fa21202d5e">
+      <end1 multiplicity="ZeroOrOne" name="CCPayOnlineProcessor" class="PayOnlinePortal" relation-class="PayonlineProcessor" constrained="True" lazy="False" p1:Guid="6e2796e4-a07c-4e29-b41c-15f83049be08">
+        <property name="ProcessorID" />
+      </end1>
+      <end2 multiplicity="Many" name="CCPortals" class="PayonlineProcessor" relation-class="PayOnlinePortal" lazy="False" p1:Guid="f36ab2be-ba97-41d1-bebf-babeb0a92315">
+        <property name="CCPayonlineProcessorID" />
+      </end2>
+    </association>
+    <association name="PayonlineProcessor_PayOnlinePortal2" cardinality="OneToMany" p1:Guid="fc59d1e8-874e-4dd0-aeb8-8fbeabc6f68d">
+      <end1 multiplicity="ZeroOrOne" name="RetailPayonlineProcessor" class="PayOnlinePortal" relation-class="PayonlineProcessor" constrained="True" lazy="False" p1:Guid="80aa3a36-044e-4822-8ec0-43227711ea08">
+        <property name="ProcessorID" />
+      </end1>
+      <end2 multiplicity="Many" name="RetailPortals" class="PayonlineProcessor" relation-class="PayOnlinePortal" lazy="False" p1:Guid="95fd78ce-a0be-455b-9de6-52f3ca666572">
+        <property name="RetailPayonlineProcessorID" />
+      </end2>
+    </association>
+    <association name="PayonlineProcessType_PayOnlineMerchantCredential" cardinality="OneToMany" p1:Guid="f513d651-e021-456d-9c43-0a9dbecc0961">
+      <end1 multiplicity="ZeroOrOne" name="PayonlineProcessType" class="PayOnlineMerchantCredential" relation-class="PayonlineProcessType" constrained="True" lazy="False" p1:Guid="03d47333-5d50-4e1a-ae2a-603892992cba">
+        <property name="ProcessTypeId" />
+      </end1>
+      <end2 multiplicity="Many" name="PayOnlineMerchantCredentials" class="PayonlineProcessType" relation-class="PayOnlineMerchantCredential" lazy="False" p1:Guid="457c19a5-1b30-4c08-946b-2a7f1b0bfeb9">
+        <property name="ProcessTypeID" />
+      </end2>
+    </association>
+    <association name="AspNetUser_AspNetUserClaim" cardinality="OneToMany" on-delete="Cascade" p1:Guid="fbe78a0a-b322-4bc6-8ea8-304a0f832a2a">
+      <end1 multiplicity="ZeroOrOne" name="AspNetUser" class="AspNetUserClaim" relation-class="AspNetUser" constrained="True" lazy="False" p1:Guid="c3ddbc69-8ca2-44e8-9bf6-c854f708bb42">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="AspNetUserClaims" class="AspNetUser" relation-class="AspNetUserClaim" lazy="False" p1:Guid="99e2bfe5-c57f-4647-a475-1cee4c2b3b71">
+        <property name="UserId" />
+      </end2>
+    </association>
+    <association name="AspNetUser_AspNetUserLogin" cardinality="OneToMany" on-delete="Cascade" p1:Guid="d68e0001-ed38-480f-bee1-aadc230ec19f">
+      <end1 multiplicity="ZeroOrOne" name="AspNetUser" class="AspNetUserLogin" relation-class="AspNetUser" constrained="True" lazy="False" p1:Guid="5eac12d0-d7e1-4156-a89e-09677fe40603">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="AspNetUserLogins" class="AspNetUser" relation-class="AspNetUserLogin" lazy="False" p1:Guid="4af20fb9-582b-4ed9-9d47-907c8c16a6c7">
+        <property name="UserId" />
+      </end2>
+    </association>
+    <association name="AspNetUser_AspNetUserToken" cardinality="OneToMany" on-delete="Cascade" p1:Guid="de033d59-d123-44a7-aec6-b7eb41d4b8f2">
+      <end1 multiplicity="One" name="AspNetUser" class="AspNetUserToken" relation-class="AspNetUser" constrained="True" lazy="False" p1:Guid="fc213686-f9dc-4a96-99d8-b98a2d8cfbee">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="AspNetUserTokens" class="AspNetUser" relation-class="AspNetUserToken" lazy="False" p1:Guid="a2793f38-fbfc-46e3-969e-1b777ea85e7b">
+        <property name="UserId" />
+      </end2>
+    </association>
+    <association name="AspNetRole_AspNetRoleClaim" cardinality="OneToMany" on-delete="Cascade" p1:Guid="9a59e271-237b-43f7-ac0c-b2e143f8ecc4">
+      <end1 multiplicity="ZeroOrOne" name="AspNetRole" class="AspNetRoleClaim" relation-class="AspNetRole" constrained="True" lazy="False" p1:Guid="40b7983a-99f1-4d65-ab96-b5ebb0d6d582">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="AspNetRoleClaims" class="AspNetRole" relation-class="AspNetRoleClaim" lazy="False" p1:Guid="f227b052-bd3d-46dd-9559-118d96d1827a">
+        <property name="RoleId" />
+      </end2>
+    </association>
+    <association name="AspNetUser_RefreshToken" cardinality="OneToMany" on-delete="Cascade" p1:Guid="bd6a324a-bcaf-48fc-86c9-a22e0ff274ea">
+      <end1 multiplicity="One" name="AspNetUser" class="RefreshToken" relation-class="AspNetUser" constrained="True" lazy="False" p1:Guid="f8b31d6a-368d-4304-8dd5-eec3859add3c">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="RefreshTokens" class="AspNetUser" relation-class="RefreshToken" lazy="False" p1:Guid="1080ddaf-12f9-4057-a0c5-eb391dc46864">
+        <property name="UserId" />
+      </end2>
+    </association>
+    <association name="AspNetUser_AspNetRole" cardinality="ManyToMany" table="asp_net_user_roles" schema="core_identity" p1:Guid="9aac7200-9898-4f9e-a174-dbb04276d16e">
+      <end1 multiplicity="Many" name="AspNetUsers" class="AspNetRole" relation-class="AspNetUser" lazy="False" p1:Guid="2ff17647-835a-4c91-a387-bd3c225d99c2">
+        <property name="Id" column="user_id" />
+      </end1>
+      <end2 multiplicity="Many" name="AspNetRoles" class="AspNetUser" relation-class="AspNetRole" lazy="False" p1:Guid="e99061c4-e9fb-4f3d-9b00-6c43c959cf28">
+        <property name="Id" column="role_id" />
+      </end2>
+    </association>
+    <association name="AspNetUser_User" cardinality="OneToMany" p1:Guid="586b40f9-d238-4e15-b523-57975ddb8423">
+      <end1 multiplicity="ZeroOrOne" name="AspNetUser" class="User" relation-class="AspNetUser" constrained="True" lazy="False" p1:Guid="fcc3d861-f09b-4adb-9598-c6d627e453f7">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="Users" class="AspNetUser" relation-class="User" generate="False" lazy="False" p1:Guid="ad3b7e24-0af8-4ac8-8eeb-bb386bc69e0c">
+        <property name="AspNetUserId" />
+      </end2>
+    </association>
+  </associations>
+</efcore>
