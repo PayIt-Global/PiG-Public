@@ -75,6 +75,7 @@
   <ItemGroup>
     <PackageReference Include="Reactor.Maui" Version="2.0.*" />
     <PackageReference Include="Reactor.Maui.Canvas" Version="2.0.*" />
+    <PackageReference Include="Reactor.Maui.ScaffoldGenerator" Version="1.0.154" />
   </ItemGroup>
 
 
