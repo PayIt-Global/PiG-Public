@@ -47,7 +47,7 @@ namespace PayItGlobal.Application.Services
 
         public async Task LogoutAsync()
         {
-            // Clear the stored token on logout /test git
+            // Clear the stored token on logout 
             await SecureStorage.SetAsync(TokenKey, null);
         }
     }
