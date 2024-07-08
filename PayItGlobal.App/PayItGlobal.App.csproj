@@ -88,9 +88,4 @@
     <ProjectReference Include="..\PayItGlobal.Infrastructure\PayItGlobal.Infrastructure.csproj" />
   </ItemGroup>
 
-
-  <ItemGroup>
-    <Folder Include="Navigation\" />
-  </ItemGroup>
-
 </Project>
