@@ -85,6 +85,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PayItGlobal.Application\PayItGlobal.Application.csproj" />
+    <ProjectReference Include="..\PayItGlobal.Infrastructure\PayItGlobal.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

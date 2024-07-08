@@ -9,6 +9,7 @@ using System.IO;
 using PayItGlobal.Application.Interfaces;
 using PayItGlobal.Application.Services;
 using System.Net.Http;
+using PayItGlobal.Infrastructure.Services;
 namespace PayItGlobal.App;
 
 public static class MauiProgram
@@ -38,18 +39,22 @@ public static class MauiProgram
 
         // Register ApiSettings with the DI container
         builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection("ApiSettings"));
-        builder.Services.AddSingleton<IAuthenticationService, AuthenticationService>();
 
         // Register HttpClient
         builder.Services.AddHttpClient();
 
-        // Register AuthenticationService with IConfiguration dependency
+        builder.Services.AddSingleton<ITokenService, TokenService>();
+        builder.Services.AddSingleton<IRefreshTokenService, RefreshTokenService>();
+
         builder.Services.AddSingleton<IAuthenticationService, AuthenticationService>((services) =>
         {
             var httpClient = services.GetRequiredService<HttpClient>();
             var configuration = services.GetRequiredService<IConfiguration>();
-            return new AuthenticationService(httpClient, configuration);
+            var tokenService = services.GetRequiredService<ITokenService>();
+            var refreshTokenService = services.GetRequiredService<IRefreshTokenService>(); // Include this only if your AuthenticationService needs it
+            return new AuthenticationService(httpClient, configuration, tokenService, refreshTokenService);
         });
+
 
 #if DEBUG
         builder.Logging.AddDebug();

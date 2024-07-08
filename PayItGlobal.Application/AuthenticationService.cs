@@ -12,14 +12,19 @@ namespace PayItGlobal.Application.Services
         private readonly HttpClient _httpClient;
         private readonly string _loginUrl;
         private const string TokenKey = "AuthToken";
+        private readonly ITokenService _tokenService;
+        private readonly IRefreshTokenService _refreshTokenService; // If you're handling refresh tokens
 
-        public AuthenticationService(HttpClient httpClient, IConfiguration configuration)
+        public AuthenticationService(HttpClient httpClient, IConfiguration configuration, ITokenService tokenService, IRefreshTokenService refreshTokenService)
         {
             _httpClient = httpClient;
+            _tokenService = tokenService;
+            _refreshTokenService = refreshTokenService;
             var baseUrl = configuration["ApiSettings:BaseUrl"];
             var loginEndpoint = configuration["ApiSettings:LoginEndpoint"];
             _loginUrl = $"{baseUrl}{loginEndpoint}";
         }
+
 
         public async Task<bool> LoginAsync(string username, string password)
         {
@@ -28,13 +33,20 @@ namespace PayItGlobal.Application.Services
                 var response = await _httpClient.PostAsJsonAsync(_loginUrl, new { username, password });
                 if (response.IsSuccessStatusCode)
                 {
-                    var tokenResponse = await response.Content.ReadFromJsonAsync<TokenResponse>();
-                    if (tokenResponse?.Token != null)
-                    {
-                        // Store token securely
-                        SecureStorage.SetAsync(TokenKey, tokenResponse.Token);
-                        return true;
-                    }
+                    // Assuming the user ID is needed for token generation and is returned as part of the login response
+                    var userId = await response.Content.ReadFromJsonAsync<int>(); // Simplified for illustration
+
+                    // Generate JWT token
+                    var jwtToken = _tokenService.GenerateJwtToken(userId);
+
+                    // Optionally, generate a refresh token if your application uses them
+                    var refreshToken = await _refreshTokenService.GenerateRefreshToken(userId, "User IP Address"); // You need to obtain the user's IP address
+
+                    // Store tokens securely
+                    await SecureStorage.SetAsync("JwtToken", jwtToken);
+                    await SecureStorage.SetAsync("RefreshToken", refreshToken); // If using refresh tokens
+
+                    return true;
                 }
                 return false;
             }
@@ -44,6 +56,7 @@ namespace PayItGlobal.Application.Services
                 return false;
             }
         }
+
 
         public async Task LogoutAsync()
         {
