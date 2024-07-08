@@ -1,9 +1,10 @@
 ﻿using PayItGlobal.Application.Interfaces;
+using PayItGlobal.Domain.Entities; // Import the namespace for RefreshToken entity
+using PayItGlobal.Domain.Interfaces; // Import the namespace for IRefreshTokenRepository
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Maui.Storage;
 
 namespace PayItGlobal.Application.Services
 {
@@ -11,20 +12,20 @@ namespace PayItGlobal.Application.Services
     {
         private readonly HttpClient _httpClient;
         private readonly string _loginUrl;
-        private const string TokenKey = "AuthToken";
         private readonly ITokenService _tokenService;
-        private readonly IRefreshTokenService _refreshTokenService; // If you're handling refresh tokens
+        private readonly IRefreshTokenService _refreshTokenService;
+        private readonly IRefreshTokenRepository _refreshTokenRepository; // Add this line
 
-        public AuthenticationService(HttpClient httpClient, IConfiguration configuration, ITokenService tokenService, IRefreshTokenService refreshTokenService)
+        public AuthenticationService(HttpClient httpClient, IConfiguration configuration, ITokenService tokenService, IRefreshTokenService refreshTokenService, IRefreshTokenRepository refreshTokenRepository) // Modify this line
         {
             _httpClient = httpClient;
             _tokenService = tokenService;
             _refreshTokenService = refreshTokenService;
+            _refreshTokenRepository = refreshTokenRepository; // Add this line
             var baseUrl = configuration["ApiSettings:BaseUrl"];
             var loginEndpoint = configuration["ApiSettings:LoginEndpoint"];
             _loginUrl = $"{baseUrl}{loginEndpoint}";
         }
-
 
         public async Task<bool> LoginAsync(string username, string password)
         {
@@ -33,18 +34,23 @@ namespace PayItGlobal.Application.Services
                 var response = await _httpClient.PostAsJsonAsync(_loginUrl, new { username, password });
                 if (response.IsSuccessStatusCode)
                 {
-                    // Assuming the user ID is needed for token generation and is returned as part of the login response
                     var userId = await response.Content.ReadFromJsonAsync<int>(); // Simplified for illustration
 
-                    // Generate JWT token
                     var jwtToken = _tokenService.GenerateJwtToken(userId);
+                    var refreshToken = await _refreshTokenService.GenerateRefreshToken(userId, "User IP Address");
 
-                    // Optionally, generate a refresh token if your application uses them
-                    var refreshToken = await _refreshTokenService.GenerateRefreshToken(userId, "User IP Address"); // You need to obtain the user's IP address
+                    // Create a new RefreshToken entity
+                    var refreshTokenEntity = new RefreshToken
+                    {
+                        UserId = userId,
+                        Token = refreshToken,
+                        // Set other necessary properties, such as expiry date
+                    };
 
-                    // Store tokens securely
-                    await SecureStorage.SetAsync("JwtToken", jwtToken);
-                    await SecureStorage.SetAsync("RefreshToken", refreshToken); // If using refresh tokens
+                    // Save the refresh token using the repository
+                    await _refreshTokenRepository.SaveRefreshTokenAsync(refreshTokenEntity);
+
+                    // Optionally, handle JWT token storage or return it to the client as needed
 
                     return true;
                 }
@@ -52,22 +58,16 @@ namespace PayItGlobal.Application.Services
             }
             catch
             {
-                // Handle exceptions (e.g., network errors)
+                // Handle exceptions
                 return false;
             }
         }
 
-
         public async Task LogoutAsync()
         {
-            // Clear the stored token on logout sadf
-            await SecureStorage.SetAsync(TokenKey, null);
+            // Implementation of logout logic goes here.
+            // This could include actions like clearing tokens from storage, 
+            // invalidating tokens in the database, etc.
         }
-    }
-
-    public class TokenResponse
-    {
-        public string? Token { get; set; }
-        public string? RefreshToken { get; set; }
     }
 }
