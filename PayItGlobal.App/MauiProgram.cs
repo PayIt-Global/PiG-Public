@@ -10,6 +10,8 @@ using PayItGlobal.Application.Interfaces;
 using PayItGlobal.Application.Services;
 using System.Net.Http;
 using PayItGlobal.Infrastructure.Services;
+using PayItGlobal.Domain.Interfaces;
+using PayItGlobal.Infrastructure.Repository;
 namespace PayItGlobal.App;
 
 public static class MauiProgram
@@ -43,16 +45,20 @@ public static class MauiProgram
         // Register HttpClient
         builder.Services.AddHttpClient();
 
+        // Register your services here
         builder.Services.AddSingleton<ITokenService, TokenService>();
         builder.Services.AddSingleton<IRefreshTokenService, RefreshTokenService>();
+        builder.Services.AddSingleton<IRefreshTokenRepository, RefreshTokenRepository>(); // Register the implementation of IRefreshTokenRepository
 
+        // Register AuthenticationService with all required dependencies
         builder.Services.AddSingleton<IAuthenticationService, AuthenticationService>((services) =>
         {
             var httpClient = services.GetRequiredService<HttpClient>();
             var configuration = services.GetRequiredService<IConfiguration>();
             var tokenService = services.GetRequiredService<ITokenService>();
-            var refreshTokenService = services.GetRequiredService<IRefreshTokenService>(); // Include this only if your AuthenticationService needs it
-            return new AuthenticationService(httpClient, configuration, tokenService, refreshTokenService);
+            var refreshTokenService = services.GetRequiredService<IRefreshTokenService>();
+            var refreshTokenRepository = services.GetRequiredService<IRefreshTokenRepository>(); // Get the IRefreshTokenRepository instance
+            return new AuthenticationService(httpClient, configuration, tokenService, refreshTokenService, refreshTokenRepository);
         });
 
 
