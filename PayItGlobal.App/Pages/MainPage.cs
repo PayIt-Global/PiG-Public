@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using MauiReactor;
 
 namespace PayItGlobal.App.Pages;
@@ -12,32 +8,38 @@ class MainPageState
     public int Counter { get; set; }
 }
 
-class MainPage : Component<MainPageState>
+class MainPage : Component
 {
+    protected override void OnMounted()
+    {
+        Routing.RegisterRoute<LoginPage>("LoginPage");
+        base.OnMounted();
+    }
+
     public override VisualNode Render()
-        => ContentPage(
-                ScrollView(
-                    VStack(
-                        Image("dotnet_bot.png")
-                            .HeightRequest(200)
+        => new Shell()
+        {
+            new FlyoutItem("Page1")
+            {
+                new ShellContent()
+                    .RenderContent(() => new ContentPage("Page1")
+                    {
+                        new Button("Goto to LoginPage")
                             .HCenter()
-                            .Set(MauiControls.SemanticProperties.DescriptionProperty, "Cute dot net bot waving hi to you!"),
+                            .VCenter()
+                        .OnClicked(async ()=> await MauiControls.Shell.Current.GoToAsync("LoginPage"))
+                    })
+            }
+        }
+        .ItemTemplate(RenderItemTemplate);
 
-                        Label("Hello, World!")
-                            .FontSize(32)
-                            .HCenter(),
-
-                        Label("Welcome to MauiReactor: MAUI with superpowers!")
-                            .FontSize(18)
-                            .HCenter(),
-
-                        Button(State.Counter == 0 ? "Click me" : $"Clicked {State.Counter} times!")
-                            .OnClicked(()=>SetState(s => s.Counter ++))
-                            .HCenter()                    
-                )
+    static VisualNode RenderItemTemplate(MauiControls.BaseShellItem item)
+        => new Grid("68", "*")
+        {
+            new Label(item.Title)
                 .VCenter()
-                .Spacing(25)
-                .Padding(30, 0)
-            )
-        );
+                .Margin(10,0)
+        };
 }
+
+
