@@ -52,7 +52,7 @@ class Login : Component<LoginState>
         if (isAuthenticated)
         {
             // Navigate to the MainPage using the registered route
-            await MauiControls.Shell.Current.GoToAsync("main-page");
+            await MauiControls.Shell.Current.GoToAsync("main");
         }
         else
         {

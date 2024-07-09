@@ -16,7 +16,8 @@ namespace PayItGlobal.App.Pages;
 enum PageEnum
 {
     Home,
-    Landing
+    Landing,
+    Login
 }
 
 class MainPageState
@@ -29,7 +30,7 @@ partial class Main : Component<MainPageState>
 {
     [Inject]
     IClientAuthenticationService? _authService;
-
+    private CancellationTokenSource? _cts;
     private async Task<bool> CheckAuthentication()
     {
         if (_authService != null)
@@ -38,36 +39,31 @@ partial class Main : Component<MainPageState>
         }
         return false;
     }
-
-    private CancellationTokenSource? _cts;
-
+    private async void CheckAuthenticationAsync()
+    {
+        try
+        {
+            var isAuthenticated = await CheckAuthentication();
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                if (!_cts.IsCancellationRequested)
+                {
+                    State.CurrentPage = isAuthenticated ? PageEnum.Home : PageEnum.Landing;
+                }
+            });
+        }
+        catch (Exception ex)
+        {
+            // Handle exception, possibly log it or show an error message
+            Console.WriteLine($"Error during authentication check: {ex.Message}");
+        }
+    }
 
     protected override void OnMounted()
     {
-        base.OnMounted();
         _cts = new CancellationTokenSource();
-
-        Task.Run(async () =>
-        {
-            try
-            {
-                var isAuthenticated = await CheckAuthentication();
-                if (!_cts.IsCancellationRequested)
-                {
-                    MainThread.BeginInvokeOnMainThread(() => State.CurrentPage = isAuthenticated ? PageEnum.Home : PageEnum.Landing);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error checking authentication: {ex.Message}");
-                if (!_cts.IsCancellationRequested)
-                {
-                    MainThread.BeginInvokeOnMainThread(() => {
-                        // Handle the error, possibly update the UI to show an error message
-                    });
-                }
-            }
-        }, _cts.Token);
+        CheckAuthenticationAsync();
+        base.OnMounted();
     }
 
 
@@ -103,6 +99,7 @@ partial class Main : Component<MainPageState>
     {
         PageEnum.Home => new Home(),
         PageEnum.Landing => new Landing(),
+        PageEnum.Login => new Login(),
         _ => throw new NotImplementedException(),
     };
 
