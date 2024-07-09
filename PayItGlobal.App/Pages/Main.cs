@@ -3,24 +3,41 @@ using System.Linq;
 using PayItGlobal.App.Resources.Styles;
 using MauiReactor;
 using MauiReactor.Canvas;
+using Microsoft.Extensions.DependencyInjection;
+using PayItGlobal.Application.Interfaces;
+using System.Threading.Tasks;
 
 namespace PayItGlobal.App.Pages;
 
 enum PageEnum
 {
     Home,
-
-    Community
+    Landing
 }
-
 
 class MainPageState
 {
-    public PageEnum CurrentPage { get; set; } = PageEnum.Home;
+    public PageEnum CurrentPage { get; set; }
+    public bool IsAuthenticated { get; set; } = false; // Assume this will be set based on actual authentication status
 }
 
 class Main : Component<MainPageState>
 {
+    // Placeholder for actual authentication check logic
+    private bool CheckAuthentication()
+    {
+        // Implement your authentication check logic here
+        // For example, return _authenticationService.IsAuthenticated;
+        return false; // Placeholder return value
+    }
+
+    protected override void OnMounted()
+    {
+        // Set the initial page based on authentication status
+        State.CurrentPage = CheckAuthentication() ? PageEnum.Home : PageEnum.Landing;
+        base.OnMounted();
+    }
+
     public override VisualNode Render()
     {
         return new NavigationPage
@@ -30,7 +47,6 @@ class Main : Component<MainPageState>
                 new Grid("*", "*")
                 {
                     RenderPage(),
-
                     RenderTabBar()
                 }
             }
@@ -42,7 +58,7 @@ class Main : Component<MainPageState>
     VisualNode RenderPage() => State.CurrentPage switch
     {
         PageEnum.Home => new Home(),
-        PageEnum.Community => new Community(),
+        PageEnum.Landing => new Landing(),
         _ => throw new NotImplementedException(),
     };
 
@@ -100,7 +116,7 @@ class Main : Component<MainPageState>
             new Grid("*", "* * * * *")
             {
                 createButton(PageEnum.Home, 0),
-                createButton(PageEnum.Community, 1)
+                createButton(PageEnum.Landing , 1)
             }
             .Padding(0,20,0,0)
         }
