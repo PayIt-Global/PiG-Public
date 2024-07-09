@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Maui.Storage;
 
 namespace PayItGlobal.Application.Services
 {
@@ -69,5 +70,18 @@ namespace PayItGlobal.Application.Services
             // This could include actions like clearing tokens from storage, 
             // invalidating tokens in the database, etc.
         }
+
+        public async Task<bool> IsLoggedInAsync()
+        {
+            // Example logic to check for a stored JWT token and its validity
+            var jwtToken = await SecureStorage.GetAsync("jwt_token");
+            if (jwtToken != null)
+            {
+                // Optionally, verify the token's validity with the server
+                return true;
+            }
+            return false;
+        }
+
     }
 }
