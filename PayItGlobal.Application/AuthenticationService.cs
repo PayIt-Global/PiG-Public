@@ -6,6 +6,8 @@ using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Maui.Storage;
+using System.Text.Json;
+using System.Text;
 
 namespace PayItGlobal.Application.Services
 {
@@ -51,7 +53,8 @@ namespace PayItGlobal.Application.Services
                     // Save the refresh token using the repository
                     await _refreshTokenRepository.SaveRefreshTokenAsync(refreshTokenEntity);
 
-                    // Optionally, handle JWT token storage or return it to the client as needed
+                    // Store JWT token in SecureStorage for later validation
+                    await SecureStorage.SetAsync("jwt_token", jwtToken);
 
                     return true;
                 }
@@ -73,15 +76,31 @@ namespace PayItGlobal.Application.Services
 
         public async Task<bool> IsLoggedInAsync()
         {
-            // Example logic to check for a stored JWT token and its validity
             var jwtToken = await SecureStorage.GetAsync("jwt_token");
             if (jwtToken != null)
             {
-                // Optionally, verify the token's validity with the server
-                return true;
+                // Decode the JWT token to check the expiry date (simplified, actual decoding requires a library)
+                var tokenParts = jwtToken.Split('.');
+                if (tokenParts.Length > 1)
+                {
+                    var payload = tokenParts[1]; // Base64 encoded payload
+                    var payloadJson = Encoding.UTF8.GetString(Convert.FromBase64String(payload));
+                    var jwtPayload = JsonSerializer.Deserialize<Dictionary<string, long>>(payloadJson);
+
+                    if (jwtPayload != null && jwtPayload.TryGetValue("exp", out long exp))
+                    {
+                        var expiryDate = DateTimeOffset.FromUnixTimeSeconds(exp);
+                        if (expiryDate > DateTimeOffset.UtcNow)
+                        {
+                            // Token has not expired, optionally verify its validity with the server
+                            return true;
+                        }
+                    }
+                }
             }
             return false;
         }
+
 
     }
 }
