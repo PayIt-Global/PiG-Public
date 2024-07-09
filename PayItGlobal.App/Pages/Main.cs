@@ -1,11 +1,8 @@
-﻿using System;
-using System.Linq;
-using PayItGlobal.App.Resources.Styles;
-using MauiReactor;
+﻿using MauiReactor;
 using MauiReactor.Canvas;
-using Microsoft.Extensions.DependencyInjection;
-using PayItGlobal.Application.Interfaces;
-using System.Threading.Tasks;
+using PayItGlobal.App.Resources.Styles;
+using System;
+using System.Linq;
 
 namespace PayItGlobal.App.Pages;
 
