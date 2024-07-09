@@ -100,7 +100,6 @@
 
   <ItemGroup>
     <Folder Include="ConfigurationModels\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

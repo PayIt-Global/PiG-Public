@@ -12,6 +12,7 @@ using System.Net.Http;
 using PayItGlobal.Infrastructure.Services;
 using PayItGlobal.Domain.Interfaces;
 using PayItGlobal.Infrastructure.Repository;
+using PayItGlobal.App.Services;
 namespace PayItGlobal.App;
 
 public static class MauiProgram
@@ -48,7 +49,7 @@ public static class MauiProgram
 
         // Register AuthenticationService with all required dependencies
         builder.Services.AddSingleton<IClientAuthenticationService, ClientAuthenticationService>();
-        
+        builder.Services.AddSingleton<IApiSettingsService, ApiSettingsService>();
 
 #if DEBUG
         builder.Logging.AddDebug();

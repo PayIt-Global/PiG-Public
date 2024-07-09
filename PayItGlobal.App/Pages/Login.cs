@@ -1,5 +1,10 @@
 ﻿using MauiReactor;
 using PayItGlobal.App.ConfigurationModels;
+using PayItGlobal.App.Services;
+using System;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace PayItGlobal.App.Pages;
@@ -13,10 +18,12 @@ class LoginState
 
 class Login : Component<LoginState>
 {
-
+    [Inject]
+    private IApiSettingsService _apiSettingsService;
 
     public override VisualNode Render()
     {
+       
         return new ContentPage("LoginPage")
         {
             new VStack
@@ -65,11 +72,48 @@ class Login : Component<LoginState>
         SetState(_ => _.IsLoggingIn = false);
     }
 
-    private Task<bool> AuthenticateUser(string username, string password)
+    private async Task<bool> AuthenticateUser(string username, string password)
     {
-        // This is a placeholder for your authentication logic
-        // For demonstration, let's assume any non-empty credentials are valid
-        bool isValid = !string.IsNullOrWhiteSpace(username) && !string.IsNullOrWhiteSpace(password);
-        return Task.FromResult(isValid);
+        var apiSettings = _apiSettingsService.GetSettings();
+
+        // Construct the full URL for the login endpoint
+        string loginUrl = $"{apiSettings.BaseUrl}{apiSettings.LoginEndpoint}";
+
+        using (var httpClient = new HttpClient())
+        {
+            // Prepare the request content
+            var requestData = new { Username = username, Password = password };
+            var requestContent = new StringContent(JsonSerializer.Serialize(requestData), Encoding.UTF8, "application/json");
+
+            try
+            {
+                // Send the POST request to the login endpoint
+                var response = await httpClient.PostAsync(loginUrl, requestContent);
+
+                // Ensure we received a successful response
+                if (response.IsSuccessStatusCode)
+                {
+                    // Optionally, read the response content if needed (e.g., to retrieve a token)
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    // Deserialize the response content if necessary
+                    // var responseData = JsonSerializer.Deserialize<YourResponseType>(responseContent);
+
+                    // Authentication succeeded
+                    return true;
+                }
+                else
+                {
+                    // Handle non-successful response, such as unauthorized or server error
+                    return false;
+                }
+            }
+            catch (HttpRequestException e)
+            {
+                // Handle request exception
+                Console.WriteLine($"Error making HTTP request: {e.Message}");
+                return false;
+            }
+        }
     }
+
 }
