@@ -66,17 +66,12 @@ partial class Main : Component<MainPageState>
         base.OnMounted();
     }
 
-
-
-    // Assuming a hypothetical cleanup method or place it in a suitable lifecycle method
     public void Cleanup()
     {
         _cts?.Cancel();
         _cts?.Dispose();
         _cts = null;
     }
-
-
 
     public override VisualNode Render()
     {

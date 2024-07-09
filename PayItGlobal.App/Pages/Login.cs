@@ -1,4 +1,5 @@
 ﻿using MauiReactor;
+using PayItGlobal.App.ConfigurationModels;
 using System.Threading.Tasks;
 
 namespace PayItGlobal.App.Pages;
@@ -12,6 +13,8 @@ class LoginState
 
 class Login : Component<LoginState>
 {
+
+
     public override VisualNode Render()
     {
         return new ContentPage("LoginPage")

@@ -2,7 +2,7 @@
 
 namespace PayItGlobal.App.Pages;
 
-class Landing : Component
+partial class Landing : Component
 {
     public override VisualNode Render()
     {
