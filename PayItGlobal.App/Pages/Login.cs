@@ -1,5 +1,4 @@
 ﻿using MauiReactor;
-using PayItGlobal.App.ConfigurationModels;
 using PayItGlobal.App.Services;
 using System;
 using System.Net.Http;
@@ -16,7 +15,7 @@ class LoginState
     public bool IsLoggingIn { get; set; } = false;
 }
 
-class Login : Component<LoginState>
+partial class Login : Component<LoginState>
 {
     [Inject]
     private IApiSettingsService _apiSettingsService;
@@ -96,7 +95,12 @@ class Login : Component<LoginState>
                     // Optionally, read the response content if needed (e.g., to retrieve a token)
                     var responseContent = await response.Content.ReadAsStringAsync();
                     // Deserialize the response content if necessary
-                    // var responseData = JsonSerializer.Deserialize<YourResponseType>(responseContent);
+                    // Assuming the API returns an object with Token and RefreshToken properties
+                    var responseData = JsonSerializer.Deserialize<dynamic>(responseContent);
+
+                    // Store or use the token as needed
+                    // For example, storing the token in a secure place for future API calls
+                    // var token = responseData.Token;
 
                     // Authentication succeeded
                     return true;
@@ -115,5 +119,6 @@ class Login : Component<LoginState>
             }
         }
     }
+
 
 }
