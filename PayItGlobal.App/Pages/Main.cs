@@ -1,8 +1,15 @@
 ﻿using MauiReactor;
 using MauiReactor.Canvas;
+using Microsoft.Maui.ApplicationModel;
+using Microsoft.Maui.Dispatching;
 using PayItGlobal.App.Resources.Styles;
+using PayItGlobal.Application.Interfaces;
+using PayItGlobal.Application.Services;
+using PayItGlobal.Domain.Interfaces;
 using System;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace PayItGlobal.App.Pages;
 
@@ -18,22 +25,62 @@ class MainPageState
     public bool IsAuthenticated { get; set; } = false; // Assume this will be set based on actual authentication status
 }
 
-class Main : Component<MainPageState>
+partial class Main : Component<MainPageState>
 {
-    // Placeholder for actual authentication check logic
-    private bool CheckAuthentication()
+    [Inject]
+    IClientAuthenticationService? _authService;
+
+    private async Task<bool> CheckAuthentication()
     {
-        // Implement your authentication check logic here
-        // For example, return _authenticationService.IsAuthenticated;
-        return false; // Placeholder return value
+        if (_authService != null)
+        {
+            return await _authService.IsLoggedInAsync();
+        }
+        return false;
     }
+
+    private CancellationTokenSource? _cts;
+
 
     protected override void OnMounted()
     {
-        // Set the initial page based on authentication status
-        State.CurrentPage = CheckAuthentication() ? PageEnum.Home : PageEnum.Landing;
         base.OnMounted();
+        _cts = new CancellationTokenSource();
+
+        Task.Run(async () =>
+        {
+            try
+            {
+                var isAuthenticated = await CheckAuthentication();
+                if (!_cts.IsCancellationRequested)
+                {
+                    MainThread.BeginInvokeOnMainThread(() => State.CurrentPage = isAuthenticated ? PageEnum.Home : PageEnum.Landing);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error checking authentication: {ex.Message}");
+                if (!_cts.IsCancellationRequested)
+                {
+                    MainThread.BeginInvokeOnMainThread(() => {
+                        // Handle the error, possibly update the UI to show an error message
+                    });
+                }
+            }
+        }, _cts.Token);
     }
+
+
+
+    // Assuming a hypothetical cleanup method or place it in a suitable lifecycle method
+    public void Cleanup()
+    {
+        _cts?.Cancel();
+        _cts?.Dispose();
+        _cts = null;
+    }
+
+
 
     public override VisualNode Render()
     {

@@ -44,18 +44,11 @@ public static class MauiProgram
         // Register your services here
         builder.Services.AddSingleton<ITokenService, TokenService>();
         builder.Services.AddSingleton<IRefreshTokenService, RefreshTokenService>();
-        builder.Services.AddSingleton<IRefreshTokenRepository, RefreshTokenRepository>(); // Register the implementation of IRefreshTokenRepository
+        builder.Services.AddSingleton<IRefreshTokenRepository, RefreshTokenRepository>(); 
 
         // Register AuthenticationService with all required dependencies
-        builder.Services.AddSingleton<IAuthenticationService, AuthenticationService>((services) =>
-        {
-            var httpClient = services.GetRequiredService<HttpClient>();
-            var configuration = services.GetRequiredService<IConfiguration>();
-            var tokenService = services.GetRequiredService<ITokenService>();
-            var refreshTokenService = services.GetRequiredService<IRefreshTokenService>();
-            var refreshTokenRepository = services.GetRequiredService<IRefreshTokenRepository>(); // Get the IRefreshTokenRepository instance
-            return new AuthenticationService(httpClient, configuration, tokenService, refreshTokenService, refreshTokenRepository);
-        });
+        builder.Services.AddSingleton<IClientAuthenticationService, ClientAuthenticationService>();
+        
 
 #if DEBUG
         builder.Logging.AddDebug();
