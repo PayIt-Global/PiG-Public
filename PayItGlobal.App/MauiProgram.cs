@@ -20,11 +20,7 @@ public static class MauiProgram
     {
         var builder = MauiApp.CreateBuilder();
         builder
-            .UseMauiReactorApp<MainPage>(app =>
-            {
-                app.AddResource("Resources/Styles/Colors.xaml");
-                app.AddResource("Resources/Styles/Styles.xaml");
-            })
+            .UseMauiReactorApp<Main>()
 #if DEBUG
             .EnableMauiReactorHotReload()
 #endif
@@ -60,7 +56,6 @@ public static class MauiProgram
             var refreshTokenRepository = services.GetRequiredService<IRefreshTokenRepository>(); // Get the IRefreshTokenRepository instance
             return new AuthenticationService(httpClient, configuration, tokenService, refreshTokenService, refreshTokenRepository);
         });
-        builder.Services.AddTransient<LoginPage>();
 
 #if DEBUG
         builder.Logging.AddDebug();

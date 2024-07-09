@@ -3,21 +3,15 @@ using System.Threading.Tasks;
 
 namespace PayItGlobal.App.Pages;
 
-class LoginPageState
+class LoginState
 {
     public string Username { get; set; }
     public string Password { get; set; }
     public bool IsLoggingIn { get; set; } = false;
 }
 
-class LoginPage : Component<LoginPageState>
+class Login : Component<LoginState>
 {
-    protected override void OnMounted()
-    {
-        base.OnMounted();
-        Routing.RegisterRoute<MainPage>("main-page");
-    }
-
     public override VisualNode Render()
     {
         return new ContentPage("LoginPage")
