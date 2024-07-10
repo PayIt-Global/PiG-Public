@@ -17,7 +17,7 @@ class HomePageState
 
 }
 
-class Home : Component
+class HomePage : Component
 {
     public override VisualNode Render()
     {

@@ -15,7 +15,7 @@ class LoginState
     public bool IsLoggingIn { get; set; } = false;
 }
 
-partial class Login : Component<LoginState>
+partial class LoginPage : Component<LoginState>
 {
     [Inject]
     private IApiSettingsService _apiSettingsService;

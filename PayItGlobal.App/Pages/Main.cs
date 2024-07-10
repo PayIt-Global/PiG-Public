@@ -1,12 +1,14 @@
 ﻿using MauiReactor;
 using MauiReactor.Canvas;
+using MauiReactor.Parameters;
+using Microsoft.Maui.Storage;
 using PayItGlobal.App.Resources.Styles;
 using PayItGlobal.Application.Interfaces;
+using PayItGlobal.DTOs.Shared;
 using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-
 namespace PayItGlobal.App.Pages;
 
 enum PageEnum
@@ -15,21 +17,33 @@ enum PageEnum
     Reports,
     Accounting,   
     TakePayment,
-    Invoices
+    Invoices,
+    Landing
 }
 
 class MainPageState
 {
     public PageEnum CurrentPage { get; set; }
-    public bool IsAuthenticated { get; set; } = false; // Assume this will be set based on actual authentication status
+    
+    public bool Loading { get; set; }
 }
-
-partial class Main : Component<MainPageState>
+class MainState
 {
+    public UserViewModel? CurrentUser { get; set; }
+}
+partial class MainPage : Component<MainPageState>
+{
+    private readonly IParameter<MainState> _mainState;
+
+    //public MainPage()
+    //{
+    //    _mainState = CreateParameter<MainState>();
+    //}
+
     [Inject]
     IClientAuthenticationService? _authService;
     private CancellationTokenSource? _cts;
-    private bool _isLoading = true;
+
     private async Task<bool> CheckAuthentication()
     {
         if (_authService != null)
@@ -38,54 +52,36 @@ partial class Main : Component<MainPageState>
         }
         return false;
     }
-    private async void CheckAuthenticationAsync()
+    protected override async void OnMounted()
     {
-        try
-        {
-            var isAuthenticated = await CheckAuthentication();
-            if (!isAuthenticated)
-            {
-                await Navigation.PushAsync<Landing>();
-            }
-            else
-            {
-                SetState(s => s.IsAuthenticated = true);
-            }
-        }
-        catch (Exception ex)
-        {
-            // Handle exception, possibly log it or show an error message
-            Console.WriteLine($"Error during authentication check: {ex.Message}");
-        }
-    }
+        State.Loading = true;
 
-    protected override void OnMounted()
-    {
+        _mainState.Set(s => s.CurrentUser = Preferences.Default.GetFromJson<UserViewModel?>("current_user", null));
+
+        if (_mainState.Value.CurrentUser != null)
+        {
+
+        }
+
+        SetState(s => s.Loading = false);
+
         base.OnMounted();
-        _cts = new CancellationTokenSource();
-         CheckAuthenticationAsync();
-        _isLoading = false; // Authentication check is complete
-        this.Invalidate(); // Trigger a re-render
     }
 
-    public void Cleanup()
-    {
-        _cts?.Cancel();
-        _cts?.Dispose();
-        _cts = null;
-    }
+
 
     public override VisualNode Render()
     {
-        if (_isLoading)
+        if (State.Loading)
         {
-            // Return a splash screen
-            return new ContentPage
-            {
-                new Image("splash.png") // Assuming splash.png is the converted splash.svg
-                    .Center()
+            return ContentPage(
+                ActivityIndicator()
+                    .IsVisible(true)
+                    .IsRunning(true)
+                    .HCenter()
                     .VCenter()
-            };
+            )
+            .BackgroundColor(PayItGlobal.App.Resources.Styles.Theme.Current.Background);
         }
 
         return new NavigationPage
@@ -105,11 +101,14 @@ partial class Main : Component<MainPageState>
 
     VisualNode RenderPage() => State.CurrentPage switch
     {
-        PageEnum.Home => new Home(),
-        PageEnum.TakePayment => new TakePayment(),
-        PageEnum.Reports => new Reports(),
-        PageEnum.Accounting => new Accounting(),
+        PageEnum.Home => new HomePage(),
+        PageEnum.TakePayment => new TakePaymentPage(),
+        PageEnum.Reports => new ReportsPage(),
+        PageEnum.Accounting => new AccountingPage(),
+        PageEnum.Invoices => new InvoicesPage(),
+        PageEnum.Landing => new LandingPage(),
         _ => throw new NotImplementedException(),
+
     };
 
     VisualNode RenderTabBar()

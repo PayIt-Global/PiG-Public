@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace PayItGlobal.App.Pages;
 
-class Invoices : Component
+class ReportsPage : Component
 {
     public override VisualNode Render()
     {

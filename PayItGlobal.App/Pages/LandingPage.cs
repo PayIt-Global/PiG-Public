@@ -2,7 +2,7 @@
 
 namespace PayItGlobal.App.Pages;
 
-partial class Landing : Component
+partial class LandingPage : Component
 {
     public override VisualNode Render()
     {
@@ -10,7 +10,7 @@ partial class Landing : Component
         {
            
                 new Button("Go to Login")
-                    .OnClicked(async () => await Navigation.PushAsync<Login>())
+                    .OnClicked(async () => await Navigation.PushAsync<LoginPage>())
 
         }
         .Title("Welcome");

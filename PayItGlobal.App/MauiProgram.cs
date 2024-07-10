@@ -13,15 +13,15 @@ using PayItGlobal.Infrastructure.Services;
 using PayItGlobal.Domain.Interfaces;
 using PayItGlobal.Infrastructure.Repository;
 using PayItGlobal.App.Services;
-namespace PayItGlobal.App;
 
+namespace PayItGlobal.App;
 public static class MauiProgram
 {
     public static MauiApp CreateMauiApp()
     {
         var builder = MauiApp.CreateBuilder();
         builder
-            .UseMauiReactorApp<Main>()
+            .UseMauiReactorApp<MainPage>()
 #if DEBUG
             .EnableMauiReactorHotReload()
 #endif
