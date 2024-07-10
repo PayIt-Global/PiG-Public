@@ -1,21 +1,41 @@
-using PayItGlobalApi.Helper;
-using Microsoft.OpenApi.Models;
-using PayItGlobal.Infrastructure.Context;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using System.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using PayItGlobal.Domain.Models;
+using PayItGlobal.Infrastructure.Context;
 using PayItGlobal.Infrastructure.Identity;
 using PayItGlobal.Infrastructure.Interfaces;
-using Microsoft.AspNetCore.Identity;
-using PayItGlobal.Domain.Entities;
-using Microsoft.AspNetCore.Builder;
+using PayItGlobalApi.Helper;
+using Serilog;
+using Serilog.Sinks.Graylog;
+using Serilog.Sinks.Graylog.Core.Transport;
 using System.Reflection;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Configure Serilog
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Debug()
+    .Enrich.FromLogContext()
+    .Enrich.WithProperty("app", "PayEz.Api")
+    .Enrich.WithProperty("Environment", "JonDevHttp")
+    .WriteTo.Console()
+    .WriteTo.Graylog(new GraylogSinkOptions
+    {
+        HostnameOrAddress = "10.6.7.4",
+        Port = 12201,
+        TransportType = TransportType.Http,
+        Facility = "PayEz-PaymentApi",
+        // Additional fields can be added here
+    })
+    .CreateLogger();
+
+builder.Host.UseSerilog(); // Use Serilog for logging
+
 
 // Add services to the container.
 builder.Services.RegisterServices();
@@ -99,18 +119,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddAuthorization(); // Adds authorization services
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
-
-//}
 
 app.UseRouting();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers(); // Ensures controllers are routed
-});
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapControllers();
 
 app.UseSwagger();
 app.UseSwaggerUI();
@@ -126,16 +141,20 @@ app.UseHttpsRedirection();
 //app.UseMiddleware<DiagnosticMiddleware>();
 app.UseMiddleware<CustomLoggingMiddleware>();
 
-app.UseAuthentication();
-app.UseAuthorization();
-
 app.Use(async (context, next) =>
 {
     var appSettings = context.RequestServices.GetRequiredService<IOptions<AppSettings>>();
     // Adjusted to use UserManager<ApplicationUser>
     var userManager = context.RequestServices.GetRequiredService<UserManager<ApplicationUser>>();
     var jwtMiddleware = new JwtMiddleware(next, appSettings, userManager);
-    await jwtMiddleware.Invoke(context, context.RequestServices.GetService<IUnitOfWork>(), context.RequestServices);
+
+    var unitOfWork = context.RequestServices.GetService<IUnitOfWork>();
+    if (unitOfWork == null)
+    {
+        throw new InvalidOperationException("IUnitOfWork service is not registered.");
+    }
+
+    await jwtMiddleware.Invoke(context, unitOfWork, context.RequestServices);
 });
 
 app.MapControllers();
