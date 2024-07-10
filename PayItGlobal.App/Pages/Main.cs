@@ -1,11 +1,7 @@
 ﻿using MauiReactor;
 using MauiReactor.Canvas;
-using Microsoft.Maui.ApplicationModel;
-using Microsoft.Maui.Dispatching;
 using PayItGlobal.App.Resources.Styles;
 using PayItGlobal.Application.Interfaces;
-using PayItGlobal.Application.Services;
-using PayItGlobal.Domain.Interfaces;
 using System;
 using System.Linq;
 using System.Threading;
@@ -16,8 +12,10 @@ namespace PayItGlobal.App.Pages;
 enum PageEnum
 {
     Home,
-    Landing,
-    Login
+    Reports,
+    Accounting,   
+    TakePayment,
+    Invoices
 }
 
 class MainPageState
@@ -31,6 +29,7 @@ partial class Main : Component<MainPageState>
     [Inject]
     IClientAuthenticationService? _authService;
     private CancellationTokenSource? _cts;
+    private bool _isLoading = true;
     private async Task<bool> CheckAuthentication()
     {
         if (_authService != null)
@@ -44,13 +43,14 @@ partial class Main : Component<MainPageState>
         try
         {
             var isAuthenticated = await CheckAuthentication();
-            MainThread.BeginInvokeOnMainThread(() =>
+            if (!isAuthenticated)
             {
-                if (!_cts.IsCancellationRequested)
-                {
-                    State.CurrentPage = isAuthenticated ? PageEnum.Home : PageEnum.Landing;
-                }
-            });
+                await Navigation.PushAsync<Landing>();
+            }
+            else
+            {
+                SetState(s => s.IsAuthenticated = true);
+            }
         }
         catch (Exception ex)
         {
@@ -61,9 +61,11 @@ partial class Main : Component<MainPageState>
 
     protected override void OnMounted()
     {
-        _cts = new CancellationTokenSource();
-        CheckAuthenticationAsync();
         base.OnMounted();
+        _cts = new CancellationTokenSource();
+         CheckAuthenticationAsync();
+        _isLoading = false; // Authentication check is complete
+        this.Invalidate(); // Trigger a re-render
     }
 
     public void Cleanup()
@@ -75,6 +77,17 @@ partial class Main : Component<MainPageState>
 
     public override VisualNode Render()
     {
+        if (_isLoading)
+        {
+            // Return a splash screen
+            return new ContentPage
+            {
+                new Image("splash.png") // Assuming splash.png is the converted splash.svg
+                    .Center()
+                    .VCenter()
+            };
+        }
+
         return new NavigationPage
         {
             new ContentPage
@@ -93,8 +106,9 @@ partial class Main : Component<MainPageState>
     VisualNode RenderPage() => State.CurrentPage switch
     {
         PageEnum.Home => new Home(),
-        PageEnum.Landing => new Landing(),
-        PageEnum.Login => new Login(),
+        PageEnum.TakePayment => new TakePayment(),
+        PageEnum.Reports => new Reports(),
+        PageEnum.Accounting => new Accounting(),
         _ => throw new NotImplementedException(),
     };
 
@@ -152,7 +166,10 @@ partial class Main : Component<MainPageState>
             new Grid("*", "* * * * *")
             {
                 createButton(PageEnum.Home, 0),
-                createButton(PageEnum.Landing , 1)
+                createButton(PageEnum.Reports, 1),
+                createButton(PageEnum.Accounting, 2),
+                createButton(PageEnum.TakePayment, 3),
+                createButton(PageEnum.Invoices, 4)
             }
             .Padding(0,20,0,0)
         }

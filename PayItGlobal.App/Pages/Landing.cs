@@ -6,11 +6,13 @@ partial class Landing : Component
 {
     public override VisualNode Render()
     {
-        return new Grid("*", "*")
+        return new ContentPage
         {
-            new Button("Go to Login")
-                // Assuming Navigation is a property or method available in your context
-                .OnClicked(async () => await Navigation.PushAsync<Login>())
-        };
+           
+                new Button("Go to Login")
+                    .OnClicked(async () => await Navigation.PushAsync<Login>())
+
+        }
+        .Title("Welcome");
     }
 }
