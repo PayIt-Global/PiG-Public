@@ -1,10 +1,12 @@
-﻿using System;
-using System.Linq;
-using PayItGlobal.App.Resources.Styles;
-using MauiReactor;
+﻿using MauiReactor;
 using MauiReactor.Canvas;
-using Microsoft.Extensions.Logging;
-using Microsoft.Maui.Graphics;
+using MauiReactor.Parameters;
+using Microsoft.Extensions.DependencyInjection;
+using PayItGlobal.App.Resources.Styles;
+using PayItGlobal.Application.Interfaces;
+using PayItGlobal.DTOs.Shared;
+using System;
+using System.Linq;
 
 namespace PayItGlobal.App.Pages;
 
@@ -25,11 +27,53 @@ enum PageEnum
 class MainPageState
 {
     public PageEnum CurrentPage { get; set; } = PageEnum.Home;
-    public bool LoadHome { get; set; } = true;
+    public bool IsAuthenticated { get; set; }
+    public bool Loading { get; set; }
 }
 
 class MainPage : Component<MainPageState>
 {
+    private readonly IParameter<MainPageState> _mainState;
+    public MainPage()
+    {
+        _mainState = CreateParameter<MainPageState>();
+
+    }
+    protected override async void OnMounted()
+    {
+        var authService = Services.GetRequiredService<IClientAuthenticationService>();
+
+        // Start loading
+        SetState(s => s.Loading = true);
+
+        try
+        {
+            // Perform the async operation
+            bool isAuthenticated = await authService.IsLoggedInAsync();
+
+            // Update the state once the async operation is complete
+            SetState(s =>
+            {
+                s.IsAuthenticated = isAuthenticated;
+                s.Loading = false;
+            });
+        }
+        catch (Exception ex)
+        {
+            // Handle any errors that occurred during the async operation
+            // For example, you might want to log the error and update the state to reflect that an error occurred
+            Console.WriteLine($"An error occurred: {ex.Message}");
+            SetState(s =>
+            {
+                s.Loading = false;
+                // Optionally, add an error state to MainPageState and set it here
+            });
+        }
+
+        base.OnMounted();
+    }
+
+
     public override VisualNode Render()
     {
         return new NavigationPage
@@ -50,7 +94,7 @@ class MainPage : Component<MainPageState>
 
     VisualNode RenderPage()
     {
-        if (!State.LoadHome)
+        if (!State.IsAuthenticated)
         {
             return new Landing(); 
         }
