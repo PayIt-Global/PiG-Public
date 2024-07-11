@@ -18,4 +18,8 @@
     <ProjectReference Include="..\PayItGlobal.Services\PayItGlobal.DTOs\PayItGlobal.DTOs.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ConfigurationModels\" />
+  </ItemGroup>
+
 </Project>

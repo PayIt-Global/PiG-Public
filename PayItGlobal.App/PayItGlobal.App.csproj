@@ -81,4 +81,9 @@
 	  <ProjectReference Include="..\PayItGlobal.Infrastructure\PayItGlobal.Infrastructure.csproj" />
 	</ItemGroup>
 
+
+	<ItemGroup>
+	  <Folder Include="ConfigurationModels\" />
+	</ItemGroup>
+
 </Project>
