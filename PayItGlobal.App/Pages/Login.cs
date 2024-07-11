@@ -28,11 +28,14 @@ class Login : Component<LoginPageState, LoginPageProps>
 {
     public override VisualNode Render()
     {
-        return new Grid("268, *, 92", "*")
+        return new ContentPage
         {
-            RenderTopPanel()
-        }
-        .Margin(0, 0, 0, 88);
+             new Grid("268, *, 92", "*")
+            {
+                RenderTopPanel()
+            }
+            .Margin(0, 0, 0, 88)
+        };
     }
 
     VisualNode RenderTopPanel()

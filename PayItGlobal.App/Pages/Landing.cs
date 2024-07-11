@@ -9,6 +9,7 @@ using MauiReactor;
 using MauiReactor.Canvas;
 using MauiReactor.Compatibility;
 using Microsoft.Maui.Devices;
+using Android.Mtp;
 
 namespace PayItGlobal.App.Pages;
 
@@ -17,9 +18,25 @@ class LandingPageState
 
 }
 
-class Landing : Component
+partial class Landing : Component
 {
+    [Prop]
+    private Action? _onLogged;
+    protected override void OnMountedOrPropsChanged()
+    {
+        Routing.RegisterRoute<Login>("login");
+        base.OnMountedOrPropsChanged();
+    }
     public override VisualNode Render()
+    {
+        return new Grid("268, *, 92", "*")
+        {
+            RenderTopPanel()
+        }
+        .Margin(0, 0, 0, 88);
+    }
+
+    VisualNode RenderTopPanel()
     {
         return new Grid("40,40", "*")
         {
@@ -40,81 +57,18 @@ class Landing : Component
             .Text("the button")
             .TextColor(ThemeBrushes.Grey100)
             .VEnd()
+            .OnClicked(OnOpenLoginPage)
         };
-
-        //return new Grid("268, *, 92", "*")
-        //{
-        //    RenderTopPanel()
-        //}
-        //.Margin(0, 0, 0, 88);
     }
-
-    VisualNode RenderTopPanel()
+    private async void OnOpenLoginPage()
     {
-        return new Grid
+        if (Navigation != null)
         {
-            new CanvasView
-            {
-                new Picture("PayItGlobal.App.Resources.Images.top.png")
-                    .Aspect(Aspect.Fill),
-
-                new Align
-                {
-                    new Group
-                    {
-                        new ClipRectangle
-                        {
-                            new Picture("PayItGlobal.App.Resources.Images.photo1.png")
-                        }
-                        .CornerRadius(16),
-
-                        new Align()
-                        {
-                            new Ellipse()
-                                .StrokeColor(ThemeBrushes.Purple10)
-                                .FillColor(ThemeBrushes.Green)
-                                .StrokeSize(5)
-                        }
-                        .VEnd()
-                        .HStart()
-                        .Width(13)
-                        .Height(13)
-                    }
-                }
-                .Height(48)
-                .Width(48)
-                .HCenter()
-                .VStart()
-                .Margin(0,72,0,0),
-
-                new Align
-                {
-                    new Grid("*,*", "*")
-                    {
-                        new Label("label1")
-                            .Text("Hello,")
-                            .FontSize(24)
-                            .TextColor(ThemeBrushes.White)
-                            .Margin(0,0,0,8)
-                            .GridRow(0),
-
-                        new Label("label2")
-                            .Text("John Doe")
-                            .FontSize(24)
-                            .TextColor(ThemeBrushes.White)
-                            .GridRow(1)
-                    }
-                }
-                .Height(61)
-                .VEnd()
-                .Margin(0,0,0,56)
-            }
-            .VStart()
-            .HeightRequest(253)
-            .Background(Colors.Transparent)
-
+            await Navigation.PushAsync<Login>();
         }
-        .GridRow(0);
+        else
+        {
+            throw new Exception("Navigation is null");
+        }
     }
-
 }
