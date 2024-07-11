@@ -50,13 +50,11 @@ class MainPage : Component<MainPageState>
 
     VisualNode RenderPage()
     {
-        // Check if LoadHome is false, then load the Landing page instead
         if (!State.LoadHome)
         {
-            return new Landing(); // Assuming you have a Landing component similar to Home, Events, etc.
+            return new Landing(); 
         }
 
-        // Existing switch logic for loading pages based on the CurrentPage state
         return State.CurrentPage switch
         {
             PageEnum.Home => new Home(),
