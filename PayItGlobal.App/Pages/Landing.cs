@@ -21,11 +21,32 @@ class Landing : Component
 {
     public override VisualNode Render()
     {
-        return new Grid("268, *, 92", "*")
+        return new Grid("40,40", "*")
         {
-            RenderTopPanel()
-        }
-        .Margin(0, 0, 0, 88);
+            new Label("label1")
+                .Text("Landing")
+                .FontSize(24)
+                .TextColor(ThemeBrushes.Dark)
+                .GridRow(0)
+                .HorizontalTextAlignment(TextAlignment.Center),
+
+            new Button("button1")
+            .BorderColor(ThemeBrushes.Purple30)
+            .FontSize(24)
+            .GridRow(1)
+            .HCenter()
+            .HeightRequest(30)
+            .Padding(3)
+            .Text("the button")
+            .TextColor(ThemeBrushes.Grey100)
+            .VEnd()
+        };
+
+        //return new Grid("268, *, 92", "*")
+        //{
+        //    RenderTopPanel()
+        //}
+        //.Margin(0, 0, 0, 88);
     }
 
     VisualNode RenderTopPanel()
@@ -34,7 +55,7 @@ class Landing : Component
         {
             new CanvasView
             {
-                new Picture("Contentics.Resources.Images.top.png")
+                new Picture("PayItGlobal.App.Resources.Images.top.png")
                     .Aspect(Aspect.Fill),
 
                 new Align
@@ -43,7 +64,7 @@ class Landing : Component
                     {
                         new ClipRectangle
                         {
-                            new Picture("Contentics.Resources.Images.photo1.png")
+                            new Picture("PayItGlobal.App.Resources.Images.photo1.png")
                         }
                         .CornerRadius(16),
 
@@ -68,12 +89,20 @@ class Landing : Component
 
                 new Align
                 {
-                    new Column("23, *")
+                    new Grid("*,*", "*")
                     {
-                        new Text("Landing")
-                            .FontColor(ThemeBrushes.Purple30)
-                            .FontSize(18)
-                            .HorizontalAlignment(HorizontalAlignment.Center),
+                        new Label("label1")
+                            .Text("Hello,")
+                            .FontSize(24)
+                            .TextColor(ThemeBrushes.White)
+                            .Margin(0,0,0,8)
+                            .GridRow(0),
+
+                        new Label("label2")
+                            .Text("John Doe")
+                            .FontSize(24)
+                            .TextColor(ThemeBrushes.White)
+                            .GridRow(1)
                     }
                 }
                 .Height(61)

@@ -50,7 +50,6 @@ class MainPage : Component<MainPageState>
         {
             // Perform the async operation
             bool isAuthenticated = await authService.IsLoggedInAsync();
-
             // Update the state once the async operation is complete
             SetState(s =>
             {
