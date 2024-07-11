@@ -25,6 +25,7 @@ enum PageEnum
 class MainPageState
 {
     public PageEnum CurrentPage { get; set; } = PageEnum.Home;
+    public bool LoadHome { get; set; } = true;
 }
 
 class MainPage : Component<MainPageState>
@@ -47,15 +48,25 @@ class MainPage : Component<MainPageState>
         };
     }
 
-    VisualNode RenderPage() => State.CurrentPage switch
+    VisualNode RenderPage()
     {
-        PageEnum.Home => new Home(),
-        PageEnum.Events => new Events(),
-        PageEnum.Community => new Community(),
-        PageEnum.Assets => new Assets(),
-        PageEnum.Calendar => new Calendar(),
-        _ => throw new NotImplementedException(),
-    };
+        // Check if LoadHome is false, then load the Landing page instead
+        if (!State.LoadHome)
+        {
+            return new Landing(); // Assuming you have a Landing component similar to Home, Events, etc.
+        }
+
+        // Existing switch logic for loading pages based on the CurrentPage state
+        return State.CurrentPage switch
+        {
+            PageEnum.Home => new Home(),
+            PageEnum.Events => new Events(),
+            PageEnum.Community => new Community(),
+            PageEnum.Assets => new Assets(),
+            PageEnum.Calendar => new Calendar(),
+            _ => throw new NotImplementedException(),
+        };
+    }
 
     VisualNode RenderTabBar()
     {
