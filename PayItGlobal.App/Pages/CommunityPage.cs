@@ -2,13 +2,13 @@
 
 namespace PayItGlobal.App.Pages
 {
-    internal class OtherPage : Component
+    internal class CommunityPage : Component
     {
         public override VisualNode Render()
             => ContentPage(
                 ScrollView(
                     VStack(
-                        Label("Other Page")
+                        Label("Community Page")
                             .FontSize(32)
                             .HCenter()
                     )

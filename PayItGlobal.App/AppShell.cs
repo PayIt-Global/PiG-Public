@@ -12,15 +12,15 @@ namespace PayItGlobal.App
     {
         public override VisualNode Render()
             => Shell(
-                FlyoutItem("MainPage",
+                FlyoutItem("HomePage",
                     ShellContent()
-                        .Title("MainPage")
-                        .RenderContent(() => new MainPage())
+                        .Title("HomePage")
+                        .RenderContent(() => new HomePage())
                 ),
-                FlyoutItem("OtherPage",
+                FlyoutItem("LandingPage",
                     ShellContent()
-                        .Title("OtherPage")
-                        .RenderContent(() => new OtherPage())
+                        .Title("LandingPage")
+                        .RenderContent(() => new LandingPage())
                 )
             );
     }
