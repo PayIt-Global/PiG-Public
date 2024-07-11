@@ -11,7 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayItGlobal.Domain", "PayIt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayItGlobal.Infrastructure", "PayItGlobal.Infrastructure\PayItGlobal.Infrastructure.csproj", "{2D51A024-8324-4BC3-B456-FE78F1A7B047}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayItGlobal.App", "PayItGlobal.App\PayItGlobal.App.csproj", "{D71D1440-CECB-460F-A142-144018683D68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayItGlobal.App", "PayItGlobal.App\PayItGlobal.App.csproj", "{D71D1440-CECB-460F-A142-144018683D68}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{063C467D-F9F9-4EE4-9FE8-58CA31B67C0A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{5170E14F-516B-4787-9673-FDD91684663A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{C50EFB97-D941-45B2-9590-8EDEBB7E8BED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +50,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3AB2EC1D-EA6E-4C06-B188-346DA29D2002} = {5170E14F-516B-4787-9673-FDD91684663A}
+		{1ABF2912-A5BE-4643-8996-60C8A64E1176} = {063C467D-F9F9-4EE4-9FE8-58CA31B67C0A}
+		{2E5F26E0-3421-494F-8B32-011F2CD34BAC} = {C50EFB97-D941-45B2-9590-8EDEBB7E8BED}
+		{2D51A024-8324-4BC3-B456-FE78F1A7B047} = {063C467D-F9F9-4EE4-9FE8-58CA31B67C0A}
+		{D71D1440-CECB-460F-A142-144018683D68} = {5170E14F-516B-4787-9673-FDD91684663A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6B0A53AA-6D8D-449C-AB68-8180853951BF}

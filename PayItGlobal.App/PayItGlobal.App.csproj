@@ -74,4 +74,11 @@
 		<PackageReference Include="System.Text.Json" Version="8.0.4" />
 	</ItemGroup>
 
+
+	<ItemGroup>
+	  <ProjectReference Include="..\PayItGlobal.Application\PayItGlobal.Application.csproj" />
+	  <ProjectReference Include="..\PayItGlobal.Domain\PayItGlobal.Domain.csproj" />
+	  <ProjectReference Include="..\PayItGlobal.Infrastructure\PayItGlobal.Infrastructure.csproj" />
+	</ItemGroup>
+
 </Project>
