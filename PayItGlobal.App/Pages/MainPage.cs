@@ -1,49 +1,124 @@
-﻿using MauiReactor;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using PayItGlobal.App.Resources.Styles;
+using MauiReactor;
+using MauiReactor.Canvas;
+using Microsoft.Extensions.Logging;
+using Microsoft.Maui.Graphics;
 
-namespace PayItGlobal.App.Pages
+namespace PayItGlobal.App.Pages;
+
+enum PageEnum
 {
-    internal class MainPageState
+    Home,
+
+    Events,
+
+    Community,
+
+    Assets,
+
+    Calendar
+}
+
+
+class MainPageState
+{
+    public PageEnum CurrentPage { get; set; } = PageEnum.Home;
+}
+
+class MainPage : Component<MainPageState>
+{
+    public override VisualNode Render()
     {
-        public int Counter { get; set; }
+        return new NavigationPage
+        {
+            new ContentPage
+            {
+                new Grid("*", "*")
+                {
+                    RenderPage(),
+
+                    RenderTabBar()
+                }
+            }
+            .Set(MauiControls.NavigationPage.HasNavigationBarProperty, false)
+            .BackgroundColor(ThemeBrushes.Background)
+        };
     }
 
-    internal class MainPage : Component<MainPageState>
+    VisualNode RenderPage() => State.CurrentPage switch
     {
-        public MainPage()
+        PageEnum.Home => new Home(),
+        PageEnum.Events => new Events(),
+        PageEnum.Community => new Community(),
+        PageEnum.Assets => new Assets(),
+        PageEnum.Calendar => new Calendar(),
+        _ => throw new NotImplementedException(),
+    };
+
+    VisualNode RenderTabBar()
+    {
+        ImageButton createButton(PageEnum page, int column) =>
+            new ImageButton()
+                .Aspect(Aspect.Center)
+                .Source(() => State.CurrentPage != page ? $"{page.ToString().ToLowerInvariant()}.png" : $"{page.ToString().ToLowerInvariant()}_on.png")
+                .GridColumn(column)
+                .OnClicked(() => SetState(s => s.CurrentPage = page))
+                .Margin(State.CurrentPage == page ? new Thickness(0, 0, 0, 10) : new Thickness())
+                .WithAnimation(Easing.BounceOut, 300)
+                ;
+
+        return new Grid("*", "*")
         {
-            
+            new CanvasView()
+            {
+                new DropShadow
+                {
+                    new Box()
+                        .Margin(0,20,0,0)
+                        .CornerRadius(24,24,0,0)
+                        .BackgroundColor (ThemeBrushes.White)
+                }
+                .Color(ThemeBrushes.DarkShadow)
+                .Size(0, -8)
+                .Blur(32),
+
+                new Row("* * * * *")
+                {
+                    Enum.GetValues(typeof(PageEnum))
+                        .Cast<PageEnum>()
+                        .Select(page =>
+                            new Align()
+                            {
+                                new Ellipse()
+                                    .FillColor(ThemeBrushes.Purple10)
+                            }
+                            .IsVisible(State.CurrentPage == page)
+                            .Width(4)
+                            .Height(4)
+                            .VEnd()
+                            .HCenter()
+                            .Margin(16)
+                        )
+                        .ToArray()
+                }
+
+            }
+            .BackgroundColor(Colors.Transparent)
+            .GridRow(1),
+
+            new Grid("*", "* * * * *")
+            {
+                createButton(PageEnum.Home, 0),
+                createButton(PageEnum.Events, 1),
+                createButton(PageEnum.Community, 2),
+                createButton(PageEnum.Assets, 3),
+                createButton(PageEnum.Calendar, 4)
+            }
+            .Padding(0,20,0,0)
         }
-
-        public override VisualNode Render()
-            => ContentPage(
-                    ScrollView(
-                        VStack(
-                            Image("dotnet_bot.png")
-                                .HeightRequest(200)
-                                .HCenter()
-                                .Set(MauiControls.SemanticProperties.DescriptionProperty, "Cute dot net bot waving hi to you!"),
-
-                            Label("Hello, World!")
-                                .FontSize(32)
-                                .HCenter(),
-
-                            Label("Welcome to MauiReactor: MAUI with superpowers!")
-                                .FontSize(18)
-                                .HCenter(),
-
-                            Button(State.Counter == 0 ? "Click me" : $"Clicked {State.Counter} times!")
-                                .OnClicked(() => SetState(s => s.Counter++))
-                                .HCenter()
-                    )
-                    .VCenter()
-                    .Spacing(25)
-                    .Padding(30, 0)
-                )
-            );
+        .VEnd()
+        .HeightRequest(92);
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PayItGlobal.Appold.Resources.Styles
+namespace PayItGlobal.App.Resources.Styles
 {
     static class ThemeBrushes
     {
