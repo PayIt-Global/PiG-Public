@@ -101,12 +101,12 @@ partial class MainPage : Component<MainPageState>
 
     VisualNode RenderPage() => State.CurrentPage switch
     {
-        PageEnum.Home => new HomePage(),
-        PageEnum.TakePayment => new TakePaymentPage(),
-        PageEnum.Reports => new ReportsPage(),
-        PageEnum.Accounting => new AccountingPage(),
-        PageEnum.Invoices => new InvoicesPage(),
-        PageEnum.Landing => new LandingPage(),
+        PageEnum.Home => new Home(),
+        PageEnum.TakePayment => new TakePayment(),
+        PageEnum.Reports => new Reports(),
+        PageEnum.Accounting => new Accounting(),
+        PageEnum.Invoices => new Invoices(),
+        PageEnum.Landing => new Landing(),
         _ => throw new NotImplementedException(),
 
     };

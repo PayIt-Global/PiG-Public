@@ -2,19 +2,18 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using PayItGlobal.Appold.ConfigurationModels;
-using PayItGlobal.Appold.Pages;
-using System;
-using System.IO;
 using PayItGlobal.Application.Interfaces;
 using PayItGlobal.Application.Services;
-using System.Net.Http;
-using PayItGlobal.Infrastructure.Services;
+using PayItGlobal.Appold.ConfigurationModels;
+using PayItGlobal.Appold.Pages;
+using PayItGlobal.Appold.Services;
 using PayItGlobal.Domain.Interfaces;
 using PayItGlobal.Infrastructure.Repository;
-using PayItGlobal.Appold.Services;
+using PayItGlobal.Infrastructure.Services;
+using System;
+using System.IO;
 
-namespace PayItGlobal.Appold;
+namespace PayItGlobal.App;
 public static class MauiProgram
 {
     public static MauiApp CreateMauiApp()
