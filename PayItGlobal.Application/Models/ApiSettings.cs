@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PayItGlobal.App.ConfigurationModels
+namespace PayItGlobal.Application.ConfigurationModels
 {
     public class ApiSettings
     {

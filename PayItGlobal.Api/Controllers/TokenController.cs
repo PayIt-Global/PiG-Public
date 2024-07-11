@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PayItGlobal.Application.Interfaces;
+using PayItGlobal.Application.Models;
 using PayItGlobal.Infrastructure.Identity;
 using PayItGlobalApi.Models;
 using System;

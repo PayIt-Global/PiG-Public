@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PayItGlobalApi.Models
+namespace PayItGlobal.Application.Models
 {
     public class AuthenticateRequest
     {

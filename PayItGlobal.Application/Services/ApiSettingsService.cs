@@ -1,12 +1,9 @@
 ﻿using Microsoft.Extensions.Options;
-using PayItGlobal.App.ConfigurationModels;
+using PayItGlobal.Application.ConfigurationModels;
+using PayItGlobal.Application.Interfaces;
 
-namespace PayItGlobal.App.Services
+namespace PayItGlobal.Application.Services
 {
-    public interface IApiSettingsService
-    {
-        ApiSettings GetSettings();
-    }
     public class ApiSettingsService : IApiSettingsService
     {
         private readonly ApiSettings _apiSettings;
@@ -20,6 +17,11 @@ namespace PayItGlobal.App.Services
         {
             return _apiSettings;
         }
-    }
 
+        // Method to get the API Base URL from the ApiSettings
+        public string GetApiBaseUrl()
+        {
+            return _apiSettings.BaseUrl;
+        }
+    }
 }

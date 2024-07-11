@@ -8,17 +8,27 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Maui.Storage;
 using System.Text.Json;
 using System.Text;
+using PayItGlobal.Application.Models;
 
 namespace PayItGlobal.Application.Services
 {
     public class ClientAuthenticationService : IClientAuthenticationService
-    {      
-        public ClientAuthenticationService() 
+    {
+        private readonly HttpClient _httpClient;
+        private readonly string _baseUrl;
+
+        public ClientAuthenticationService(HttpClient httpClient, IApiSettingsService apiSettingsService)
         {
-           
-
+            _httpClient = httpClient;
+            _baseUrl = apiSettingsService.GetApiBaseUrl(); // Assuming this method returns the base URL of your API
         }
+        public async Task<bool> LoginAsync(string username, string password)
+        {
+            var request = new AuthenticateRequest { Username = username, Password = password };
+            var response = await _httpClient.PostAsJsonAsync($"{_baseUrl}/Token/login", request);
 
+            return response.IsSuccessStatusCode;
+        }
         public async Task<bool> IsLoggedInAsync()
         {
             var jwtToken = await SecureStorage.GetAsync("jwt_token");
