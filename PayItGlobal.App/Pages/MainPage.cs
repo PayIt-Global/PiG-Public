@@ -9,6 +9,11 @@ namespace PayItGlobal.App.Pages
 
     internal class MainPage : Component<MainPageState>
     {
+        public MainPage()
+        {
+
+        }
+
         public override VisualNode Render()
          => ContentPage(
                 ScrollView(

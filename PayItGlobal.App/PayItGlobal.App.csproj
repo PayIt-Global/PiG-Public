@@ -66,4 +66,10 @@
     <PackageReference Include="Reactor.Maui" Version="2.0.*" />
     <PackageReference Include="Reactor.Maui.Canvas" Version="2.0.*" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PayItGlobal.Application\PayItGlobal.Application.csproj" />
+    <ProjectReference Include="..\PayItGlobal.Infrastructure\PayItGlobal.Infrastructure.csproj" />
+    <ProjectReference Include="..\PayItGlobal.Services\PayItGlobal.DTOs\PayItGlobal.DTOs.csproj" />
+  </ItemGroup>
 </Project>
