@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
-using PayItGlobalApp.Resources.Styles;
+using PayItGlobal.App.Resources.Styles;
 using MauiReactor;
 using MauiReactor.Canvas;
 
-namespace PayItGlobalApp.Pages;
+namespace PayItGlobal.App.Pages;
 
 enum PageEnum
 {

@@ -1,5 +1,5 @@
-﻿using PayItGlobalApp.Models;
-using PayItGlobalApp.Resources.Styles;
+﻿using PayItGlobal.App.Models;
+using PayItGlobal.App.Resources.Styles;
 using MauiReactor;
 using MauiReactor.Compatibility;
 using MauiReactor.Canvas;
@@ -9,15 +9,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PayItGlobalApp.Pages;
+namespace PayItGlobal.App.Pages;
 
 class Community : Component
 {
     public override VisualNode Render()
     {
-        return new Grid("*", "*")
-        {
-
-        };
+        return new Text("Community");
     }
 }

@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace PayItGlobalApp;
+namespace PayItGlobal.App;
 
 public class Program
 {

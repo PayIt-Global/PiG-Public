@@ -1,5 +1,5 @@
-﻿using PayItGlobalApp.Models;
-using PayItGlobalApp.Resources.Styles;
+﻿using PayItGlobal.App.Models;
+using PayItGlobal.App.Resources.Styles;
 using MauiReactor;
 using MauiReactor.Canvas;
 using MauiReactor.Compatibility;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PayItGlobalApp.Pages;
+namespace PayItGlobal.App.Pages;
 
 class EventDetailsPageState
 {

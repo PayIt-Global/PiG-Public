@@ -1,8 +1,8 @@
 ﻿using MauiReactor;
-using PayItGlobalApp.Pages;
+using PayItGlobal.App.Pages;
 
 
-namespace PayItGlobalApp;
+namespace PayItGlobal.App;
 
 public static class MauiProgram
 {

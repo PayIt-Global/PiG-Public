@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayItGlobal.App", "PayItGlobal.App.csproj", "{8F9C5ED6-3290-48D6-AEE6-9FDFD7452C4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayItGlobal.App", "PayItGlobal.App.csproj", "{D1780AD8-A8F1-4F5D-AB85-4A905083D672}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,17 +11,17 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8F9C5ED6-3290-48D6-AEE6-9FDFD7452C4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8F9C5ED6-3290-48D6-AEE6-9FDFD7452C4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8F9C5ED6-3290-48D6-AEE6-9FDFD7452C4F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{8F9C5ED6-3290-48D6-AEE6-9FDFD7452C4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8F9C5ED6-3290-48D6-AEE6-9FDFD7452C4F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8F9C5ED6-3290-48D6-AEE6-9FDFD7452C4F}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D1780AD8-A8F1-4F5D-AB85-4A905083D672}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1780AD8-A8F1-4F5D-AB85-4A905083D672}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1780AD8-A8F1-4F5D-AB85-4A905083D672}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{D1780AD8-A8F1-4F5D-AB85-4A905083D672}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1780AD8-A8F1-4F5D-AB85-4A905083D672}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1780AD8-A8F1-4F5D-AB85-4A905083D672}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2C4C3D3A-DEA0-484D-8DA0-10019DDEF7FC}
+		SolutionGuid = {EFB3B572-DB20-4618-87F4-069E997F1D58}
 	EndGlobalSection
 EndGlobal

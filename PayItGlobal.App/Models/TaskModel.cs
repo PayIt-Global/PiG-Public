@@ -1,11 +1,11 @@
-﻿using PayItGlobalApp.Resources.Styles;
+﻿using PayItGlobal.App.Resources.Styles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PayItGlobalApp.Models;
+namespace PayItGlobal.App.Models;
 
 record TaskModel(string Title, Color BackgroundColor, Color CircleColor)
 {
