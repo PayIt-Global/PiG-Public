@@ -34,7 +34,7 @@ class Events : Component
         {
             new CanvasView
             {
-                new Picture("Contentics.Resources.Images.top.png")
+                new Picture("PayItGlobal.App.Resources.Images.top.png")
                     .Aspect(Aspect.Fill),
 
                 new Align
@@ -43,7 +43,7 @@ class Events : Component
                     {
                         new ClipRectangle
                         {
-                            new Picture("Contentics.Resources.Images.photo1.png")
+                            new Picture("PayItGlobal.App.Resources.Images.photo1.png")
                         }
                         .CornerRadius(16),
 

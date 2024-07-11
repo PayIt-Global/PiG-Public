@@ -12,12 +12,19 @@ using Microsoft.Maui.Devices;
 
 namespace PayItGlobal.App.Pages;
 
-class HomePageState
+class LoginPageState
 {
+    public string FirstName { get; set; } = string.Empty;
 
+    public string LastName { get; set; } = string.Empty;
+
+    public string? Avatar { get; set; }
 }
-
-class Home : Component
+class LoginPageProps
+{
+    public Action? OnLogged { get; set; }
+}
+class Login : Component<LoginPageState, LoginPageProps>
 {
     public override VisualNode Render()
     {
@@ -70,7 +77,7 @@ class Home : Component
                 {
                     new Column("23, *")
                     {
-                        new Text("Home")
+                        new Text("Login")
                             .FontColor(ThemeBrushes.Purple30)
                             .FontSize(18)
                             .HorizontalAlignment(HorizontalAlignment.Center),
