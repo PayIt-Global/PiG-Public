@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
 
   <PropertyGroup>
     <TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
@@ -15,7 +15,7 @@
     <!-- For example: <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers> -->
 
     <OutputType>Exe</OutputType>
-    <RootNamespace>PayItGlobal.App</RootNamespace>
+    <RootNamespace>PayItGlobal-old.App</RootNamespace>
     <UseMaui>true</UseMaui>
     <SingleProject>true</SingleProject>
     <Nullable>enable</Nullable>
@@ -43,11 +43,10 @@
     <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
     <!-- Splash Screen -->
-    <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+	  <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
 
-    <!-- Images -->
+	  <!-- Images -->
     <MauiImage Include="Resources\Images\*" />
-    <MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
 
     <!-- Custom Fonts -->
     <MauiFont Include="Resources\Fonts\*" />
@@ -57,13 +56,50 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="appsettings.json" />
+    <None Remove="Resources\Images\chevron_right.png" />
+    <None Remove="Resources\Images\community.svg" />
+    <None Remove="Resources\Images\community_on.svg" />
+    <None Remove="Resources\Images\home.svg" />
+    <None Remove="Resources\Images\home_on.svg" />
+    <None Remove="Resources\Images\photo1.png" />
+    <None Remove="Resources\Images\search_small.png" />
+    <None Remove="Resources\Images\top.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
     <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.*" />
     <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.*" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1" />
   </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Reactor.Maui" Version="2.0.*" />
     <PackageReference Include="Reactor.Maui.Canvas" Version="2.0.*" />
+    <PackageReference Include="System.Text.Json" Version="8.0.4" />
   </ItemGroup>
+
+
+  <ItemGroup>
+    <MauiAsset Include="appsettings.json" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\PayItGlobal.Application\PayItGlobal.Application.csproj" />
+    <ProjectReference Include="..\PayItGlobal.Infrastructure\PayItGlobal.Infrastructure.csproj" />
+    <ProjectReference Include="..\PayItGlobal.Services\PayItGlobal.DTOs\PayItGlobal.DTOs.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="ConfigurationModels\" />
+  </ItemGroup>
+
 </Project>
