@@ -81,7 +81,10 @@ class Login : Component<LoginPageState, LoginPageProps>
     {
         if (Navigation != null)
         {
-            await Navigation.PushAsync<Home>();
+            await Navigation.PushAsync<Home, HomePageProps>(props =>
+            {
+                props.RenderAsPage = true; // Or true, based on your logic
+            });
         }
         else
         {

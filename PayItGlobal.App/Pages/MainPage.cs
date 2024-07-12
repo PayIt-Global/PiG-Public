@@ -29,6 +29,7 @@ class MainPageState
     public PageEnum CurrentPage { get; set; } = PageEnum.Home;
     public bool IsAuthenticated { get; set; }
     public bool Loading { get; set; }
+    public bool LoadedDirectly { get; set; } = true; // Default to true
 }
 
 class MainPage : Component<MainPageState>
