@@ -53,6 +53,7 @@ namespace PayItGlobal.Infrastructure.Context
             modelBuilder.Entity<IdentityUserRole<string>>(entity =>
             {
                 entity.ToTable("asp_net_user_roles", "core_identity");
+                entity.HasKey(e => new { e.UserId, e.RoleId }); // Composite key
                 entity.Property(e => e.UserId).HasColumnName("user_id");
                 entity.Property(e => e.RoleId).HasColumnName("role_id");
             });
