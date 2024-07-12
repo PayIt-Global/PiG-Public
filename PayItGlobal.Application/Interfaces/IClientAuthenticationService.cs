@@ -3,6 +3,6 @@
     public interface IClientAuthenticationService
     {
         Task<bool> IsLoggedInAsync();
-        Task<bool> LogInAsync(string username, string password);
+        Task<bool> LogInAsync(string username, string password, string userIpAddress);
     }
 }

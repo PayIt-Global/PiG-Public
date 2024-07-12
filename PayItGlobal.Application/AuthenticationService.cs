@@ -1,13 +1,8 @@
-﻿using PayItGlobal.Application.Interfaces;
-using PayItGlobal.Domain.Entities; 
-using PayItGlobal.Domain.Interfaces; 
-using System.Net.Http;
+﻿using Microsoft.Extensions.Configuration;
+using PayItGlobal.Application.Interfaces;
+using PayItGlobal.Domain.Entities;
+using PayItGlobal.Domain.Interfaces;
 using System.Net.Http.Json;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Maui.Storage;
-using System.Text.Json;
-using System.Text;
 
 namespace PayItGlobal.Application.Services
 {
@@ -30,19 +25,18 @@ namespace PayItGlobal.Application.Services
             _loginUrl = $"{baseUrl}{loginEndpoint}";
         }
 
-        public async Task<bool> LoginAsync(string username, string password)
+        public async Task<bool> LoginAsync(string username, string password, string userIpAddress)
         {
             try
             {
                 var response = await _httpClient.PostAsJsonAsync(_loginUrl, new { username, password });
                 if (response.IsSuccessStatusCode)
                 {
-                    var userId = await response.Content.ReadFromJsonAsync<int>(); // Simplified for illustration
+                    var userId = await response.Content.ReadFromJsonAsync<int>();
 
                     var jwtToken = _tokenService.GenerateJwtToken(userId);
-                    var refreshToken = await _refreshTokenService.GenerateRefreshToken(userId, "User IP Address");
+                    var refreshToken = await _refreshTokenService.GenerateRefreshToken(userId, userIpAddress);
 
-                    // Create a new RefreshToken entity
                     var refreshTokenEntity = new RefreshToken
                     {
                         UserId = userId,
@@ -50,11 +44,7 @@ namespace PayItGlobal.Application.Services
                         // Set other necessary properties, such as expiry date
                     };
 
-                    // Save the refresh token using the repository
                     await _refreshTokenRepository.SaveRefreshTokenAsync(refreshTokenEntity);
-
-                    // Store JWT token in SecureStorage for later validation
-                    await SecureStorage.SetAsync("jwt_token", jwtToken);
 
                     return true;
                 }
@@ -62,10 +52,10 @@ namespace PayItGlobal.Application.Services
             }
             catch
             {
-                // Handle exceptions
                 return false;
             }
         }
+
 
         public async Task LogoutAsync()
         {

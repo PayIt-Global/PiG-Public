@@ -3,6 +3,7 @@ using MauiReactor.Canvas;
 using Microsoft.Extensions.DependencyInjection;
 using PayItGlobal.Application.Interfaces;
 using System;
+using PayItGlobal.Application.Infrastructure.Utilities;
 
 namespace PayItGlobal.App.Pages;
 
@@ -54,18 +55,18 @@ class Login : Component<LoginPageState, LoginPageProps>
             // Show loading indicator
             string username = State.Username;
             string password = State.Password;
+            string userIpAddress = await NetworkUtilities.GetUserIpAddressAsync();
             var authService = Services.GetRequiredService<IClientAuthenticationService>();
-            bool isLoggedIn = await authService.LogInAsync(username, password);
+            bool isLoggedIn = await authService.LogInAsync(username, password, userIpAddress);
 
             if (isLoggedIn)
             {
-                // Hide loading indicator
-                // Navigate to the next page or show success message
+                NavigateToHomePage();
             }
             else
             {
-                // Hide loading indicator
                 // Show error message: "Login failed. Please try again."
+                //ShowMessage("Login failed. Please try again.");
             }
         }
         catch (Exception ex)
@@ -76,4 +77,21 @@ class Login : Component<LoginPageState, LoginPageProps>
         }
     }
 
+    async void NavigateToHomePage()
+    {
+        if (Navigation != null)
+        {
+            await Navigation.PushAsync<Home>();
+        }
+        else
+        {
+            throw new Exception("Navigation is null");
+        }
+    }
+
+    void ShowMessage(string message)
+    {
+        // Show a message to the user
+        // This could involve using a dialog service or a temporary notification component
+    }
 }

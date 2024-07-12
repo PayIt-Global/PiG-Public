@@ -22,13 +22,33 @@ namespace PayItGlobal.Application.Services
             _httpClient = httpClient;
             _baseUrl = apiSettingsService.GetApiBaseUrl(); // Assuming this method returns the base URL of your API
         }
-        public async Task<bool> LogInAsync(string username, string password)
+        public async Task<bool> LogInAsync(string username, string password, string userIpAddress)
         {
-            var request = new AuthenticateRequest { Username = username, Password = password };
+            // Include the IP address in the request
+            var request = new AuthenticateRequest { Username = username, Password = password, UserIpAddress = userIpAddress };
             var response = await _httpClient.PostAsJsonAsync($"{_baseUrl}/Token/login", request);
 
-            return response.IsSuccessStatusCode;
+            if (response.IsSuccessStatusCode)
+            {
+                // Assuming the response body is a JSON object with "jwtToken" and "refreshToken" properties
+                var tokens = await response.Content.ReadFromJsonAsync<Dictionary<string, string>>();
+
+                if (tokens != null && tokens.ContainsKey("jwtToken") && tokens.ContainsKey("refreshToken"))
+                {
+                    var jwtToken = tokens["jwtToken"];
+                    var refreshToken = tokens["refreshToken"];
+
+                    // Store the tokens securely
+                    await SecureStorage.SetAsync("jwt_token", jwtToken);
+                    await SecureStorage.SetAsync("refresh_token", refreshToken);
+
+                    return true;
+                }
+            }
+
+            return false;
         }
+
         public async Task<bool> IsLoggedInAsync()
         {
             var jwtToken = await SecureStorage.GetAsync("jwt_token");

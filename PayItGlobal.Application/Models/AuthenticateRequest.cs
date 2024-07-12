@@ -9,5 +9,7 @@ namespace PayItGlobal.Application.Models
 
         [Required]
         public string Password { get; set; }
+
+        public string UserIpAddress { get; set; }
     }
 }
