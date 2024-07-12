@@ -63,7 +63,6 @@ namespace PayItGlobal.Application.Services
             return GenerateJwtToken(userId);
         }
 
-
         public async Task<string> GenerateRefreshToken(int userId)
         {
             // Generate a secure random token using RandomNumberGenerator
@@ -87,7 +86,6 @@ namespace PayItGlobal.Application.Services
                 return refreshToken;
             }
         }
-
 
         public string GenerateJwtToken(int userId)
         {

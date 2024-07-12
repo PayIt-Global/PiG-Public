@@ -82,11 +82,6 @@
 
 
 	<ItemGroup>
-	  <Folder Include="ConfigurationModels\" />
-	</ItemGroup>
-
-
-	<ItemGroup>
 	  <None Update="appsettings.json">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
