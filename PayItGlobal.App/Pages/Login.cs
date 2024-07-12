@@ -1,24 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using PayItGlobal.App.Resources.Styles;
-using MauiReactor;
+﻿using MauiReactor;
 using MauiReactor.Canvas;
-using MauiReactor.Compatibility;
-using Microsoft.Maui.Devices;
+using Microsoft.Extensions.DependencyInjection;
+using PayItGlobal.Application.Interfaces;
+using System;
 
 namespace PayItGlobal.App.Pages;
 
 class LoginPageState
 {
-    public string FirstName { get; set; } = string.Empty;
+    public string Username { get; set; }
+    public string Password { get; set; }
 
-    public string LastName { get; set; } = string.Empty;
-
-    public string? Avatar { get; set; }
 }
 class LoginPageProps
 {
@@ -40,62 +32,48 @@ class Login : Component<LoginPageState, LoginPageProps>
 
     VisualNode RenderTopPanel()
     {
-        return new Grid
-        {
-            new CanvasView
+        return new StackLayout()
             {
-                new Picture("PayItGlobal.App.Resources.Images.top.png")
-                    .Aspect(Aspect.Fill),
-
-                new Align
-                {
-                    new Group
-                    {
-                        new ClipRectangle
-                        {
-                            new Picture("PayItGlobal.App.Resources.Images.photo1.png")
-                        }
-                        .CornerRadius(16),
-
-                        new Align()
-                        {
-                            new Ellipse()
-                                .StrokeColor(ThemeBrushes.Purple10)
-                                .FillColor(ThemeBrushes.Green)
-                                .StrokeSize(5)
-                        }
-                        .VEnd()
-                        .HStart()
-                        .Width(13)
-                        .Height(13)
-                    }
-                }
-                .Height(48)
-                .Width(48)
-                .HCenter()
-                .VStart()
-                .Margin(0,72,0,0),
-
-                new Align
-                {
-                    new Column("23, *")
-                    {
-                        new Text("Login")
-                            .FontColor(ThemeBrushes.Purple30)
-                            .FontSize(18)
-                            .HorizontalAlignment(HorizontalAlignment.Center),
-                    }
-                }
-                .Height(61)
-                .VEnd()
-                .Margin(0,0,0,56)
+                new Entry()
+                    .Placeholder("Username")
+                    .OnTextChanged((s,e)=> SetState(_ => _.Username = e.NewTextValue)),
+                new Entry()
+                    .Placeholder("Password")
+                    .OnTextChanged((s,e)=> SetState(_ => _.Password = e.NewTextValue)),
+                new Button("Login")
+                    .IsEnabled(!string.IsNullOrWhiteSpace(State.Username) && !string.IsNullOrWhiteSpace(State.Password))
+                    .OnClicked(OnLogin)
             }
-            .VStart()
-            .HeightRequest(253)
-            .Background(Colors.Transparent)
+        .VCenter()
+        .HCenter();
+    }
+    private async void OnLogin()
+    {
+        try
+        {
+            // Show loading indicator
+            string username = State.Username;
+            string password = State.Password;
+            var authService = Services.GetRequiredService<IClientAuthenticationService>();
+            bool isLoggedIn = await authService.LogInAsync(username, password);
 
+            if (isLoggedIn)
+            {
+                // Hide loading indicator
+                // Navigate to the next page or show success message
+            }
+            else
+            {
+                // Hide loading indicator
+                // Show error message: "Login failed. Please try again."
+            }
         }
-        .GridRow(0);
+        catch (Exception ex)
+        {
+            // Hide loading indicator
+            // Log the exception
+            // Show error message: "An error occurred. Please try again later."
+        }
     }
 
 }

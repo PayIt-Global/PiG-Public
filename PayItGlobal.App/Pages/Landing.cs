@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using PayItGlobal.App.Resources.Styles;
-using MauiReactor;
+﻿using MauiReactor;
 using MauiReactor.Canvas;
 using MauiReactor.Compatibility;
-using Microsoft.Maui.Devices;
-using Android.Mtp;
+using Microsoft.Extensions.DependencyInjection;
+using PayItGlobal.App.Resources.Styles;
+using PayItGlobal.Application.Interfaces;
+using System;
 
 namespace PayItGlobal.App.Pages;
 
@@ -24,7 +19,7 @@ partial class Landing : Component
     private Action? _onLogged;
     protected override void OnMountedOrPropsChanged()
     {
-        Routing.RegisterRoute<Login>("login");
+        //Routing.RegisterRoute<Login>("login");
         base.OnMountedOrPropsChanged();
     }
     public override VisualNode Render()
@@ -63,7 +58,7 @@ partial class Landing : Component
     private async void OnOpenLoginPage()
     {
         if (Navigation != null)
-        {
+        {            
             await Navigation.PushAsync<Login>();
         }
         else

@@ -22,7 +22,7 @@ namespace PayItGlobal.Application.Services
             _httpClient = httpClient;
             _baseUrl = apiSettingsService.GetApiBaseUrl(); // Assuming this method returns the base URL of your API
         }
-        public async Task<bool> LoginAsync(string username, string password)
+        public async Task<bool> LogInAsync(string username, string password)
         {
             var request = new AuthenticateRequest { Username = username, Password = password };
             var response = await _httpClient.PostAsJsonAsync($"{_baseUrl}/Token/login", request);
