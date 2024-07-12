@@ -1,10 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using PayItGlobal.Infrastructure.Interfaces;
-using PayItGlobal.Domain.Interfaces;
+﻿using PayItGlobal.Domain.Interfaces;
 using PayItGlobal.Infrastructure.Context;
-using PayItGlobal.Domain.Entities;
+using PayItGlobal.Infrastructure.Interfaces;
 using PayItGlobal.Infrastructure.Repository;
-using System;
 
 namespace PayItGlobal.Infrastructure
 {

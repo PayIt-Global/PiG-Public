@@ -1,19 +1,24 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
+using PayItGlobalApi.Helper;
 using Microsoft.OpenApi.Models;
-using PayItGlobal.Domain.Models;
 using PayItGlobal.Infrastructure.Context;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.Extensions.Options;
+using System.Configuration;
+using PayItGlobal.Domain.Models;
 using PayItGlobal.Infrastructure.Identity;
 using PayItGlobal.Infrastructure.Interfaces;
-using PayItGlobalApi.Helper;
+using Microsoft.AspNetCore.Identity;
+using PayItGlobal.Domain.Entities;
+using Microsoft.AspNetCore.Builder;
+using System.Reflection;
 using Serilog;
+using Serilog.Events;
 using Serilog.Sinks.Graylog;
 using Serilog.Sinks.Graylog.Core.Transport;
-using System.Reflection;
-using System.Text;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +26,7 @@ var builder = WebApplication.CreateBuilder(args);
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Debug()
     .Enrich.FromLogContext()
-    .Enrich.WithProperty("app", "PayEz.Api")
+    .Enrich.WithProperty("app", "PayItGlobal.Api")
     .Enrich.WithProperty("Environment", "JonDevHttp")
     .WriteTo.Console()
     .WriteTo.Graylog(new GraylogSinkOptions
@@ -29,7 +34,7 @@ Log.Logger = new LoggerConfiguration()
         HostnameOrAddress = "10.6.7.4",
         Port = 12201,
         TransportType = TransportType.Http,
-        Facility = "PayEz-PaymentApi",
+        Facility = "PayItGlobal-PaymentApi",
         // Additional fields can be added here
     })
     .CreateLogger();
@@ -69,7 +74,7 @@ builder.Services.AddSwaggerGen(c => {
     c.IncludeXmlComments(xmlPath);
     c.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "PayIt.Global Merchant Services Api enabled with JWT Bearer",
+        Title = "PayItGlobal Api enabled with JWT Bearer",
         Version = "v1"
     });
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
@@ -117,6 +122,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 
 builder.Services.AddAuthorization(); // Adds authorization services
+
 var app = builder.Build();
 
 
@@ -125,7 +131,12 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers();
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
 
 app.UseSwagger();
 app.UseSwaggerUI();
