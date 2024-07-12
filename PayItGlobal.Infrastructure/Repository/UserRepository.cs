@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PayItGlobal.Domain.Interfaces;
 using PayItGlobal.Infrastructure.Context;
-using PayItGlobal.Domain.Entities;
-using System.Security.Cryptography;
-using System.Text;
-using System.Linq.Expressions;
-using System.Security.Claims;
 
 namespace PayItGlobal.Infrastructure.Repository
 {

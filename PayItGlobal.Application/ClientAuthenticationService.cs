@@ -1,14 +1,9 @@
-﻿using PayItGlobal.Application.Interfaces;
-using PayItGlobal.Domain.Entities; 
-using PayItGlobal.Domain.Interfaces; 
-using System.Net.Http;
-using System.Net.Http.Json;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Maui.Storage;
-using System.Text.Json;
-using System.Text;
+﻿using Microsoft.Maui.Storage;
+using PayItGlobal.Application.Interfaces;
 using PayItGlobal.Application.Models;
+using System.Net.Http.Json;
+using System.Text;
+using System.Text.Json;
 
 namespace PayItGlobal.Application.Services
 {
