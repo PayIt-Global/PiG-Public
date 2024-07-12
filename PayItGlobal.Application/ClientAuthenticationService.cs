@@ -31,30 +31,54 @@ namespace PayItGlobal.Application.Services
             {
                 var tokens = await response.Content.ReadFromJsonAsync<Dictionary<string, string>>();
 
-                if (tokens != null && tokens.ContainsKey("jwtToken") && tokens.ContainsKey("refreshToken"))
+                if (tokens != null && tokens.ContainsKey("token") && tokens.ContainsKey("refreshToken"))
                 {
-                    var jwtToken = tokens["jwtToken"];
+                    var jwtToken = tokens["token"];
                     var refreshToken = tokens["refreshToken"];
 
                     // Decode the JWT token to extract the expiry date
                     var tokenParts = jwtToken.Split('.');
                     if (tokenParts.Length > 1)
                     {
-                        var payload = tokenParts[1]; // Base64 encoded payload
-                        var payloadJson = Encoding.UTF8.GetString(Convert.FromBase64String(payload));
-                        var jwtPayload = JsonSerializer.Deserialize<Dictionary<string, long>>(payloadJson);
-
-                        if (jwtPayload != null && jwtPayload.TryGetValue("exp", out long exp))
+                        var payload = tokenParts[1]; // Base64 URL encoded payload
+                        var payloadCorrected = payload.Replace('-', '+').Replace('_', '/');
+                        switch (payloadCorrected.Length % 4)
                         {
-                            var expiryDate = DateTimeOffset.FromUnixTimeSeconds(exp).ToString();
-
-                            // Store the tokens and expiry date securely
-                            await SecureStorage.SetAsync("jwt_token", jwtToken);
-                            await SecureStorage.SetAsync("refresh_token", refreshToken);
-                            await SecureStorage.SetAsync("jwt_expiry", expiryDate);
-
-                            return true;
+                            case 2: payloadCorrected += "=="; break;
+                            case 3: payloadCorrected += "="; break;
                         }
+
+                        try
+                        {
+                            var payloadJson = Encoding.UTF8.GetString(Convert.FromBase64String(payloadCorrected));
+                            var jwtPayload = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(payloadJson);
+
+                            if (jwtPayload != null)
+                            {
+                                if (jwtPayload.TryGetValue("exp", out JsonElement expElement) && expElement.TryGetInt64(out long exp))
+                                {
+                                    var expiryDate = DateTimeOffset.FromUnixTimeSeconds(exp).ToString();
+                                    await SecureStorage.SetAsync("jwt_token", jwtToken);
+                                    await SecureStorage.SetAsync("refresh_token", refreshToken);
+                                    await SecureStorage.SetAsync("jwt_expiry", expiryDate);
+                                    return true;
+                                }
+                                // Handle other claims as needed, converting types appropriately
+                            }
+                        }
+                        catch (FormatException ex)
+                        {
+                            // Handle or log the FormatException
+                        }
+                        catch (JsonException ex)
+                        {
+                            // Handle or log the JsonException
+                        }
+
+                        return false;
+
+
+
                     }
                 }
             }
@@ -71,23 +95,42 @@ namespace PayItGlobal.Application.Services
                 var tokenParts = jwtToken.Split('.');
                 if (tokenParts.Length > 1)
                 {
-                    var payload = tokenParts[1]; // Base64 encoded payload
-                    var payloadJson = Encoding.UTF8.GetString(Convert.FromBase64String(payload));
-                    var jwtPayload = JsonSerializer.Deserialize<Dictionary<string, long>>(payloadJson);
-
-                    if (jwtPayload != null && jwtPayload.TryGetValue("exp", out long exp))
+                    var payload = tokenParts[1]; // Base64 URL encoded payload
+                    var payloadCorrected = payload.Replace('-', '+').Replace('_', '/');
+                    switch (payloadCorrected.Length % 4)
                     {
-                        var expiryDate = DateTimeOffset.FromUnixTimeSeconds(exp);
-                        if (expiryDate > DateTimeOffset.UtcNow)
+                        case 2: payloadCorrected += "=="; break;
+                        case 3: payloadCorrected += "="; break;
+                    }
+
+                    try
+                    {
+                        var payloadJson = Encoding.UTF8.GetString(Convert.FromBase64String(payloadCorrected));
+                        var jwtPayload = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(payloadJson);
+
+                        if (jwtPayload != null && jwtPayload.TryGetValue("exp", out JsonElement expElement) && expElement.TryGetInt64(out long exp))
                         {
-                            // Token has not expired, optionally verify its validity with the server
-                            return true;
+                            var expiryDate = DateTimeOffset.FromUnixTimeSeconds(exp);
+                            if (expiryDate > DateTimeOffset.UtcNow)
+                            {
+                                // Token has not expired, optionally verify its validity with the server
+                                return true;
+                            }
                         }
+                    }
+                    catch (FormatException ex)
+                    {
+                        // Handle or log the FormatException
+                    }
+                    catch (JsonException ex)
+                    {
+                        // Handle or log the JsonException
                     }
                 }
             }
             return false;
         }
+
         public async Task<string> RefreshJwtTokenAsync(string refreshToken)
         {
             // Send a request to your API to refresh the JWT using the refresh token
@@ -96,9 +139,9 @@ namespace PayItGlobal.Application.Services
             if (response.IsSuccessStatusCode)
             {
                 var tokens = await response.Content.ReadFromJsonAsync<Dictionary<string, string>>();
-                if (tokens != null && tokens.ContainsKey("jwtToken") && tokens.ContainsKey("refreshToken"))
+                if (tokens != null && tokens.ContainsKey("token") && tokens.ContainsKey("refreshToken"))
                 {
-                    var jwtToken = tokens["jwtToken"];
+                    var jwtToken = tokens["token"];
                     var newRefreshToken = tokens["refreshToken"];
                     // Extract the expiry time from the new JWT and store the new tokens and expiry time
                     var expiryTime = ExtractExpiryTimeFromJwt(jwtToken);
