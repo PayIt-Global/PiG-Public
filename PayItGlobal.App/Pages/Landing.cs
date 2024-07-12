@@ -15,8 +15,6 @@ class LandingPageState
 
 partial class Landing : Component
 {
-    [Prop]
-    private Action? _onLogged;
     protected override void OnMountedOrPropsChanged()
     {
         //Routing.RegisterRoute<Login>("login");

@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using PayItGlobal.App.Resources.Styles;
-using MauiReactor;
+﻿using MauiReactor;
 using MauiReactor.Canvas;
-using MauiReactor.Compatibility;
-using Microsoft.Maui.Devices;
+using PayItGlobal.App.Resources.Styles;
 
 namespace PayItGlobal.App.Pages;
 class HomePageProps

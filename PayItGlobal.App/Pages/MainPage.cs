@@ -23,7 +23,6 @@ enum PageEnum
     Calendar
 }
 
-
 class MainPageState
 {
     public PageEnum CurrentPage { get; set; } = PageEnum.Home;
@@ -34,11 +33,8 @@ class MainPageState
 
 class MainPage : Component<MainPageState>
 {
-    private readonly IParameter<MainPageState> _mainState;
     public MainPage()
     {
-        _mainState = CreateParameter<MainPageState>();
-
     }
     protected override async void OnMounted()
     {
