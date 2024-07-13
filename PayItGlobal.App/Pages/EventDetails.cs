@@ -1,5 +1,4 @@
-﻿using PayItGlobal.App.Resources.Styles;
-using MauiReactor;
+﻿using MauiReactor;
 using MauiReactor.Canvas;
 using MauiReactor.Compatibility;
 using System;

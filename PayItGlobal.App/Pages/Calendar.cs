@@ -1,8 +1,7 @@
 ﻿using System;
-using PayItGlobal.App.Resources.Styles;
 using MauiReactor;
 using MauiReactor.Canvas;
-using PayItGlobal.App.Themes; 
+using PayItGlobal.App.Themes;
 
 namespace PayItGlobal.App.Pages;
 

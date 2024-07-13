@@ -1,6 +1,7 @@
 using MauiReactor;
 using Microsoft.Maui.Graphics;
 using PayItGlobal.App.Resources.Styles;
+using PayItGlobal.App.Themes;
 
 class AppTheme : Theme
 {

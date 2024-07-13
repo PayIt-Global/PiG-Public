@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using PayItGlobal.App.Resources.Styles;
 using MauiReactor;
 using MauiReactor.Canvas;
 using MauiReactor.Compatibility;
