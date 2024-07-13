@@ -38,16 +38,15 @@ class Login : Component<LoginPageState, LoginPageProps>
 
     VisualNode RenderTopPanel(IThemeColors currentTheme)
     {
-        return new Border
-        {
-            new VStack // Use VStack to layout children vertically
-            {
-                new Entry()
+        return Border(
+            Grid("Auto, Auto, Auto", "*", // Three rows, each sized according to their content
+                    new Entry()
                     .BackgroundColor(currentTheme.Surface)
                     .PlaceholderColor(currentTheme.TertiaryContainer)
                     .Placeholder("Username")
                     .TextColor(currentTheme.Tertiary)
-                    .OnTextChanged((s,e)=> SetState(_ => _.Username = e.NewTextValue))
+                    .GridRow(0)
+                    .OnTextChanged((s, e) => SetState(_ => _.Username = e.NewTextValue))
                     .Margin(new Thickness(16, 8)),
 
                 new Entry()
@@ -55,7 +54,8 @@ class Login : Component<LoginPageState, LoginPageProps>
                     .PlaceholderColor(currentTheme.TertiaryContainer)
                     .Placeholder("Password")
                     .TextColor(currentTheme.Tertiary)
-                    .OnTextChanged((s,e)=> SetState(_ => _.Username = e.NewTextValue))
+                    .GridRow(1)
+                    .OnTextChanged((s, e) => SetState(_ => _.Username = e.NewTextValue))
                     .Margin(new Thickness(16, 8)),
 
                 new Button("Login")
@@ -64,16 +64,16 @@ class Login : Component<LoginPageState, LoginPageProps>
                     .BackgroundColor(currentTheme.Tertiary)
                     .TextColor(currentTheme.OnTertiary)
                     .CornerRadius(10)
+                    .GridRow(2)
                     .Margin(new Thickness(16, 8))
-            }
-            .Padding(20) 
-            .HeightRequest(200)
-        }
-        .HeightRequest(300) // Adjust height as needed for the Border
-        .WidthRequest(250) // Adjust width as needed for the Border
-        .BackgroundColor(currentTheme.PrimaryContainer) // Set your desired background color for the Border
-        .StrokeCornerRadius(20) // Set corner radius for rounded corners of the Border
-        .Shadow(new Shadow().Opacity(0.2f).Offset(5, 5).Brush(currentTheme.Shadow)); // Shadow for the Border
+                    )
+            )
+            .Padding(30, 26)
+            .HeightRequest(220) // Adjust height as needed for the Border
+            .WidthRequest(250) // Adjust width as needed for the Border
+            .BackgroundColor(currentTheme.PrimaryContainer) // Set your desired background color for the Border
+            .StrokeCornerRadius(20) // Set corner radius for rounded corners of the Border
+            .Shadow(new Shadow().Opacity(0.2f).Offset(5, 5).Brush(currentTheme.Shadow)); // Shadow for the Border
     }
 
 
