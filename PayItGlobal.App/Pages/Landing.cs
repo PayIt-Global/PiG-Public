@@ -24,35 +24,35 @@ partial class Landing : Component
     {
         return new Grid("268, *, 92", "*")
         {
-            RenderTopPanel()
+            //RenderTopPanel()
         }
         .Margin(0, 0, 0, 88);
     }
 
-    VisualNode RenderTopPanel()
-    {
-        return new Grid("40,40", "*")
-        {
-            new Label("label1")
-                .Text("Landing")
-                .FontSize(24)
-                .TextColor(ThemeBrushes.Dark)
-                .GridRow(0)
-                .HorizontalTextAlignment(TextAlignment.Center),
+    //VisualNode RenderTopPanel()
+    //{
+    //    return new Grid("40,40", "*")
+    //    {
+    //        new Label("label1")
+    //            .Text("Landing")
+    //            .FontSize(24)
+    //            .TextColor(ThemeBrushes.Dark)
+    //            .GridRow(0)
+    //            .HorizontalTextAlignment(TextAlignment.Center),
 
-            new Button("button1")
-            .BorderColor(ThemeBrushes.Purple30)
-            .FontSize(24)
-            .GridRow(1)
-            .HCenter()
-            .HeightRequest(30)
-            .Padding(3)
-            .Text("the button")
-            .TextColor(ThemeBrushes.Grey100)
-            .VEnd()
-            .OnClicked(OnOpenLoginPage)
-        };
-    }
+    //        new Button("button1")
+    //        .BorderColor(ThemeBrushes.Purple30)
+    //        .FontSize(24)
+    //        .GridRow(1)
+    //        .HCenter()
+    //        .HeightRequest(30)
+    //        .Padding(3)
+    //        .Text("the button")
+    //        .TextColor(ThemeBrushes.Grey100)
+    //        .VEnd()
+    //        .OnClicked(OnOpenLoginPage)
+    //    };
+    //}
     private async void OnOpenLoginPage()
     {
         if (Navigation != null)

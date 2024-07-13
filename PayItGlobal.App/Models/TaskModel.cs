@@ -1,18 +1,11 @@
 ﻿using PayItGlobal.App.Resources.Styles;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PayItGlobal.App.Models;
 
-record TaskModel(string Title, Color BackgroundColor, Color CircleColor)
+public record TaskModel(string Title, Color BackgroundColor, Color CircleColor) : IThemeAwareModel<TaskModel>
 {
-    public static TaskModel[] All => new[] 
+    public TaskModel WithThemeColors(IThemeColors themeColors)
     {
-        new TaskModel("Aenean etiam ipsum sed nis...", ThemeBrushes.Pink10, ThemeBrushes.Pink20),
-        new TaskModel("Massa malesuada id potent...", ThemeBrushes.Green10, ThemeBrushes.Green20),
-        new TaskModel("Mi quis vitae augue.", ThemeBrushes.Purple40, ThemeBrushes.Purple30),
-    };
+        return this with { BackgroundColor = themeColors.Primary, CircleColor = themeColors.Secondary };
+    }
 }
