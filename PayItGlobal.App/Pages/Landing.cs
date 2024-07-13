@@ -1,9 +1,7 @@
 ﻿using MauiReactor;
 using MauiReactor.Canvas;
 using MauiReactor.Compatibility;
-using Microsoft.Extensions.DependencyInjection;
-using PayItGlobal.App.Resources.Styles;
-using PayItGlobal.Application.Interfaces;
+using PayItGlobal.App.Themes;
 using System;
 
 namespace PayItGlobal.App.Pages;
@@ -24,35 +22,37 @@ partial class Landing : Component
     {
         return new Grid("268, *, 92", "*")
         {
-            //RenderTopPanel()
+            RenderTopPanel()
         }
         .Margin(0, 0, 0, 88);
     }
 
-    //VisualNode RenderTopPanel()
-    //{
-    //    return new Grid("40,40", "*")
-    //    {
-    //        new Label("label1")
-    //            .Text("Landing")
-    //            .FontSize(24)
-    //            .TextColor(ThemeBrushes.Dark)
-    //            .GridRow(0)
-    //            .HorizontalTextAlignment(TextAlignment.Center),
+    VisualNode RenderTopPanel()
+    {
+        var currentTheme = ThemeManager.CurrentTheme; // Access the current theme
 
-    //        new Button("button1")
-    //        .BorderColor(ThemeBrushes.Purple30)
-    //        .FontSize(24)
-    //        .GridRow(1)
-    //        .HCenter()
-    //        .HeightRequest(30)
-    //        .Padding(3)
-    //        .Text("the button")
-    //        .TextColor(ThemeBrushes.Grey100)
-    //        .VEnd()
-    //        .OnClicked(OnOpenLoginPage)
-    //    };
-    //}
+        return new Grid("40,40", "*")
+        {
+            new Label("label1")
+                .Text("Landing")
+                .FontSize(24)
+                .TextColor(currentTheme.OnBackground)
+                .GridRow(0)
+                .HorizontalTextAlignment(TextAlignment.Center),
+
+            new Button("button1")
+            .BorderColor(currentTheme.Secondary)
+            .FontSize(24)
+            .GridRow(1)
+            .HCenter()
+            .HeightRequest(30)
+            .Padding(3)
+            .Text("the button")
+            .TextColor(currentTheme.OnSecondary)
+            .VEnd()
+            .OnClicked(OnOpenLoginPage)
+        };
+    }
     private async void OnOpenLoginPage()
     {
         if (Navigation != null)

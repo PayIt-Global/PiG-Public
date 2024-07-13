@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using PayItGlobal.App.Resources.Styles;
 using MauiReactor;
 using MauiReactor.Canvas;
-using MauiReactor.Compatibility;
-using Microsoft.Maui.Devices;
+using PayItGlobal.App.Themes; 
 
 namespace PayItGlobal.App.Pages;
 
@@ -19,73 +13,74 @@ class CalendarPageState
 
 class Calendar : Component
 {
+    private IThemeColors CurrentTheme => ThemeManager.CurrentTheme; 
+
     public override VisualNode Render()
     {
         return new Grid("268, *, 92", "*")
         {
-            //RenderTopPanel()
+            RenderTopPanel()
         }
         .Margin(0, 0, 0, 88);
     }
 
-    //VisualNode RenderTopPanel()
-    //{
-    //    return new Grid
-    //    {
-    //        new CanvasView
-    //        {
-    //            new Picture("PayItGlobal.App.Resources.Images.top.png")
-    //                .Aspect(Aspect.Fill),
+    VisualNode RenderTopPanel()
+    {
+        return new Grid
+        {
+            new CanvasView
+            {
+                new Picture("PayItGlobal.App.Resources.Images.top.png")
+                    .Aspect(Aspect.Fill),
 
-    //            new Align
-    //            {
-    //                new Group
-    //                {
-    //                    new ClipRectangle
-    //                    {
-    //                        new Picture("PayItGlobal.App.Resources.Images.photo1.png")
-    //                    }
-    //                    .CornerRadius(16),
+                new Align
+                {
+                    new Group
+                    {
+                        new ClipRectangle
+                        {
+                            new Picture("PayItGlobal.App.Resources.Images.photo1.png")
+                        }
+                        .CornerRadius(16),
 
-    //                    new Align()
-    //                    {
-    //                        new Ellipse()
-    //                            .StrokeColor(ThemeBrushes.Purple10)
-    //                            .FillColor(ThemeBrushes.Green)
-    //                            .StrokeSize(5)
-    //                    }
-    //                    .VEnd()
-    //                    .HStart()
-    //                    .Width(13)
-    //                    .Height(13)
-    //                }
-    //            }
-    //            .Height(48)
-    //            .Width(48)
-    //            .HCenter()
-    //            .VStart()
-    //            .Margin(0,72,0,0),
+                        new Align()
+                        {
+                            new Ellipse()
+                                .StrokeColor(CurrentTheme.Primary) // Best guess: Primary for the stroke
+                                .FillColor(CurrentTheme.Secondary) // Best guess: Secondary for the fill
+                                .StrokeSize(5)
+                        }
+                        .VEnd()
+                        .HStart()
+                        .Width(13)
+                        .Height(13)
+                    }
+                }
+                .Height(48)
+                .Width(48)
+                .HCenter()
+                .VStart()
+                .Margin(0,72,0,0),
 
-    //            new Align
-    //            {
-    //                new Column("23, *")
-    //                {
-    //                    new Text("Calendar")
-    //                        .FontColor(ThemeBrushes.Purple30)
-    //                        .FontSize(18)
-    //                        .HorizontalAlignment(HorizontalAlignment.Center),
-    //                }
-    //            }
-    //            .Height(61)
-    //            .VEnd()
-    //            .Margin(0,0,0,56)
-    //        }
-    //        .VStart()
-    //        .HeightRequest(253)
-    //        .Background(Colors.Transparent)
+                new Align
+                {
+                    new Column("23, *")
+                    {
+                        new Text("Calendar")
+                            .FontColor(CurrentTheme.OnBackground) // Best guess: OnBackground for text color
+                            .FontSize(18)
+                            .HorizontalAlignment(HorizontalAlignment.Center),
+                    }
+                }
+                .Height(61)
+                .VEnd()
+                .Margin(0,0,0,56)
+            }
+            .VStart()
+            .HeightRequest(253)
+            .Background(Colors.Transparent)
 
-    //    }
-    //    .GridRow(0);
-    //}
-
+        }
+        .GridRow(0);
+    }
 }
