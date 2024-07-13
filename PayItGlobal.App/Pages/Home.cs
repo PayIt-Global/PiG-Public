@@ -1,6 +1,5 @@
 ﻿using MauiReactor;
 using MauiReactor.Canvas;
-using PayItGlobal.App.Resources.Styles;
 using PayItGlobal.App.Themes; // Assuming this is where ThemeManager is located
 
 namespace PayItGlobal.App.Pages;

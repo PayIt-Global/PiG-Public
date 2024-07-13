@@ -1,4 +1,5 @@
 ﻿using Microsoft.Maui.Controls;
+using PayItGlobal.App.Themes;
 
 namespace PayItGlobal.App.Resources.Styles
 {

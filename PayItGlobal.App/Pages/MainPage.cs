@@ -2,6 +2,7 @@
 using MauiReactor.Canvas;
 using Microsoft.Extensions.DependencyInjection;
 using PayItGlobal.App.Resources.Styles;
+using PayItGlobal.App.Themes;
 using PayItGlobal.Application.Interfaces;
 using System;
 using System.Linq;

@@ -1,4 +1,4 @@
-﻿using PayItGlobal.App.Resources.Styles;
+﻿using PayItGlobal.App.Themes;
 
 namespace PayItGlobal.App.Models;
 
