@@ -1,10 +1,8 @@
 ﻿using MauiReactor;
 using MauiReactor.Canvas;
-using MauiReactor.Parameters;
 using Microsoft.Extensions.DependencyInjection;
 using PayItGlobal.App.Resources.Styles;
 using PayItGlobal.Application.Interfaces;
-using PayItGlobal.DTOs.Shared;
 using System;
 using System.Linq;
 
@@ -33,6 +31,8 @@ class MainPageState
 
 class MainPage : Component<MainPageState>
 {
+    private IThemeColors CurrentTheme { get; set; } = new LightTheme(); // Default to light theme
+
     public MainPage()
     {
     }
@@ -84,7 +84,7 @@ class MainPage : Component<MainPageState>
                 }
             }
             .Set(MauiControls.NavigationPage.HasNavigationBarProperty, false)
-            .BackgroundColor(ThemeBrushes.Background)
+            .BackgroundColor(CurrentTheme.Background)
         };
     }
 
@@ -127,9 +127,9 @@ class MainPage : Component<MainPageState>
                     new Box()
                         .Margin(0,20,0,0)
                         .CornerRadius(24,24,0,0)
-                        .BackgroundColor (ThemeBrushes.White)
+                        .BackgroundColor (CurrentTheme.Surface)
                 }
-                .Color(ThemeBrushes.DarkShadow)
+                .Color(CurrentTheme.Shadow)
                 .Size(0, -8)
                 .Blur(32),
 
@@ -141,7 +141,7 @@ class MainPage : Component<MainPageState>
                             new Align()
                             {
                                 new Ellipse()
-                                    .FillColor(ThemeBrushes.Purple10)
+                                    .FillColor(CurrentTheme.Primary)
                             }
                             .IsVisible(State.CurrentPage == page)
                             .Width(4)
