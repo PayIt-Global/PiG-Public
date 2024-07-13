@@ -20,17 +20,18 @@ partial class Landing : Component
     }
     public override VisualNode Render()
     {
+        var currentTheme = ThemeManager.CurrentTheme; // Access the current theme
+
+
         return new Grid("268, *, 92", "*")
         {
-            RenderTopPanel()
+            RenderTopPanel(currentTheme)
         }
         .Margin(0, 0, 0, 88);
     }
 
-    VisualNode RenderTopPanel()
+    VisualNode RenderTopPanel(IThemeColors currentTheme)
     {
-        var currentTheme = ThemeManager.CurrentTheme; // Access the current theme
-
         return new Grid("40,40", "*")
         {
             new Label("label1")
@@ -38,18 +39,21 @@ partial class Landing : Component
                 .FontSize(24)
                 .TextColor(currentTheme.OnBackground)
                 .GridRow(0)
-                .HorizontalTextAlignment(TextAlignment.Center),
+                .HorizontalTextAlignment(TextAlignment.Center)
+                .FontAttributes(Microsoft.Maui.Controls.FontAttributes.Bold),
 
             new Button("button1")
             .BorderColor(currentTheme.Secondary)
+            .BackgroundColor(currentTheme.SecondaryContainer)
             .FontSize(24)
             .GridRow(1)
             .HCenter()
-            .HeightRequest(30)
-            .Padding(3)
+            .HeightRequest(50)
+            .Padding(10)
             .Text("the button")
             .TextColor(currentTheme.OnSecondary)
             .VEnd()
+            .CornerRadius(10)
             .OnClicked(OnOpenLoginPage)
         };
     }
