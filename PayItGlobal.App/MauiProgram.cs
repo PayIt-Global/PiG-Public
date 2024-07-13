@@ -53,7 +53,8 @@ public static class MauiProgram
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
-
+        // Initialize and apply the default theme
+        AppTheme.ApplyTheme();
         return builder.Build();
     }
 

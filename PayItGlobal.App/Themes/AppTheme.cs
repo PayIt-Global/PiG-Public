@@ -15,7 +15,7 @@ class AppTheme : Theme
         ApplyTheme();
     }
 
-    private static void ApplyTheme()
+    public static void ApplyTheme()
     {
         // Since there's no base Apply to override, we directly call OnApply
         new AppTheme().OnApply();
@@ -25,10 +25,10 @@ class AppTheme : Theme
     {
         // Apply the theme colors to various UI elements
         ContentPageStyles.Default = _ => _
-            .BackgroundColor(CurrentThemeColors.Background.ToPlatformColor());
+            .BackgroundColor(CurrentThemeColors.Background);
 
         LabelStyles.Default = _ => _
-            .TextColor(CurrentThemeColors.OnBackground.ToPlatformColor());
+            .TextColor(CurrentThemeColors.OnBackground);
 
         // Apply other styles based on the current theme colors
     }
