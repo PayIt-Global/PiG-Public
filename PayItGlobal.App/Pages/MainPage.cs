@@ -126,7 +126,9 @@ partial class MainPage : Component<MainState, SideMenuState>
             {
                 MainMenuState = this.MainMenuState,
                 SideMenuState = this.SideMenuState
-            };
+            }
+            .IsShown(!State.IsSideMenuShown);
+            //.IsMovedBack(State.ShowOnboarding);
         }
 
         return State.CurrentPage switch

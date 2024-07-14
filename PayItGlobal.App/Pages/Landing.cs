@@ -20,10 +20,13 @@ partial class Landing<TMainMenuState, TSideMenuState> : Component
     // Initialize fields to default values or make them nullable if applicable
     private TMainMenuState? _mainMenuState;
     private TSideMenuState? _sideMenuState;
-
-    // Properties without [Prop] attribute
     public TMainMenuState MainMenuState { get => _mainMenuState; set => _mainMenuState = value; }
     public TSideMenuState SideMenuState { get => _sideMenuState; set => _sideMenuState = value; }
+
+    [Prop]
+    private bool _isShown;
+    [Prop]
+    private bool _isMovedBack;
 
     protected override void OnMountedOrPropsChanged()
     {
