@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace PayItGlobal.App.Pages;
 
-enum PageEnum
+public enum PageEnum
 {
     Home,
 
@@ -23,34 +23,32 @@ enum PageEnum
 
     Calendar
 }
-class MainMenuState
+
+class MainState : IMainState
 {
-    public double TranslationX { get; set; } = 220;
 
-    public double RotationY { get; set; } = -12;
-
-    public double MarginLeft { get; set; } = -30.0;
-
-    public double MainScale { get; set; } = 1.0;
-
-    public double MainOpacity { get; set; } = 1.0;
-}
-class MainPageState
-{
-    public bool IsSideMenuShown { get; set; } 
     public PageEnum CurrentPage { get; set; } = PageEnum.Home;
     public bool IsAuthenticated { get; set; }
     public bool Loading { get; set; }
     public bool LoadedDirectly { get; set; } = true; // Default to true
+    public bool IsSideMenuShown { get; set; }
 }
 
-partial class MainPage : Component<MainPageState, MainMenuState>
+partial class MainPage : Component<MainState, SideMenuState>
 {
     [Prop]
     private bool _isShown;
     [Prop]
     private bool _isMovedBack;
+    // Define the SideMenuState property
+    public SideMenuState SideMenuState { get; private set; }
+    public MainMenuState MainMenuState { get; private set; }
 
+    public MainPage()
+    {
+        MainMenuState = new MainMenuState();
+        SideMenuState = new SideMenuState();
+    }
     protected override void OnMountedOrPropsChanged()
     {
         base.OnMountedOrPropsChanged();
@@ -60,6 +58,12 @@ partial class MainPage : Component<MainPageState, MainMenuState>
     protected override async void OnMounted()
     {
         var authService = Services.GetRequiredService<IClientAuthenticationService>();
+
+        var sideMenuStateService = Services.GetRequiredService<SideMenuStateService>();
+        var currentSideMenuState = sideMenuStateService.CurrentState;
+
+        var mainMenuStateService = Services.GetRequiredService<MainMenuStateService>();
+        var currentMainMenuState = mainMenuStateService.CurrentState;
 
         // Start loading
         SetState(s => s.Loading = true);
@@ -120,7 +124,11 @@ partial class MainPage : Component<MainPageState, MainMenuState>
     {
         if (!State.IsAuthenticated)
         {
-            return new Landing(); 
+            var landingPage = new Landing<MainMenuState, SideMenuState>
+            {
+                MainMenuState = this.MainMenuState,
+                SideMenuState = this.SideMenuState
+            };
         }
 
         return State.CurrentPage switch

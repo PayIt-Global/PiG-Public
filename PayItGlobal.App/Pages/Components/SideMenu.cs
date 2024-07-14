@@ -8,7 +8,7 @@ using MauiReactor.Canvas;
 
 namespace PayItGlobal.App.Pages.Components;
 
-class SideMenuState
+public class SideMenuState : ISideMenuState
 {
     public double Opacity { get; set; } = 0.0;
 

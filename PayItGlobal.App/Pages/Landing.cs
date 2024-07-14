@@ -1,8 +1,15 @@
 ﻿using MauiReactor;
+using MauiReactor.Animations;
 using MauiReactor.Canvas;
 using MauiReactor.Compatibility;
+using MauiReactor.Shapes;
+using Microsoft.Maui.Devices;
+using PayItGlobal.App.Models;
+using PayItGlobal.App.Pages.Components;
+using PayItGlobal.App.Resources;
 using PayItGlobal.App.Themes;
 using System;
+using System.Linq;
 
 namespace PayItGlobal.App.Pages;
 
@@ -11,52 +18,191 @@ class LandingPageState
 
 }
 
-partial class Landing : Component
+partial class Landing<TMainMenuState, TSideMenuState> : Component
+    where TMainMenuState : IMainMenuState
+    where TSideMenuState : ISideMenuState // or another appropriate constraint
 {
+    // Initialize fields to default values or make them nullable if applicable
+    private TMainMenuState? _mainMenuState;
+    private TSideMenuState? _sideMenuState;
+
+    // Properties without [Prop] attribute
+    public TMainMenuState MainMenuState { get => _mainMenuState; set => _mainMenuState = value; }
+    public TSideMenuState SideMenuState { get => _sideMenuState; set => _sideMenuState = value; }
+
     protected override void OnMountedOrPropsChanged()
     {
         //Routing.RegisterRoute<Login>("login");
         base.OnMountedOrPropsChanged();
     }
+
     public override VisualNode Render()
     {
-        var currentTheme = ThemeManager.CurrentTheme; // Access the current theme
+        return Border(
+            ScrollView(
+                Grid("161, 309, 59, *", "*",
+                    RenderUserButton(),
 
+                    Label("Courses")
+                        .FontAttributes(MauiControls.FontAttributes.Bold)
+                        .FontSize(24)
+                        .FontFamily("PoppinsBold")
+                        .TextColor(Colors.Black)
+                        .VEnd(),
 
-        return new Grid("268, *, 92", "*")
-        {
-            RenderTopPanel(currentTheme)
-        }
-        .Margin(0, 0, 0, 88);
+                    ScrollView(
+                        HStack(spacing: 20,
+                            [.. CourseModel.Courses.Select(RenderCourse)]
+                        )
+                    )
+                    .Orientation(ScrollOrientation.Horizontal)
+                    .GridRow(1),
+
+                    Label("Recent")
+                        .FontAttributes(MauiControls.FontAttributes.Bold)
+                        .FontSize(20)
+                        .FontFamily("PoppinsBold")
+                        .TextColor(Colors.Black)
+                        .GridRow(2)
+                        .VEnd(),
+
+                    VStack(spacing: 20,
+                        [.. CourseModel.CourseSections.Select(RenderCourseSection)]
+                    )
+                    .Margin(0, 10, 15, 0)
+                    .GridRow(3)
+                )
+            )
+            .Orientation(ScrollOrientation.Vertical)
+            .OniOS(_ => _.Margin(0, 50, 0, 0))
+        )
+        .Margin(MainMenuState.MarginLeft, 0, 0, 0)
+        .OniOS(_ => _.Margin(MainMenuState.MarginLeft, -50, 0, -50))
+        .RotationY(MainMenuState.RotationY)
+        .TranslationX(MainMenuState.TranslationX)
+        .Padding(-MainMenuState.MarginLeft + 24, 0, 0, 0)
+        .WithAnimation(easing: Easing.CubicIn, duration: 300)
+
+        .AnchorX(0.5)
+        .AnchorY(0.0)
+        .Opacity(MainMenuState.MainOpacity)
+        .WithAnimation(easing: ExtendedEasing.InOutBack, duration: 300)
+
+        .StrokeCornerRadius(30, 0, 30, 0)
+        .Background(SideMenuTheme.Background)
+        ;
     }
 
-    VisualNode RenderTopPanel(IThemeColors currentTheme)
+    ImageButton RenderUserButton() =>
+        ImageButton("user_white.png")
+            .Aspect(Aspect.Center)
+            .CornerRadius(18)
+            .Shadow(new Shadow().Brush(SideMenuTheme.ShadowBrush)
+                .Opacity(0.1f).Offset(5, 5))
+            .HeightRequest(36)
+            .WidthRequest(36)
+            .HEnd()
+            .VStart()
+            .Margin(24, 54)
+            .BackgroundColor(Colors.White);
+            //.OnClicked(_onShowOnboarding);
+
+
+    VisualNode RenderCourse(CourseModel model)
     {
-        return new Grid("40,40", "*")
-        {
-            new Label("label1")
-                .Text("Landing")
-                .FontSize(24)
-                .TextColor(currentTheme.OnBackground)
-                .GridRow(0)
-                .HorizontalTextAlignment(TextAlignment.Center)
-                .FontAttributes(Microsoft.Maui.Controls.FontAttributes.Bold),
+        VisualNode RenderAvatar(string image)
+            => Image(image)
+                .Aspect(Aspect.AspectFit)
+                .HeightRequest(44)
+                .WidthRequest(44)
+                .Clip(new EllipseGeometry().RadiusX(22).RadiusY(22).Center(22, 22))
+                ;
 
-            new Button("button1")
-            .BorderColor(currentTheme.Secondary)
-            .BackgroundColor(currentTheme.SecondaryContainer)
-            .FontSize(24)
-            .GridRow(1)
-            .HCenter()
-            .HeightRequest(50)
-            .Padding(10)
-            .Text("the button")
-            .TextColor(currentTheme.OnSecondary)
-            .VEnd()
-            .CornerRadius(10)
-            .OnClicked(OnOpenLoginPage)
-        };
+        return Border(
+            Grid("92, 44, *, 44", "*,44",
+                Label(model.Title)
+                    .FontAttributes(MauiControls.FontAttributes.Bold)
+                    .FontSize(24)
+                    .FontFamily("PoppinsBold")
+                    .TextColor(Colors.White)
+                    .VStart()
+                    ,
+
+                Image(model.Image)
+                    .GridColumn(1)
+                    .VStart(),
+
+                Label(model.SubTitle)
+                    .GridRow(1)
+                    .TextColor(Colors.White.WithAlpha(0.5f))
+                    .FontSize(15)
+                    .Margin(0, 6, 0, 0),
+
+                Label(model.Caption.ToUpperInvariant())
+                    .GridRow(2)
+                    .GridColumnSpan(2)
+                    .TextColor(Colors.White.WithAlpha(0.5f))
+                    .FontSize(13)
+                    .Margin(0, 2, 0, 0)
+                    .FontAttributes(MauiControls.FontAttributes.Bold)
+                    .VStart(),
+
+                HStack(spacing: -8,
+                    RenderAvatar("avatar_4.png"),
+                    RenderAvatar("avatar_5.png"),
+                    RenderAvatar("avatar_6.png")
+                )
+                .GridColumnSpan(2)
+                .GridRow(3)
+            )
+        )
+        .Padding(30)
+        .HeightRequest(309)
+        .WidthRequest(260)
+        .BackgroundColor(model.Color)
+        .StrokeCornerRadius(DeviceInfo.Current.Platform == DevicePlatform.iOS ? 20 : 30)
+        .Shadow(new Shadow().Opacity(0.2f).Offset(5, 5).Brush(SideMenuTheme.ShadowBrush));
     }
+
+    VisualNode RenderCourseSection(CourseModel model)
+    {
+        return Border(
+            Grid("*,*", "*,44",
+                Label(model.Title)
+                    .FontSize(24)
+                    .FontFamily("PoppinsBold")
+                    .TextColor(Colors.White)
+                    ,
+
+                Image(model.Image)
+                    .GridColumn(1)
+                    .GridRowSpan(2)
+                    .VCenter(),
+
+                Rectangle()
+                    .VFill()
+                    .HEnd()
+                    .WidthRequest(1)
+                    .GridRowSpan(2)
+                    .Margin(15, 5)
+                    .Fill(SideMenuTheme.Background2.WithAlpha(0.5f))
+                    ,
+
+                Label(model.SubTitle)
+                    .GridRow(1)
+                    .GridColumnSpan(2)
+                    .TextColor(Colors.White)
+                    .FontSize(15)
+                    .Margin(0, 5, 0, 0)
+            )
+        )
+        .Padding(30, 26)
+        .HeightRequest(110)
+        .BackgroundColor(model.Color)
+        .StrokeCornerRadius(DeviceInfo.Current.Platform == DevicePlatform.iOS ? 15 : 20)
+        ;
+    }
+
     private async void OnOpenLoginPage()
     {
         if (Navigation != null)

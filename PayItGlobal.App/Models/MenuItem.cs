@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PayItGlobal.App.Models;
 
-enum CommandMenuItem
+public enum CommandMenuItem
 {
     None,
 
