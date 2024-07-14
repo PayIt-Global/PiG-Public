@@ -1,6 +1,7 @@
 ﻿using MauiReactor;
 using MauiReactor.Canvas;
 using Microsoft.Extensions.DependencyInjection;
+using PayItGlobal.App.Pages.Components;
 using PayItGlobal.App.Resources.Styles;
 using PayItGlobal.App.Themes;
 using PayItGlobal.Application.Interfaces;
@@ -24,6 +25,7 @@ enum PageEnum
 
 class MainPageState
 {
+    public bool IsSideMenuShown { get; set; } 
     public PageEnum CurrentPage { get; set; } = PageEnum.Home;
     public bool IsAuthenticated { get; set; }
     public bool Loading { get; set; }
@@ -33,7 +35,6 @@ class MainPageState
 class MainPage : Component<MainPageState>
 {
     private IThemeColors CurrentTheme { get; set; } = new LightTheme(); // Default to light theme
-
     public MainPage()
     {
     }
@@ -70,7 +71,6 @@ class MainPage : Component<MainPageState>
         base.OnMounted();
     }
 
-
     public override VisualNode Render()
     {
         return new NavigationPage
@@ -81,7 +81,12 @@ class MainPage : Component<MainPageState>
                 {
                     RenderPage(),
 
-                    RenderTabBar()
+                    new SideMenu().IsShown(State.IsSideMenuShown),
+
+                    new MenuButton()
+                        .IsShown(State.IsSideMenuShown)
+                        .OnToggle(() => SetState(s => s.IsSideMenuShown = !s.IsSideMenuShown)),
+                        RenderTabBar()
                 }
             }
             .Set(MauiControls.NavigationPage.HasNavigationBarProperty, false)
