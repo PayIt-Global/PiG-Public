@@ -15,9 +15,8 @@ namespace PayItGlobal.App.Pages;
 
 partial class Landing<TMainMenuState, TSideMenuState> : Component
     where TMainMenuState : IMainMenuState
-    where TSideMenuState : ISideMenuState // or another appropriate constraint
+    where TSideMenuState : ISideMenuState 
 {
-    // Initialize fields to default values or make them nullable if applicable
     private TMainMenuState? _mainMenuState;
     private TSideMenuState? _sideMenuState;
     public TMainMenuState MainMenuState { get => _mainMenuState; set => _mainMenuState = value; }
@@ -30,10 +29,26 @@ partial class Landing<TMainMenuState, TSideMenuState> : Component
 
     protected override void OnMountedOrPropsChanged()
     {
+        InitializeState();
         //Routing.RegisterRoute<Login>("login");
         base.OnMountedOrPropsChanged();
     }
+    void InitializeState()
+    {
+        if (DeviceInfo.Current.Platform == DevicePlatform.Android)
+        {
+            MainMenuState.TranslationX = _isShown ? 0 : 220;
+            MainMenuState.MarginLeft = _isShown ? -30 : 0;
+        }
+        else
+        {
+            MainMenuState.TranslationX = _isShown ? 0 : 300;
+        }
 
+        MainMenuState.RotationY = _isShown ? 0.0 : -12;
+        MainMenuState.MainScale = _isMovedBack ? 0.95 : 1.0;
+        MainMenuState.MainOpacity = _isMovedBack ? 0.1 : 1.0;
+    }
     public override VisualNode Render()
     {
         return Border(
