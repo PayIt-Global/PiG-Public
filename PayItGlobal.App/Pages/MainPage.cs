@@ -1,6 +1,7 @@
 ﻿using MauiReactor;
 using MauiReactor.Canvas;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Maui.Devices;
 using PayItGlobal.App.Pages.Components;
 using PayItGlobal.App.Resources.Styles;
 using PayItGlobal.App.Themes;
@@ -22,7 +23,18 @@ enum PageEnum
 
     Calendar
 }
+class MainMenuState
+{
+    public double TranslationX { get; set; } = 220;
 
+    public double RotationY { get; set; } = -12;
+
+    public double MarginLeft { get; set; } = -30.0;
+
+    public double MainScale { get; set; } = 1.0;
+
+    public double MainOpacity { get; set; } = 1.0;
+}
 class MainPageState
 {
     public bool IsSideMenuShown { get; set; } 
@@ -32,12 +44,19 @@ class MainPageState
     public bool LoadedDirectly { get; set; } = true; // Default to true
 }
 
-class MainPage : Component<MainPageState>
+partial class MainPage : Component<MainPageState, MainMenuState>
 {
-    private IThemeColors CurrentTheme { get; set; } = new LightTheme(); // Default to light theme
-    public MainPage()
+    [Prop]
+    private bool _isShown;
+    [Prop]
+    private bool _isMovedBack;
+
+    protected override void OnMountedOrPropsChanged()
     {
+        base.OnMountedOrPropsChanged();
     }
+    private IThemeColors CurrentTheme { get; set; } = new LightTheme(); // Default to light theme
+
     protected override async void OnMounted()
     {
         var authService = Services.GetRequiredService<IClientAuthenticationService>();
@@ -73,26 +92,29 @@ class MainPage : Component<MainPageState>
 
     public override VisualNode Render()
     {
-        return new NavigationPage
-        {
-            new ContentPage
-            {
-                new Grid("*", "*")
-                {
+        return new NavigationPage { 
+            new ContentPage 
+            { 
+
+                new Grid("", "") 
+                { 
                     RenderPage(),
+
+                    RenderTabBar(),
 
                     new SideMenu().IsShown(State.IsSideMenuShown),
 
                     new MenuButton()
                         .IsShown(State.IsSideMenuShown)
-                        .OnToggle(() => SetState(s => s.IsSideMenuShown = !s.IsSideMenuShown)),
-                        RenderTabBar()
+                        .OnToggle(() => SetState(s => s.IsSideMenuShown = !s.IsSideMenuShown))
                 }
             }
             .Set(MauiControls.NavigationPage.HasNavigationBarProperty, false)
             .BackgroundColor(CurrentTheme.Background)
         };
     }
+
+
 
     VisualNode RenderPage()
     {
@@ -103,7 +125,7 @@ class MainPage : Component<MainPageState>
 
         return State.CurrentPage switch
         {
-            PageEnum.Home => new Home(),
+            PageEnum.Home => new Home().IsShown(State.IsSideMenuShown),
             PageEnum.Events => new Events(),
             PageEnum.Community => new Community(),
             PageEnum.Assets => new Assets(),

@@ -1,5 +1,6 @@
 ﻿using MauiReactor;
 using MauiReactor.Canvas;
+using Microsoft.Maui.Devices;
 using PayItGlobal.App.Themes; // Assuming this is where ThemeManager is located
 
 namespace PayItGlobal.App.Pages;
@@ -13,10 +14,13 @@ class HomePageState
 
 }
 
-class Home : Component<HomePageState, HomePageProps>
+partial class Home : Component<HomePageState, HomePageProps>
 {
     private IThemeColors CurrentTheme => ThemeManager.CurrentTheme; // Access the current theme
-
+    [Prop]
+    private bool _isShown;
+    [Prop]
+    private bool _isMovedBack;
     public override VisualNode Render()
     {
         if (Props.RenderAsPage)
