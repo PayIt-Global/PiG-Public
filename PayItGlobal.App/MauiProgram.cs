@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using PayItGlobal.App.Pages;
+using PayItGlobal.App.Pages.Components;
 using PayItGlobal.Application.ConfigurationModels;
 using PayItGlobal.Application.Interfaces;
 using PayItGlobal.Application.Services;
@@ -42,6 +43,9 @@ public static class MauiProgram
         builder.Services.AddHttpClient();
 
         // Register your services here
+        builder.Services.AddSingleton<MainMenuStateService>();
+        builder.Services.AddSingleton<SideMenuStateService>();
+
         builder.Services.AddSingleton<ITokenService, TokenService>();
         builder.Services.AddSingleton<IRefreshTokenService, RefreshTokenService>();
         builder.Services.AddSingleton<IRefreshTokenRepository, RefreshTokenRepository>();

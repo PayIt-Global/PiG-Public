@@ -13,11 +13,6 @@ using System.Linq;
 
 namespace PayItGlobal.App.Pages;
 
-class LandingPageState
-{
-
-}
-
 partial class Landing<TMainMenuState, TSideMenuState> : Component
     where TMainMenuState : IMainMenuState
     where TSideMenuState : ISideMenuState // or another appropriate constraint

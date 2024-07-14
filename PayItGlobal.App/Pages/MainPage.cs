@@ -124,7 +124,7 @@ partial class MainPage : Component<MainState, SideMenuState>
     {
         if (!State.IsAuthenticated)
         {
-            var landingPage = new Landing<MainMenuState, SideMenuState>
+            return new Landing<MainMenuState, SideMenuState>
             {
                 MainMenuState = this.MainMenuState,
                 SideMenuState = this.SideMenuState
