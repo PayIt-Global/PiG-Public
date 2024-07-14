@@ -118,8 +118,6 @@ partial class MainPage : Component<MainState, SideMenuState>
         };
     }
 
-
-
     VisualNode RenderPage()
     {
         if (!State.IsAuthenticated)
