@@ -117,8 +117,8 @@ partial class Landing<TMainMenuState, TSideMenuState> : Component
             .HEnd()
             .VStart()
             .Margin(24, 54)
-            .BackgroundColor(Colors.White);
-            //.OnClicked(_onShowOnboarding);
+            .BackgroundColor(Colors.White)
+            .OnClicked(OnOpenLoginPage);
 
 
     VisualNode RenderCourse(CourseModel model)
