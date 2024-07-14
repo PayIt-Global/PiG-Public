@@ -128,9 +128,9 @@ class MainPage : Component<MainPageState>
                     new Box()
                         .Margin(0,20,0,0)
                         .CornerRadius(24,24,0,0)
-                        .BackgroundColor (CurrentTheme.Surface)
+                        .BackgroundColor (ThemeBrushes.White)
                 }
-                .Color(CurrentTheme.Shadow)
+                .Color(ThemeBrushes.DarkShadow)
                 .Size(0, -8)
                 .Blur(32),
 
@@ -142,7 +142,7 @@ class MainPage : Component<MainPageState>
                             new Align()
                             {
                                 new Ellipse()
-                                    .FillColor(CurrentTheme.Primary)
+                                    .FillColor(ThemeBrushes.Purple10)
                             }
                             .IsVisible(State.CurrentPage == page)
                             .Width(4)
