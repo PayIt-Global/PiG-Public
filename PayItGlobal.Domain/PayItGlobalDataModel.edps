@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <EntityDeveloper Version="7.2.21.0">
   <ModelSettings xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" ConnectionStringInAppConfig="False" TargetFramework="Net80" DetectTPTInheritance="True" EntityFrameworkCoreVersion="Version8" DetectFunctionBasedColumnDefault="True">
-    <Connection ConnectionString="User Id=postgres;Password=password;Host=192.168.0.16;Database=pay_it_global;Persist Security Info=True;Initial Schema=core_identity" Provider="Devart.Data.PostgreSql" />
+    <Connection ConnectionString="User Id=postgres;Password=password;Host=10.0.0.93;Database=pay_it_global;Persist Security Info=True;Initial Schema=core_identity" Provider="Devart.Data.PostgreSql" />
     <Generation>
       <GeneratedFiles>
         <File Name="PayItGlobalDb.cs" DestinationFolder="E:\Repos\PiG-Private\PayItGlobal.Infrastructure\Context" />
@@ -37,7 +37,7 @@
       <Property RemoveUnderscores="True" AddUnderscores="False" RemoveInvalidCharacters="True" CodeCase="FirstLetterUppercase" AddPrefix="" AddSuffix="" RemovePrefixes="" RemoveSuffixes="" PluralizationName="Unchanged" />
     </DatabaseFirstNamingRules>
     <ModelFirst StorageSynchronizationEnabled="False" TargetSchema="core_identity" TargetProviderName="Devart.Data.PostgreSql">
-      <TargetServer Server="PostgreSQL" ServerVersion="15.7" />
+      <TargetServer Server="PostgreSQL" ServerVersion="15.8" />
       <ModelFirstNamingRules>
         <Table RemoveUnderscores="False" AddUnderscores="False" RemoveInvalidCharacters="True" CodeCase="Unchanged" AddPrefix="" AddSuffix="" RemovePrefixes="" RemoveSuffixes="" PluralizationName="Pluralize" />
         <Column RemoveUnderscores="False" AddUnderscores="False" RemoveInvalidCharacters="True" CodeCase="Unchanged" AddPrefix="" AddSuffix="" RemovePrefixes="" RemoveSuffixes="" PluralizationName="Unchanged" />
@@ -121,7 +121,7 @@
           <EFCoreCollectionInitializationType>Default</EFCoreCollectionInitializationType>
         </ed:Property>
         <ed:Property Name="NullableReferenceTypes" Type="EntityDeveloper.ReferenceTypeNullability, EntityDeveloper.Orm.Common, Version=7.2.21.0, Culture=neutral, PublicKeyToken=09af7300eec23701">
-          <ReferenceTypeNullability>Default</ReferenceTypeNullability>
+          <ReferenceTypeNullability>Enable</ReferenceTypeNullability>
         </ed:Property>
         <ed:Property Name="SelfContainedEntityConfiguration" Type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <boolean>false</boolean>
@@ -224,5 +224,13 @@
       </Template>
     </Templates>
     <AttributeAssemblies />
+    <UpdateFromDatabaseExcludes>
+      <Exclude Name="user_id" Table="core_identity.asp_net_user_roles" Type="Column" />
+      <Exclude Name="role_id" Table="core_identity.asp_net_user_roles" Type="Column" />
+      <Exclude Name="PK_asp_net_user_roles" Table="core_identity.asp_net_user_roles" Type="Constraint" />
+      <Exclude Name="FK_asp_net_user_roles_asp_net_users_0" Table="core_identity.asp_net_user_roles" Type="Constraint" />
+      <Exclude Name="FK_asp_net_user_roles_asp_net_roles_1" Table="core_identity.asp_net_user_roles" Type="Constraint" />
+      <Exclude Name="user_id" Table="core_identity.asp_net_user_roles" Type="Column" />
+    </UpdateFromDatabaseExcludes>
   </ModelSettings>
 </EntityDeveloper>

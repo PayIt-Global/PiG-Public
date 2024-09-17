@@ -34,6 +34,10 @@ public static class MauiProgram
         // Load configuration from appsettings.json
         string appSettingsFileName = "appsettings.json";
         var appSettingsFullPath = Path.Combine(AppContext.BaseDirectory, appSettingsFileName);
+        if (!File.Exists(appSettingsFullPath))
+        {
+            throw new FileNotFoundException($"The configuration file '{appSettingsFileName}' was not found at path '{appSettingsFullPath}'.");
+        }
         builder.Configuration.AddJsonFile(appSettingsFullPath, optional: true, reloadOnChange: true);
 
         // Register ApiSettings with the DI container

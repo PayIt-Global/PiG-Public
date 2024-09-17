@@ -57,6 +57,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="appsettings.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="appsettings.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.2" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
@@ -65,7 +75,7 @@
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.*" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1" />
-		<PackageReference Include="Reactor.Maui.Canvas" Version="2.0.42" />
+		<PackageReference Include="Reactor.Maui.Canvas" Version="2.0.47" />
 	</ItemGroup>
 
 
@@ -78,13 +88,6 @@
 	  <ProjectReference Include="..\PayItGlobal.Application\PayItGlobal.Application.csproj" />
 	  <ProjectReference Include="..\PayItGlobal.Domain\PayItGlobal.Domain.csproj" />
 	  <ProjectReference Include="..\PayItGlobal.Infrastructure\PayItGlobal.Infrastructure.csproj" />
-	</ItemGroup>
-
-
-	<ItemGroup>
-	  <None Update="appsettings.json">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
 	</ItemGroup>
 
 </Project>

@@ -20,66 +20,85 @@ namespace PayItGlobal.Application.Services
         public async Task<bool> LogInAsync(string username, string password, string userIpAddress)
         {
             var request = new AuthenticateRequest { Username = username, Password = password, UserIpAddress = userIpAddress };
-            var response = await _httpClient.PostAsJsonAsync($"{_baseUrl}/Token/login", request);
 
-            if (response.IsSuccessStatusCode)
+            try
             {
-                var tokens = await response.Content.ReadFromJsonAsync<Dictionary<string, string>>();
+                var response = await _httpClient.PostAsJsonAsync($"{_baseUrl}/Token/login", request);
 
-                if (tokens != null && tokens.ContainsKey("token") && tokens.ContainsKey("refreshToken"))
+                if (response.IsSuccessStatusCode)
                 {
-                    var jwtToken = tokens["token"];
-                    var refreshToken = tokens["refreshToken"];
+                    var tokens = await response.Content.ReadFromJsonAsync<Dictionary<string, string>>();
 
-                    // Decode the JWT token to extract the expiry date
-                    var tokenParts = jwtToken.Split('.');
-                    if (tokenParts.Length > 1)
+                    if (tokens != null && tokens.ContainsKey("token") && tokens.ContainsKey("refreshToken"))
                     {
-                        var payload = tokenParts[1]; // Base64 URL encoded payload
-                        var payloadCorrected = payload.Replace('-', '+').Replace('_', '/');
-                        switch (payloadCorrected.Length % 4)
-                        {
-                            case 2: payloadCorrected += "=="; break;
-                            case 3: payloadCorrected += "="; break;
-                        }
+                        var jwtToken = tokens["token"];
+                        var refreshToken = tokens["refreshToken"];
 
-                        try
+                        // Decode the JWT token to extract the expiry date
+                        var tokenParts = jwtToken.Split('.');
+                        if (tokenParts.Length > 1)
                         {
-                            var payloadJson = Encoding.UTF8.GetString(Convert.FromBase64String(payloadCorrected));
-                            var jwtPayload = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(payloadJson);
-
-                            if (jwtPayload != null)
+                            var payload = tokenParts[1]; // Base64 URL encoded payload
+                            var payloadCorrected = payload.Replace('-', '+').Replace('_', '/');
+                            switch (payloadCorrected.Length % 4)
                             {
-                                if (jwtPayload.TryGetValue("exp", out JsonElement expElement) && expElement.TryGetInt64(out long exp))
-                                {
-                                    var expiryDate = DateTimeOffset.FromUnixTimeSeconds(exp).ToString();
-                                    await SecureStorage.SetAsync("jwt_token", jwtToken);
-                                    await SecureStorage.SetAsync("refresh_token", refreshToken);
-                                    await SecureStorage.SetAsync("jwt_expiry", expiryDate);
-                                    return true;
-                                }
-                                // Handle other claims as needed, converting types appropriately
+                                case 2: payloadCorrected += "=="; break;
+                                case 3: payloadCorrected += "="; break;
                             }
+
+                            try
+                            {
+                                var payloadJson = Encoding.UTF8.GetString(Convert.FromBase64String(payloadCorrected));
+                                var jwtPayload = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(payloadJson);
+
+                                if (jwtPayload != null)
+                                {
+                                    if (jwtPayload.TryGetValue("exp", out JsonElement expElement) && expElement.TryGetInt64(out long exp))
+                                    {
+                                        var expiryDate = DateTimeOffset.FromUnixTimeSeconds(exp).ToString();
+                                        await SecureStorage.SetAsync("jwt_token", jwtToken);
+                                        await SecureStorage.SetAsync("refresh_token", refreshToken);
+                                        await SecureStorage.SetAsync("jwt_expiry", expiryDate);
+                                        return true;
+                                    }
+                                    // Handle other claims as needed, converting types appropriately
+                                }
+                            }
+                            catch (FormatException ex)
+                            {
+                                // Handle or log the FormatException
+                                Console.WriteLine($"FormatException: {ex.Message}");
+                            }
+                            catch (JsonException ex)
+                            {
+                                // Handle or log the JsonException
+                                Console.WriteLine($"JsonException: {ex.Message}");
+                            }
+
+                            return false;
                         }
-                        catch (FormatException ex)
-                        {
-                            // Handle or log the FormatException
-                        }
-                        catch (JsonException ex)
-                        {
-                            // Handle or log the JsonException
-                        }
-
-                        return false;
-
-
-
                     }
                 }
+                else
+                {
+                    // Log the response status code and reason
+                    Console.WriteLine($"Login failed with status code: {response.StatusCode}, reason: {response.ReasonPhrase}");
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                // Handle or log the HttpRequestException
+                Console.WriteLine($"HttpRequestException: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                // Handle or log any other exceptions
+                Console.WriteLine($"Exception: {ex.Message}");
             }
 
             return false;
         }
+
 
         public async Task<bool> IsLoggedInAsync()
         {

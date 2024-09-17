@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" IgnorableNamespaces="uap mp">
+	<Identity Name="25f39401-8c74-4bc9-abeb-61c13bdb1fd7" Publisher="CN=YourPublisher" Version="1.0.0.0" />
+	<Properties>
+		<DisplayName>PayItGlobalApp</DisplayName>
+		<PublisherDisplayName>YourPublisher</PublisherDisplayName>
+		<Logo>Assets\StoreLogo.png</Logo>
+	</Properties>
+	<Dependencies>
+		<TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.19041.0" MaxVersionTested="10.0.19041.0" />
+	</Dependencies>
+	<Resources>
+		<Resource Language="en-US" />
+	</Resources>
+	<Applications>
+		<Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="PayItGlobalApp.App">
+			<uap:VisualElements
+			  DisplayName="PayItGlobalApp"
+			  Square150x150Logo="Assets\Square150x150Logo.png"
+			  Square44x44Logo="Assets\Square44x44Logo.png"
+			  Description="PayItGlobalApp"
+			  BackgroundColor="transparent">
+				<uap:SplashScreen Image="Assets\splash.svg" />
+			</uap:VisualElements>
+		</Application>
+	</Applications>
+</Package>

@@ -61,32 +61,41 @@ namespace PayItGlobalApi.Controllers
 
             try
             {
+                // Get the user ID from the refresh token
                 var userId = await _refreshTokenService.GetUserIdFromRefreshToken(model.RefreshToken);
-                var isValidRefreshToken = await _refreshTokenService.IsValidRefreshToken(model.RefreshToken);
 
+                // Check if the refresh token is valid
+                var isValidRefreshToken = await _refreshTokenService.IsValidRefreshToken(model.RefreshToken);
                 if (!isValidRefreshToken)
                 {
                     return Unauthorized("Invalid refresh token.");
                 }
 
+                // Revoke the old refresh token
                 await _refreshTokenService.RevokeRefreshToken(model.RefreshToken);
 
-                var user = await _userManager.FindByIdAsync(userId.ToString());
-                if (user == null)
-                {
-                    return Unauthorized("User not found.");
-                }
-
+                // Generate new tokens
                 var newJwtToken = _tokenService.GenerateJwtToken(userId);
                 var newRefreshToken = await _refreshTokenService.GenerateRefreshToken(userId, Request.HttpContext.Connection.RemoteIpAddress.ToString());
 
                 return Ok(new { Token = newJwtToken, RefreshToken = newRefreshToken });
             }
-            catch (InvalidOperationException)
+            catch (InvalidOperationException ex)
             {
+                // Log the exception (optional)
+                // _logger.LogError(ex, "An error occurred while refreshing the token.");
+
                 return Unauthorized("Invalid refresh token.");
             }
+            catch (Exception ex)
+            {
+                // Log the exception (optional)
+                // _logger.LogError(ex, "An unexpected error occurred.");
+
+                return StatusCode(500, "An unexpected error occurred.");
+            }
         }
+
 
         private async Task<ApplicationUser> CreateUserForDevelopmentAsync(string username, string password)
         {
@@ -99,11 +108,6 @@ namespace PayItGlobalApi.Controllers
             return newUser;
         }
 
-        [HttpGet("test")]
-        public IActionResult TestEndpoint()
-        {
-            return Ok("TokenController is reachable");
-        }
     }
 
     public class RefreshTokenRequest

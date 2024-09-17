@@ -15,7 +15,7 @@
   <ItemGroup>
     <PackageReference Include="Devart.Data.PostgreSql" Version="8.3.21" />
     <PackageReference Include="Devart.Data.PostgreSql.EFCore" Version="8.3.21.8" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.8" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />

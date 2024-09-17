@@ -46,6 +46,9 @@
     <property name="AccessFailedCount" type="Int32" p1:inheritance-modifier="Virtual" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="3227b7f7-4504-4b4d-a665-5726978a1488">
       <column name="access_failed_count" not-null="False" sql-type="int4" p1:unicode="False" />
     </property>
+    <property name="FullName" type="String" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="61b78b87-1c08-4216-8b10-95abd8f4adc5">
+      <column name="full_name" not-null="False" sql-type="text" p1:unicode="True" />
+    </property>
   </class>
   <class name="AspNetRole" entity-set="AspNetRoles" table="asp_net_roles" schema="core_identity" p1:Guid="d004dd72-1476-4ff0-9e3c-cc70c1b94aa3" p1:EntityBase="IdentityRole">
     <id name="Id" type="Int32" p1:inheritance-modifier="Virtual" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="56b14ed5-0668-4999-89ed-395c2e58722f">
@@ -151,6 +154,12 @@
     </property>
     <property name="ReasonRevoked" type="String" p1:inheritance-modifier="Virtual" p1:nullable="True" p1:ValidateRequired="false" p1:Guid="9cebd153-8d72-4681-b80c-5286afd3aadc">
       <column name="reason_revoked" not-null="False" sql-type="text" p1:unicode="True" />
+    </property>
+    <property name="Iv" type="String" p1:ValidateRequired="true" p1:Guid="a3cdabcf-821a-4825-897d-2d3921d0112b">
+      <column name="iv" not-null="True" sql-type="text" p1:unicode="True" />
+    </property>
+    <property name="TokenHash" type="String" p1:ValidateRequired="true" p1:Guid="60edea3f-b125-44e9-b1a6-5777c7732399">
+      <column name="token_hash" not-null="True" sql-type="text" p1:unicode="True" />
     </property>
   </class>
   <class name="StateProvince" entity-set="StateProvinces" table="state_provinces" schema="public" p1:Guid="637bd410-0254-4e58-9f93-047bf29fcba3">
