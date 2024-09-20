@@ -10,7 +10,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-
 namespace PayItGlobalApi.Helper
 {
     public class JwtMiddleware
@@ -54,6 +53,7 @@ namespace PayItGlobalApi.Helper
 
             await _next(context);
         }
+
         private async Task HandleRefreshToken(HttpContext context, string refreshToken, IServiceProvider serviceProvider)
         {
             var tokenService = serviceProvider.GetService<ITokenService>();
@@ -81,7 +81,7 @@ namespace PayItGlobalApi.Helper
                 }
 
                 // Generate a new refresh token using the extracted userId
-                var newRefreshToken = await tokenService.GenerateRefreshToken(userId);
+                var newRefreshToken = await tokenService.GenerateRefreshToken(userId, context.Connection.RemoteIpAddress?.ToString());
 
                 // Return the new access token and refresh token to the client
                 context.Response.StatusCode = StatusCodes.Status200OK;
@@ -122,10 +122,9 @@ namespace PayItGlobalApi.Helper
                 return int.Parse(userIdClaim.Value);
             }
 
-            // Return an empty Guid if the 'UserId' claim is not found or cannot be parsed
+            // Return 0 if the 'UserId' claim is not found or cannot be parsed
             return 0;
         }
-
 
         #endregion
 
@@ -182,7 +181,6 @@ namespace PayItGlobalApi.Helper
                 return; // Ensure the method execution stops here to prevent further processing of the request.
             }
         }
-
 
         #endregion
     }

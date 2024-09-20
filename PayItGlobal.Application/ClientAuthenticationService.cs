@@ -99,7 +99,6 @@ namespace PayItGlobal.Application.Services
             return false;
         }
 
-
         public async Task<bool> IsLoggedInAsync()
         {
             var jwtToken = await SecureStorage.GetAsync("jwt_token");
