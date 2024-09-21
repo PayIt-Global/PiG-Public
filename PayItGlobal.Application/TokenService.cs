@@ -1,26 +1,38 @@
 using PayItGlobal.Application.Interfaces;
-using PayItGlobal.Domain.Models;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using PayItGlobal.Domain.Interfaces;
-using PayItGlobal.Domain.Entities;
-using System.Security.Cryptography;
+using PayItGlobal.Domain.Models;
 
 namespace PayItGlobal.Application.Services
 {
     public class TokenService : ITokenService
     {
         private readonly AppSettings _appSettings;
-        private readonly IUserRepository _userRepository;
         private readonly IRefreshTokenService _refreshTokenService;
 
-        public TokenService(AppSettings appSettings, IUserRepository userRepository, IRefreshTokenService refreshTokenService)
+        public TokenService(AppSettings appSettings, IRefreshTokenService refreshTokenService)
         {
             _appSettings = appSettings;
-            _userRepository = userRepository;
             _refreshTokenService = refreshTokenService;
+        }
+
+        public async Task<string> GenerateRefreshToken(int userId, string createdByIp)
+        {
+            return await _refreshTokenService.GenerateRefreshToken(userId, createdByIp);
+        }
+
+        public async Task<string?> GenerateAccessTokenFromRefreshToken(string refreshToken)
+        {
+            var isValid = await _refreshTokenService.IsValidRefreshToken(refreshToken);
+            if (!isValid)
+            {
+                return null;
+            }
+
+            var userId = await _refreshTokenService.GetUserIdFromRefreshToken(refreshToken);
+            return GenerateJwtToken(userId);
         }
 
         public async Task<ClaimsPrincipal?> RefreshJwtToken(string refreshToken)
@@ -44,23 +56,6 @@ namespace PayItGlobal.Application.Services
             return claimsPrincipal;
         }
 
-        public async Task<string?> GenerateAccessTokenFromRefreshToken(string refreshToken)
-        {
-            var isValid = await _refreshTokenService.IsValidRefreshToken(refreshToken);
-            if (!isValid)
-            {
-                return null;
-            }
-
-            var userId = await _refreshTokenService.GetUserIdFromRefreshToken(refreshToken);
-            return GenerateJwtToken(userId);
-        }
-
-        public async Task<string> GenerateRefreshToken(int userId, string createdByIp)
-        {
-            return await _refreshTokenService.GenerateRefreshToken(userId, createdByIp);
-        }
-
         public string GenerateJwtToken(int userId)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -82,6 +77,17 @@ namespace PayItGlobal.Application.Services
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
+        }
+
+        public bool IsJwtTokenExpired(string token)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var jwtToken = tokenHandler.ReadToken(token) as JwtSecurityToken;
+
+            if (jwtToken == null)
+                return true;
+
+            return jwtToken.ValidTo < DateTime.UtcNow;
         }
     }
 }

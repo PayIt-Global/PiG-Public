@@ -9,5 +9,6 @@ namespace PayItGlobal.Application.Interfaces
         Task<string?> GenerateAccessTokenFromRefreshToken(string refreshToken);
         Task<ClaimsPrincipal?> RefreshJwtToken(string refreshToken);
         string GenerateJwtToken(int userId);
+        bool IsJwtTokenExpired(string token);
     }
 }

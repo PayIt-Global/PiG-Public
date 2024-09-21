@@ -36,13 +36,13 @@ namespace PayItGlobal.Infrastructure.Services
                 Iv = encryptionIv,
                 Token = encryptedToken,
                 TokenHash = tokenHash,
-                Expires = DateTime.UtcNow.AddDays(7), // Set expiration to 7 days, adjust as needed
+                Expires = DateTime.UtcNow.AddDays(7),
                 Created = DateTime.UtcNow,
                 CreatedByIp = createdByIp
             };
 
             await _refreshTokenRepository.SaveRefreshTokenAsync(refreshToken);
-            return token; // Return the plain token to the client
+            return token;
         }
 
         public async Task<bool> IsValidRefreshToken(string token)
