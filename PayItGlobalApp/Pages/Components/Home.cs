@@ -60,59 +60,14 @@ partial class Home : Component<HomeMenuState>
 
     public override VisualNode Render()
     {
-        return Border(
-            ScrollView(
-                Grid("161, 309, 59, *", "*",
-                    RenderUserButton(),
-
-                    Label("Courses")
-                        .FontAttributes(MauiControls.FontAttributes.Bold)
-                        .FontSize(24)
-                        .FontFamily("PoppinsBold")
-                        .TextColor(Colors.Black)
-                        .VEnd(),
-
-                    ScrollView(
-                        HStack(spacing: 20,
-                            [.. CourseModel.Courses.Select(RenderCourse)]
-                        )
-                    )
-                    .Orientation(ScrollOrientation.Horizontal)
-                    .GridRow(1),
-
-                    Label("Recent")
-                        .FontAttributes(MauiControls.FontAttributes.Bold)
-                        .FontSize(20)
-                        .FontFamily("PoppinsBold")
-                        .TextColor(Colors.Black)
-                        .GridRow(2)
-                        .VEnd(),
-
-                    VStack(spacing: 20,
-                        [.. CourseModel.CourseSections.Select(RenderCourseSection)]
-                    )
-                    .Margin(0,10,15,0)
-                    .GridRow(3)
-                )
-            )
-            .Orientation(ScrollOrientation.Vertical)
-            .OniOS(_=>_.Margin(0, 50, 0, 0))
+        return Grid("*", "*",
+            Label("Home Page Content")
+                .FontSize(24)
+                .TextColor(Colors.Black)
+                .HCenter()
+                .VCenter()
         )
-        .Margin(State.MarginLeft, 0, 0, 0)
-        .OniOS(_=>_.Margin(State.MarginLeft, -50, 0, -50))
-        .RotationY(State.RotationY)
-        .TranslationX(State.TranslationX)
-        .Padding(-State.MarginLeft + 24, 0, 0, 0)
-        .WithAnimation(easing: Easing.CubicIn, duration: 300)
-
-        .AnchorX(0.5)
-        .AnchorY(0.0)
-        .Opacity(State.MainOpacity)
-        .WithAnimation(easing: ExtendedEasing.InOutBack, duration: 300)
-
-        .StrokeCornerRadius(30, 0, 30, 0)
-        .Background(Theme.Background)
-        ;
+        .BackgroundColor(Theme.Background);
     }
 
     ImageButton RenderUserButton() =>
@@ -129,101 +84,6 @@ partial class Home : Component<HomeMenuState>
             .BackgroundColor(Colors.White)
             .OnClicked(_onShowOnboarding);
 
-
-    VisualNode RenderCourse(CourseModel model)
-    {
-        VisualNode RenderAvatar(string image)
-            => Image(image)
-                .Aspect(Aspect.AspectFit)
-                .HeightRequest(44)
-                .WidthRequest(44)
-                .Clip(new EllipseGeometry().RadiusX(22).RadiusY(22).Center(22, 22))
-                ;
-
-        return Border(
-            Grid("92, 44, *, 44", "*,44",
-                Label(model.Title)
-                    .FontAttributes (MauiControls.FontAttributes.Bold)
-                    .FontSize(24)
-                    .FontFamily("PoppinsBold")
-                    .TextColor (Colors.White)
-                    .VStart()
-                    ,
-
-                Image(model.Image)
-                    .GridColumn(1)
-                    .VStart(),
-
-                Label(model.SubTitle)
-                    .GridRow(1)
-                    .TextColor(Colors.White.WithAlpha(0.5f))
-                    .FontSize(15)
-                    .Margin(0,6,0,0),
-
-                Label(model.Caption.ToUpperInvariant())
-                    .GridRow(2)
-                    .GridColumnSpan(2)
-                    .TextColor(Colors.White.WithAlpha(0.5f))
-                    .FontSize(13)
-                    .Margin(0,2,0,0)
-                    .FontAttributes(MauiControls.FontAttributes.Bold)
-                    .VStart(),
-
-                HStack(spacing: -8,
-                    RenderAvatar("avatar_4.png"),
-                    RenderAvatar("avatar_5.png"),
-                    RenderAvatar("avatar_6.png")
-                )
-                .GridColumnSpan(2)
-                .GridRow(3)
-            )
-        )
-        .Padding(30)
-        .HeightRequest(309)
-        .WidthRequest(260)
-        .BackgroundColor(model.Color)
-        .StrokeCornerRadius(DeviceInfo.Current.Platform == DevicePlatform.iOS ? 20 : 30)
-        .Shadow(new Shadow().Opacity(0.2f).Offset(5, 5).Brush(Theme.ShadowBrush));
-    }
-
-    VisualNode RenderCourseSection(CourseModel model)
-    {
-        return Border(
-            Grid("*,*", "*,44",
-                Label(model.Title)
-                    .FontSize(24)
-                    .FontFamily("PoppinsBold")
-                    .TextColor (Colors.White)
-                    ,
-
-                Image(model.Image)
-                    .GridColumn(1)
-                    .GridRowSpan(2)
-                    .VCenter(),
-
-                Rectangle()
-                    .VFill()
-                    .HEnd()
-                    .WidthRequest(1)
-                    .GridRowSpan(2)
-                    .Margin(15,5)
-                    .Fill(Theme.Background2.WithAlpha(0.5f))
-                    ,
-
-                Label(model.SubTitle)
-                    .GridRow(1)
-                    .GridColumnSpan(2)
-                    .TextColor(Colors.White)
-                    .FontSize(15)
-                    .Margin(0,5,0,0)
-            )
-        )
-        .Padding(30, 26)
-        .HeightRequest(110)
-        .BackgroundColor(model.Color)
-        .StrokeCornerRadius(DeviceInfo.Current.Platform == DevicePlatform.iOS ? 15 : 20)
-        ;
-    }
 }
 
 class MenuButtonState

@@ -38,6 +38,10 @@
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiSplashScreen Include="Assets\splash.svg">
+		  <Color>#512BD4</Color>
+		  <BaseSize>128,128</BaseSize>
+		</MauiSplashScreen>
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
 		<!-- Images -->
@@ -58,6 +62,9 @@
 		<MauiImage Remove="Resources\Images\search_img.png" />
 		<MauiImage Remove="Resources\Images\start_course_button.png" />
 		<MauiImage Remove="Resources\Images\videos_img.png" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="Assets\splash.svg" />
 	</ItemGroup>
 	<ItemGroup>
 		<MauiAsset Include="appsettings.json" />
