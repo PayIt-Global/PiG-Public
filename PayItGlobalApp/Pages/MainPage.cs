@@ -1,13 +1,5 @@
-﻿using MauiReactor;
-using MauiReactor.Shapes;
-using PayItGlobalApp.Models;
-using PayItGlobalApp.Pages.Components;
-using PayItGlobalApp.Resources;
+﻿using PayItGlobalApp.Pages.Components;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Theme = PayItGlobalApp.Resources.Theme;
 
 namespace PayItGlobalApp.Pages;
@@ -15,21 +7,24 @@ namespace PayItGlobalApp.Pages;
 class MainPageState
 {
     public bool IsSideMenuShown { get; set; }
-
     public bool ShowOnboarding { get; set; }
-
-    public bool ShowHome { get; set; }
+    public bool ShowHome { get; set; } = true;
 }
 
 class MainPage : Component<MainPageState>
 {
-    public override VisualNode Render() 
-        => ContentPage(
+    public override VisualNode Render()
+    {
+        Console.WriteLine($"ShowHome: {State.ShowHome}"); // Add this line for debugging
+
+        return ContentPage(
             Grid("*", "*",
-                new Home()
-                    .IsShown(!State.IsSideMenuShown)
-                    .IsMovedBack(State.ShowOnboarding)
-                    .OnShowOnboarding(() => SetState(s => s.ShowOnboarding = true)),
+                State.ShowHome
+                    ? (VisualNode)new Home()
+                        .IsShown(!State.IsSideMenuShown)
+                        .IsMovedBack(State.ShowOnboarding)
+                        .OnShowOnboarding(() => SetState(s => s.ShowOnboarding = true))
+                    : new Help(), // Ensure this line is present to switch to Help
 
                 new SideMenu()
                     .IsShown(State.IsSideMenuShown),
@@ -43,12 +38,12 @@ class MainPage : Component<MainPageState>
                     .OnClose(() => SetState(s => s.ShowOnboarding = false)),
 
                 new NavBar()
-                    .OnHelpSelected(() => SetState(s => s.ShowHome = false)) // Add this line
+                    .OnHelpSelected(() => SetState(s => s.ShowHome = false)) // Ensure this line is present
                     .Show(!State.IsSideMenuShown && !State.ShowOnboarding)
             )
         )
         .Set(MauiControls.NavigationPage.HasNavigationBarProperty, false)
-        .BackgroundColor(Theme.Background2)
-        ;
-
+        .BackgroundColor(Theme.Background2);
+    }
 }
+

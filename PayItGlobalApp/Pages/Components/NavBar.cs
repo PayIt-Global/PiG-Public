@@ -8,8 +8,7 @@ namespace PayItGlobalApp.Pages.Components;
 
 class NavBarState
 {
-    public NavItem SelectedItem { get; set; }
-
+    public NavItem SelectedItem { get; set; } = NavItem.Home;
     public double TranslationY { get; set; }
 }
 
@@ -17,7 +16,6 @@ partial class NavBar : Component<NavBarState>
 {
     [Prop]
     private bool _show;
-
     [Prop]
     private Action _onHelpSelected; 
 
