@@ -18,6 +18,9 @@ partial class NavBar : Component<NavBarState>
     [Prop]
     private bool _show;
 
+    [Prop]
+    private Action _onHelpSelected; 
+
     protected override void OnMountedOrPropsChanged()
     {
         State.TranslationY = _show ? 0 : 150;
@@ -66,7 +69,11 @@ partial class NavBar : Component<NavBarState>
                             new NavBarButtonIcon()
                                 .Icon("help_img.png")
                                 .IsSelected(State.SelectedItem == NavItem.Help)
-                                .OnSelected(()=>SetState(s => s.SelectedItem = NavItem.Help)),
+                                .OnSelected(()=>
+                                {
+                                    SetState(s => s.SelectedItem = NavItem.Help);
+                                    _onHelpSelected?.Invoke(); // Invoke the callback
+                                }),
                         }
                     }
                     .Padding(22, 7)

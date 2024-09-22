@@ -17,6 +17,8 @@ class MainPageState
     public bool IsSideMenuShown { get; set; }
 
     public bool ShowOnboarding { get; set; }
+
+    public bool ShowHome { get; set; }
 }
 
 class MainPage : Component<MainPageState>
@@ -41,6 +43,7 @@ class MainPage : Component<MainPageState>
                     .OnClose(() => SetState(s => s.ShowOnboarding = false)),
 
                 new NavBar()
+                    .OnHelpSelected(() => SetState(s => s.ShowHome = false)) // Add this line
                     .Show(!State.IsSideMenuShown && !State.ShowOnboarding)
             )
         )
