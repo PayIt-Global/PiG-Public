@@ -1,6 +1,6 @@
 using Microsoft.Maui.Controls;
 
-namespace PayItGlobal.App.Themes
+namespace PayItGlobalApi.App.Themes
 {
     public interface IThemeColors
     {

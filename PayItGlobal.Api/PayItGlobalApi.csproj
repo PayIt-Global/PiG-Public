@@ -26,9 +26,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PayItGlobal.Application\PayItGlobal.Application.csproj" />
+    <ProjectReference Include="..\PayItGlobal.Application\PayItGlobalApi.Application.csproj" />
     <ProjectReference Include="..\PayItGlobal.Domain\PayItGlobal.Domain.csproj" />
-    <ProjectReference Include="..\PayItGlobal.Infrastructure\PayItGlobal.Infrastructure.csproj" />
+    <ProjectReference Include="..\PayItGlobal.Infrastructure\PayItGlobalApi.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

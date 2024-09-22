@@ -1,11 +1,11 @@
-﻿using PayItGlobal.Domain.Interfaces;
-using PayItGlobal.Infrastructure.Repository;
-using PayItGlobal.Infrastructure.Interfaces;
-using PayItGlobal.Application.Interfaces;
-using PayItGlobal.Infrastructure;
-using PayItGlobal.Application;
-using PayItGlobal.Application.Services;
-using PayItGlobal.Infrastructure.Services;
+﻿using PayItGlobalApi.Domain.Interfaces;
+using PayItGlobalApi.Infrastructure.Repository;
+using PayItGlobalApi.Infrastructure.Interfaces;
+using PayItGlobalApi.Application.Interfaces;
+using PayItGlobalApi.Infrastructure;
+using PayItGlobalApi.Application;
+using PayItGlobalApi.Application.Services;
+using PayItGlobalApi.Infrastructure.Services;
 
 namespace PayItGlobalApi.Helper
 {

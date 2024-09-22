@@ -11,18 +11,18 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PayItGlobal.DTOs.Generated
+namespace PayItGlobalApi.DTOs.Generated
 {
 
     public static partial class AspNetRoleClaimConverter
     {
 
-        public static AspNetRoleClaimDto ToDto(this PayItGlobal.Domain.Entities.AspNetRoleClaim source)
+        public static AspNetRoleClaimDto ToDto(this PayItGlobalApi.Domain.Entities.AspNetRoleClaim source)
         {
             return source.ToDtoWithRelated(0);
         }
 
-        public static AspNetRoleClaimDto ToDtoWithRelated(this PayItGlobal.Domain.Entities.AspNetRoleClaim source, int level)
+        public static AspNetRoleClaimDto ToDtoWithRelated(this PayItGlobalApi.Domain.Entities.AspNetRoleClaim source, int level)
         {
             if (source == null)
               return null;
@@ -46,12 +46,12 @@ namespace PayItGlobal.DTOs.Generated
             return target;
         }
 
-        public static PayItGlobal.Domain.Entities.AspNetRoleClaim ToEntity(this AspNetRoleClaimDto source)
+        public static PayItGlobalApi.Domain.Entities.AspNetRoleClaim ToEntity(this AspNetRoleClaimDto source)
         {
             if (source == null)
               return null;
 
-            var target = new PayItGlobal.Domain.Entities.AspNetRoleClaim();
+            var target = new PayItGlobalApi.Domain.Entities.AspNetRoleClaim();
 
             // Properties
             target.Id = source.Id;
@@ -65,7 +65,7 @@ namespace PayItGlobal.DTOs.Generated
             return target;
         }
 
-        public static List<AspNetRoleClaimDto> ToDtos(this IEnumerable<PayItGlobal.Domain.Entities.AspNetRoleClaim> source)
+        public static List<AspNetRoleClaimDto> ToDtos(this IEnumerable<PayItGlobalApi.Domain.Entities.AspNetRoleClaim> source)
         {
             if (source == null)
               return null;
@@ -77,7 +77,7 @@ namespace PayItGlobal.DTOs.Generated
             return target;
         }
 
-        public static List<AspNetRoleClaimDto> ToDtosWithRelated(this IEnumerable<PayItGlobal.Domain.Entities.AspNetRoleClaim> source, int level)
+        public static List<AspNetRoleClaimDto> ToDtosWithRelated(this IEnumerable<PayItGlobalApi.Domain.Entities.AspNetRoleClaim> source, int level)
         {
             if (source == null)
               return null;
@@ -89,7 +89,7 @@ namespace PayItGlobal.DTOs.Generated
             return target;
         }
 
-        public static List<PayItGlobal.Domain.Entities.AspNetRoleClaim> ToEntities(this IEnumerable<AspNetRoleClaimDto> source)
+        public static List<PayItGlobalApi.Domain.Entities.AspNetRoleClaim> ToEntities(this IEnumerable<AspNetRoleClaimDto> source)
         {
             if (source == null)
               return null;
@@ -101,9 +101,9 @@ namespace PayItGlobal.DTOs.Generated
             return target;
         }
 
-        static partial void OnDtoCreating(PayItGlobal.Domain.Entities.AspNetRoleClaim source, AspNetRoleClaimDto target);
+        static partial void OnDtoCreating(PayItGlobalApi.Domain.Entities.AspNetRoleClaim source, AspNetRoleClaimDto target);
 
-        static partial void OnEntityCreating(AspNetRoleClaimDto source, PayItGlobal.Domain.Entities.AspNetRoleClaim target);
+        static partial void OnEntityCreating(AspNetRoleClaimDto source, PayItGlobalApi.Domain.Entities.AspNetRoleClaim target);
 
     }
 

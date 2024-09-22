@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PayItGlobal.Domain.Interfaces;
-using PayItGlobal.Infrastructure.Context;
+using PayItGlobalApi.Domain.Interfaces;
+using PayItGlobalApi.Infrastructure.Context;
 
-namespace PayItGlobal.Infrastructure.Repository
+namespace PayItGlobalApi.Infrastructure.Repository
 {
     public class UserRepository : IUserRepository
     {

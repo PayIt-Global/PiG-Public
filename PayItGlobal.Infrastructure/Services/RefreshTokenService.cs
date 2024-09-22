@@ -1,9 +1,9 @@
-using PayItGlobal.Application.Interfaces;
-using PayItGlobal.Domain.Entities;
-using PayItGlobal.Domain.Interfaces;
-using PayItGlobal.Infrastructure.Utilities;
+using PayItGlobalApi.Application.Interfaces;
+using PayItGlobalApi.Domain.Entities;
+using PayItGlobalApi.Domain.Interfaces;
+using PayItGlobalApi.Infrastructure.Utilities;
 
-namespace PayItGlobal.Infrastructure.Services
+namespace PayItGlobalApi.Infrastructure.Services
 {
     public class RefreshTokenService : IRefreshTokenService
     {

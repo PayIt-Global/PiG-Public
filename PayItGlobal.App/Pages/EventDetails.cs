@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PayItGlobal.App.Themes;
+using PayItGlobalApi.App.Themes;
 
-namespace PayItGlobal.App.Pages;
+namespace PayItGlobalApi.App.Pages;
 
 class EventDetailsPageState
 {

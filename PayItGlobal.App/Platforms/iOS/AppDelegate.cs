@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace PayItGlobal.App
+namespace PayItGlobalApi.App
 {
     [Register("AppDelegate")]
     public class AppDelegate : MauiUIApplicationDelegate

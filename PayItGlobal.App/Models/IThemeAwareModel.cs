@@ -1,6 +1,6 @@
-﻿using PayItGlobal.App.Themes;
+﻿using PayItGlobalApi.App.Themes;
 
-namespace PayItGlobal.App.Models;
+namespace PayItGlobalApi.App.Models;
 public interface IThemeAwareModel<T> where T : IThemeAwareModel<T>
 {
     T WithThemeColors(IThemeColors themeColors);

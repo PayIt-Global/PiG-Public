@@ -1,7 +1,7 @@
 ﻿using Microsoft.Maui.Controls;
-using PayItGlobal.App.Themes;
+using PayItGlobalApi.App.Themes;
 
-namespace PayItGlobal.App.Resources.Styles
+namespace PayItGlobalApi.App.Resources.Styles
 {
     public class DarkTheme : IThemeColors
     {

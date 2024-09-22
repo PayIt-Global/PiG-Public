@@ -1,6 +1,6 @@
-﻿using PayItGlobal.Application.ConfigurationModels;
+﻿using PayItGlobalApp.Application.ConfigurationModels;
 
-namespace PayItGlobal.Application.Interfaces
+namespace PayItGlobalApp.Application.Interfaces
 {
     public interface IApiSettingsService
     {

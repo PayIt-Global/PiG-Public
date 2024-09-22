@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
-using PayItGlobal.Application.Interfaces;
-using PayItGlobal.Domain.Entities;
-using PayItGlobal.Domain.Interfaces;
+using PayItGlobalApi.Application.Interfaces;
+using PayItGlobalApi.Domain.Entities;
+using PayItGlobalApi.Domain.Interfaces;
 using System.Net.Http.Json;
 
-namespace PayItGlobal.Application.Services
+namespace PayItGlobalApi.Application.Services
 {
     public class AuthenticationService : IAuthenticationService
     {

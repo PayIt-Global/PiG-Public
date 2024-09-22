@@ -1,6 +1,6 @@
-using PayItGlobal.App.Resources.Styles;
+using PayItGlobalApi.App.Resources.Styles;
 
-namespace PayItGlobal.App.Themes
+namespace PayItGlobalApi.App.Themes
 {
     public static class ThemeManager
     {

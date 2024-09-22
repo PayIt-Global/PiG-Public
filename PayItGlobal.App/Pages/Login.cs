@@ -1,12 +1,12 @@
 ﻿using MauiReactor;
 using MauiReactor.Canvas;
 using Microsoft.Extensions.DependencyInjection;
-using PayItGlobal.Application.Interfaces;
+using PayItGlobalApi.Application.Interfaces;
 using System;
-using PayItGlobal.Application.Infrastructure.Utilities;
-using PayItGlobal.App.Themes;
+using PayItGlobalApi.Application.Infrastructure.Utilities;
+using PayItGlobalApi.App.Themes;
 
-namespace PayItGlobal.App.Pages;
+namespace PayItGlobalApi.App.Pages;
 
 class LoginPageState
 {

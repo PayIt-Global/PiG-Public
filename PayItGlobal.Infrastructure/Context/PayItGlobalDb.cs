@@ -23,9 +23,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.EntityFrameworkCore.Metadata;
-using PayItGlobal.Domain.Entities;
+using PayItGlobalApi.Domain.Entities;
 
-namespace PayItGlobal.Infrastructure.Context
+namespace PayItGlobalApi.Infrastructure.Context
 {
 
     public partial class PayItGlobalDb : DbContext

@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using PayItGlobal.Domain.Entities;
-using PayItGlobal.Domain.Interfaces;
-using PayItGlobal.Infrastructure.Context;
+using PayItGlobalApi.Domain.Entities;
+using PayItGlobalApi.Domain.Interfaces;
+using PayItGlobalApi.Infrastructure.Context;
 
-namespace PayItGlobal.Infrastructure.Repository
+namespace PayItGlobalApi.Infrastructure.Repository
 {
     public class RefreshTokenRepository : IRefreshTokenRepository
     {

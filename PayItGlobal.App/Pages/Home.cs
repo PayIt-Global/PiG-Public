@@ -1,9 +1,9 @@
 ﻿using MauiReactor;
 using MauiReactor.Canvas;
 using Microsoft.Maui.Devices;
-using PayItGlobal.App.Themes; // Assuming this is where ThemeManager is located
+using PayItGlobalApi.App.Themes; // Assuming this is where ThemeManager is located
 
-namespace PayItGlobal.App.Pages;
+namespace PayItGlobalApi.App.Pages;
 class HomePageProps
 {
     public bool RenderAsPage { get; set; } = false;

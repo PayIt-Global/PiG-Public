@@ -1,9 +1,9 @@
-﻿using PayItGlobal.Domain.Interfaces;
-using PayItGlobal.Infrastructure.Context;
-using PayItGlobal.Infrastructure.Interfaces;
-using PayItGlobal.Infrastructure.Repository;
+﻿using PayItGlobalApi.Domain.Interfaces;
+using PayItGlobalApi.Infrastructure.Context;
+using PayItGlobalApi.Infrastructure.Interfaces;
+using PayItGlobalApi.Infrastructure.Repository;
 
-namespace PayItGlobal.Infrastructure
+namespace PayItGlobalApi.Infrastructure
 {
     public partial class UnitOfWork : IUnitOfWork
     {

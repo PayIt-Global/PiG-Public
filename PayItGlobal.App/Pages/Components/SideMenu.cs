@@ -1,12 +1,12 @@
-﻿using PayItGlobal.App.Models;
-using PayItGlobal.App.Resources;
+﻿using PayItGlobalApi.App.Models;
+using PayItGlobalApi.App.Resources;
 using System;
 using MauiReactor;
 using MauiReactor.Shapes;
 using MauiReactor.Animations;
 using MauiReactor.Canvas;
 
-namespace PayItGlobal.App.Pages.Components;
+namespace PayItGlobalApi.App.Pages.Components;
 
 public class SideMenuState : ISideMenuState
 {

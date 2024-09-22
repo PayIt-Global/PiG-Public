@@ -11,18 +11,18 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PayItGlobal.DTOs.Generated
+namespace PayItGlobalApi.DTOs.Generated
 {
 
     public static partial class AspNetUserLoginConverter
     {
 
-        public static AspNetUserLoginDto ToDto(this PayItGlobal.Domain.Entities.AspNetUserLogin source)
+        public static AspNetUserLoginDto ToDto(this PayItGlobalApi.Domain.Entities.AspNetUserLogin source)
         {
             return source.ToDtoWithRelated(0);
         }
 
-        public static AspNetUserLoginDto ToDtoWithRelated(this PayItGlobal.Domain.Entities.AspNetUserLogin source, int level)
+        public static AspNetUserLoginDto ToDtoWithRelated(this PayItGlobalApi.Domain.Entities.AspNetUserLogin source, int level)
         {
             if (source == null)
               return null;
@@ -46,12 +46,12 @@ namespace PayItGlobal.DTOs.Generated
             return target;
         }
 
-        public static PayItGlobal.Domain.Entities.AspNetUserLogin ToEntity(this AspNetUserLoginDto source)
+        public static PayItGlobalApi.Domain.Entities.AspNetUserLogin ToEntity(this AspNetUserLoginDto source)
         {
             if (source == null)
               return null;
 
-            var target = new PayItGlobal.Domain.Entities.AspNetUserLogin();
+            var target = new PayItGlobalApi.Domain.Entities.AspNetUserLogin();
 
             // Properties
             target.LoginProvider = source.LoginProvider;
@@ -65,7 +65,7 @@ namespace PayItGlobal.DTOs.Generated
             return target;
         }
 
-        public static List<AspNetUserLoginDto> ToDtos(this IEnumerable<PayItGlobal.Domain.Entities.AspNetUserLogin> source)
+        public static List<AspNetUserLoginDto> ToDtos(this IEnumerable<PayItGlobalApi.Domain.Entities.AspNetUserLogin> source)
         {
             if (source == null)
               return null;
@@ -77,7 +77,7 @@ namespace PayItGlobal.DTOs.Generated
             return target;
         }
 
-        public static List<AspNetUserLoginDto> ToDtosWithRelated(this IEnumerable<PayItGlobal.Domain.Entities.AspNetUserLogin> source, int level)
+        public static List<AspNetUserLoginDto> ToDtosWithRelated(this IEnumerable<PayItGlobalApi.Domain.Entities.AspNetUserLogin> source, int level)
         {
             if (source == null)
               return null;
@@ -89,7 +89,7 @@ namespace PayItGlobal.DTOs.Generated
             return target;
         }
 
-        public static List<PayItGlobal.Domain.Entities.AspNetUserLogin> ToEntities(this IEnumerable<AspNetUserLoginDto> source)
+        public static List<PayItGlobalApi.Domain.Entities.AspNetUserLogin> ToEntities(this IEnumerable<AspNetUserLoginDto> source)
         {
             if (source == null)
               return null;
@@ -101,9 +101,9 @@ namespace PayItGlobal.DTOs.Generated
             return target;
         }
 
-        static partial void OnDtoCreating(PayItGlobal.Domain.Entities.AspNetUserLogin source, AspNetUserLoginDto target);
+        static partial void OnDtoCreating(PayItGlobalApi.Domain.Entities.AspNetUserLogin source, AspNetUserLoginDto target);
 
-        static partial void OnEntityCreating(AspNetUserLoginDto source, PayItGlobal.Domain.Entities.AspNetUserLogin target);
+        static partial void OnEntityCreating(AspNetUserLoginDto source, PayItGlobalApi.Domain.Entities.AspNetUserLogin target);
 
     }
 

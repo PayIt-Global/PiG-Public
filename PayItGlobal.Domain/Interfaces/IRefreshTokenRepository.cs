@@ -1,6 +1,6 @@
-using PayItGlobal.Domain.Entities;
+using PayItGlobalApi.Domain.Entities;
 
-namespace PayItGlobal.Domain.Interfaces
+namespace PayItGlobalApi.Domain.Interfaces
 {
     public interface IRefreshTokenRepository
     {

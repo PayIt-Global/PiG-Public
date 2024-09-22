@@ -1,20 +1,12 @@
-﻿using MauiReactor;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using PayItGlobalApp.Pages;
-using SkiaSharp.Views.Maui.Controls.Hosting;
-using PayItGlobalApp.Pages.Components;
-using PayItGlobal.Application.ConfigurationModels;
-using PayItGlobal.Application.Interfaces;
-using PayItGlobal.Application.Services;
-using PayItGlobal.Domain.Interfaces;
-using PayItGlobal.Infrastructure.Repository;
-using PayItGlobal.Infrastructure.Services;
-using System;
-using System.IO;
-using System.Reflection;
 using Microsoft.Maui.Storage;
+using PayItGlobalApp.Application.ConfigurationModels;
+using PayItGlobalApp.Application.Interfaces;
+using PayItGlobalApp.Pages;
+using PayItGlobalApp.Services;
+using SkiaSharp.Views.Maui.Controls.Hosting;
 
 namespace PayItGlobalApp
 {
@@ -49,13 +41,10 @@ namespace PayItGlobalApp
             builder.Services.AddHttpClient();
 
             // Register your services here
-            builder.Services.AddSingleton<ITokenService, TokenService>();
-            builder.Services.AddSingleton<IRefreshTokenService, RefreshTokenService>();
-            builder.Services.AddSingleton<IRefreshTokenRepository, RefreshTokenRepository>();
+            builder.Services.AddSingleton<IClientTokenService, ClientTokenService>();
+            builder.Services.AddSingleton<AuthService>();
 
-            // Register AuthenticationService with all required dependencies
-            builder.Services.AddSingleton<IClientAuthenticationService, ClientAuthenticationService>();
-            builder.Services.AddSingleton<IApiSettingsService, ApiSettingsService>();
+
 
 #if DEBUG
             builder.Logging.AddDebug();

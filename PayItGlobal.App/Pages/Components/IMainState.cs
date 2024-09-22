@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PayItGlobal.App.Pages.Components
+namespace PayItGlobalApi.App.Pages.Components
 {
     public interface IMainState
     {

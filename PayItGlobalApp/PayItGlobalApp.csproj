@@ -85,6 +85,7 @@
 		<PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Maui.Essentials" Version="8.0.90" />
 		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1" />
 		<PackageReference Include="Reactor.Maui" Version="2.0.47" />
 		<PackageReference Include="Reactor.Maui.Canvas" Version="2.0.47" />
@@ -95,8 +96,7 @@
 		<PackageReference Include="System.Text.Json" Version="8.0.4" />
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\PayItGlobal.Application\PayItGlobal.Application.csproj" />
-		<ProjectReference Include="..\PayItGlobal.Domain\PayItGlobal.Domain.csproj" />
-		<ProjectReference Include="..\PayItGlobal.Infrastructure\PayItGlobal.Infrastructure.csproj" />
+	  <ProjectReference Include="..\PayItGlobalApp.Application\PayItGlobalApp.Application.csproj" />
+	  <ProjectReference Include="..\PayItGlobalApp.Infrastructure\PayItGlobalApp.Infrastructure.csproj" />
 	</ItemGroup>
 </Project>

@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using System.Security.Principal;
 using System.Threading.Tasks;
 
-namespace PayItGlobal.Domain.Interfaces
+namespace PayItGlobalApi.Domain.Interfaces
 {
     public interface IRepository<TEntity, TKey> where TEntity : class
     {

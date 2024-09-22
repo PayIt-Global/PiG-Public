@@ -1,4 +1,4 @@
-namespace PayItGlobal.Domain.Models
+namespace PayItGlobalApi.Domain.Models
 {
     public class AppSettings
     {

@@ -1,9 +1,9 @@
 ﻿using System;
 using MauiReactor;
 using MauiReactor.Canvas;
-using PayItGlobal.App.Themes;
+using PayItGlobalApi.App.Themes;
 
-namespace PayItGlobal.App.Pages;
+namespace PayItGlobalApi.App.Pages;
 
 class CalendarPageState
 {

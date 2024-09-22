@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Options;
-using PayItGlobal.Application.ConfigurationModels;
-using PayItGlobal.Application.Interfaces;
+using PayItGlobalApp.Application.ConfigurationModels;
+using PayItGlobalApp.Application.Interfaces;
 
-namespace PayItGlobal.Application.Services
+namespace PayItGlobalApp.Application.Services
 {
     public class ApiSettingsService : IApiSettingsService
     {

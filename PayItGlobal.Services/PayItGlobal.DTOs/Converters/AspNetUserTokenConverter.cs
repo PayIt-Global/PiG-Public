@@ -11,18 +11,18 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PayItGlobal.DTOs.Generated
+namespace PayItGlobalApi.DTOs.Generated
 {
 
     public static partial class AspNetUserTokenConverter
     {
 
-        public static AspNetUserTokenDto ToDto(this PayItGlobal.Domain.Entities.AspNetUserToken source)
+        public static AspNetUserTokenDto ToDto(this PayItGlobalApi.Domain.Entities.AspNetUserToken source)
         {
             return source.ToDtoWithRelated(0);
         }
 
-        public static AspNetUserTokenDto ToDtoWithRelated(this PayItGlobal.Domain.Entities.AspNetUserToken source, int level)
+        public static AspNetUserTokenDto ToDtoWithRelated(this PayItGlobalApi.Domain.Entities.AspNetUserToken source, int level)
         {
             if (source == null)
               return null;
@@ -46,12 +46,12 @@ namespace PayItGlobal.DTOs.Generated
             return target;
         }
 
-        public static PayItGlobal.Domain.Entities.AspNetUserToken ToEntity(this AspNetUserTokenDto source)
+        public static PayItGlobalApi.Domain.Entities.AspNetUserToken ToEntity(this AspNetUserTokenDto source)
         {
             if (source == null)
               return null;
 
-            var target = new PayItGlobal.Domain.Entities.AspNetUserToken();
+            var target = new PayItGlobalApi.Domain.Entities.AspNetUserToken();
 
             // Properties
             target.UserId = source.UserId;
@@ -65,7 +65,7 @@ namespace PayItGlobal.DTOs.Generated
             return target;
         }
 
-        public static List<AspNetUserTokenDto> ToDtos(this IEnumerable<PayItGlobal.Domain.Entities.AspNetUserToken> source)
+        public static List<AspNetUserTokenDto> ToDtos(this IEnumerable<PayItGlobalApi.Domain.Entities.AspNetUserToken> source)
         {
             if (source == null)
               return null;
@@ -77,7 +77,7 @@ namespace PayItGlobal.DTOs.Generated
             return target;
         }
 
-        public static List<AspNetUserTokenDto> ToDtosWithRelated(this IEnumerable<PayItGlobal.Domain.Entities.AspNetUserToken> source, int level)
+        public static List<AspNetUserTokenDto> ToDtosWithRelated(this IEnumerable<PayItGlobalApi.Domain.Entities.AspNetUserToken> source, int level)
         {
             if (source == null)
               return null;
@@ -89,7 +89,7 @@ namespace PayItGlobal.DTOs.Generated
             return target;
         }
 
-        public static List<PayItGlobal.Domain.Entities.AspNetUserToken> ToEntities(this IEnumerable<AspNetUserTokenDto> source)
+        public static List<PayItGlobalApi.Domain.Entities.AspNetUserToken> ToEntities(this IEnumerable<AspNetUserTokenDto> source)
         {
             if (source == null)
               return null;
@@ -101,9 +101,9 @@ namespace PayItGlobal.DTOs.Generated
             return target;
         }
 
-        static partial void OnDtoCreating(PayItGlobal.Domain.Entities.AspNetUserToken source, AspNetUserTokenDto target);
+        static partial void OnDtoCreating(PayItGlobalApi.Domain.Entities.AspNetUserToken source, AspNetUserTokenDto target);
 
-        static partial void OnEntityCreating(AspNetUserTokenDto source, PayItGlobal.Domain.Entities.AspNetUserToken target);
+        static partial void OnEntityCreating(AspNetUserTokenDto source, PayItGlobalApi.Domain.Entities.AspNetUserToken target);
 
     }
 

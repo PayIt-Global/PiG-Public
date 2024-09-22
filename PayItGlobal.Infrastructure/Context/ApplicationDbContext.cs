@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using PayItGlobal.Domain.Entities; // Assuming this namespace contains your custom entities
-using PayItGlobal.Infrastructure.Identity; // Adjust namespace as necessary
+using PayItGlobalApi.Domain.Entities; // Assuming this namespace contains your custom entities
+using PayItGlobalApi.Infrastructure.Identity; // Adjust namespace as necessary
 
-namespace PayItGlobal.Infrastructure.Context
+namespace PayItGlobalApi.Infrastructure.Context
 {
     public class ApplicationDbContext : IdentityDbContext<AspNetUser, AspNetRole, int, AspNetUserClaim, IdentityUserRole<int>, AspNetUserLogin, AspNetRoleClaim, AspNetUserToken>
     {

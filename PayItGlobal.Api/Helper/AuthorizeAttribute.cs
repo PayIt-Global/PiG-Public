@@ -1,4 +1,4 @@
-﻿using PayItGlobal.Domain.Entities;
+﻿using PayItGlobalApi.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 

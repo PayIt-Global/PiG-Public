@@ -9,8 +9,8 @@ using MauiReactor.Canvas;
 using MauiReactor.Compatibility;
 using Microsoft.Maui.Devices;
 
-namespace PayItGlobal.App.Pages;
-using PayItGlobal.App.Themes; // Assuming this is where ThemeManager is located
+namespace PayItGlobalApi.App.Pages;
+using PayItGlobalApi.App.Themes; // Assuming this is where ThemeManager is located
 
 class CommunityPageState
 {

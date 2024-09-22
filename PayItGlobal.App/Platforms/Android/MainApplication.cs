@@ -2,7 +2,7 @@
 using Android.Runtime;
 using System;
 
-namespace PayItGlobal.App
+namespace PayItGlobalApi.App
 {
     [Application]
     public class MainApplication : MauiApplication

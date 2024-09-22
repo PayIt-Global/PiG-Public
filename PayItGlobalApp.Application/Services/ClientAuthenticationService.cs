@@ -1,11 +1,11 @@
 ﻿using Microsoft.Maui.Storage;
-using PayItGlobal.Application.Interfaces;
-using PayItGlobal.Application.Models;
+using PayItGlobalApp.Application.Interfaces;
+using PayItGlobalApp.Application.Models;
 using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 
-namespace PayItGlobal.Application.Services
+namespace PayItGlobalApp.Application.Services
 {
     public class ClientAuthenticationService : IClientAuthenticationService
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PayItGlobal.App.Models;
+namespace PayItGlobalApi.App.Models;
 
 
 record NewsModel(string Title, string ImageSource, string AgentAvatar, string AgentName, DateTime Date)

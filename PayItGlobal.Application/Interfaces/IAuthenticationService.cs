@@ -1,4 +1,4 @@
-﻿namespace PayItGlobal.Application.Interfaces
+﻿namespace PayItGlobalApi.Application.Interfaces
 {
     public interface IAuthenticationService
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PayItGlobal.App.Models;
+namespace PayItGlobalApi.App.Models;
 
 record EventModel(string Title, string Author, string AvatarImage, string ImageSource, string ImageSourceDetails, DateTime Date)
 {

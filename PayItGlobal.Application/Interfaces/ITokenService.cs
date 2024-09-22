@@ -1,7 +1,7 @@
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace PayItGlobal.Application.Interfaces
+namespace PayItGlobalApi.Application.Interfaces
 {
     public interface ITokenService
     {

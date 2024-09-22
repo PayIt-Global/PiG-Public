@@ -10,7 +10,7 @@
 
 using System.Collections.Generic;
 
-namespace PayItGlobal.DTOs.Generated
+namespace PayItGlobalApi.DTOs.Generated
 {
 
     public partial class StateProvinceDto

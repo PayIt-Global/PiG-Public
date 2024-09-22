@@ -1,9 +1,9 @@
 ﻿using System;
-using PayItGlobal.Infrastructure;
-using PayItGlobal.Domain.Interfaces;
-using PayItGlobal.Domain.Entities;
+using PayItGlobalApi.Infrastructure;
+using PayItGlobalApi.Domain.Interfaces;
+using PayItGlobalApi.Domain.Entities;
 
-namespace PayItGlobal.Infrastructure.Interfaces
+namespace PayItGlobalApi.Infrastructure.Interfaces
 {
     public partial interface IUnitOfWork
     {

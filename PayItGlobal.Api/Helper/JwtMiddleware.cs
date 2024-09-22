@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using PayItGlobal.Application.Interfaces;
-using PayItGlobal.Domain.Models;
-using PayItGlobal.Infrastructure.Interfaces;
+using PayItGlobalApi.Application.Interfaces;
+using PayItGlobalApi.Domain.Models;
+using PayItGlobalApi.Infrastructure.Interfaces;
 using Microsoft.AspNetCore.Identity;
-using PayItGlobal.Domain.Entities;
-using PayItGlobal.Infrastructure.Identity;
+using PayItGlobalApi.Domain.Entities;
+using PayItGlobalApi.Infrastructure.Identity;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;

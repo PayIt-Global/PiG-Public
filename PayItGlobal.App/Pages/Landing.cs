@@ -4,14 +4,14 @@ using MauiReactor.Canvas;
 using MauiReactor.Compatibility;
 using MauiReactor.Shapes;
 using Microsoft.Maui.Devices;
-using PayItGlobal.App.Models;
-using PayItGlobal.App.Pages.Components;
-using PayItGlobal.App.Resources;
-using PayItGlobal.App.Themes;
+using PayItGlobalApi.App.Models;
+using PayItGlobalApi.App.Pages.Components;
+using PayItGlobalApi.App.Resources;
+using PayItGlobalApi.App.Themes;
 using System;
 using System.Linq;
 
-namespace PayItGlobal.App.Pages;
+namespace PayItGlobalApi.App.Pages;
 
 partial class Landing<TMainMenuState, TSideMenuState> : Component
     where TMainMenuState : IMainMenuState

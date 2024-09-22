@@ -2,14 +2,14 @@
 using MauiReactor.Canvas;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Maui.Devices;
-using PayItGlobal.App.Pages.Components;
-using PayItGlobal.App.Resources.Styles;
-using PayItGlobal.App.Themes;
-using PayItGlobal.Application.Interfaces;
+using PayItGlobalApi.App.Pages.Components;
+using PayItGlobalApi.App.Resources.Styles;
+using PayItGlobalApi.App.Themes;
+using PayItGlobalApi.Application.Interfaces;
 using System;
 using System.Linq;
 
-namespace PayItGlobal.App.Pages;
+namespace PayItGlobalApi.App.Pages;
 
 public enum PageEnum
 {

@@ -1,6 +1,6 @@
-﻿using PayItGlobal.App.Themes;
+﻿using PayItGlobalApi.App.Themes;
 
-namespace PayItGlobal.App.Models;
+namespace PayItGlobalApi.App.Models;
 
 public record TaskModel(string Title, Color BackgroundColor, Color CircleColor) : IThemeAwareModel<TaskModel>
 {

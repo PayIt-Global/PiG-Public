@@ -1,14 +1,14 @@
-using PayItGlobal.Application.Interfaces;
-using PayItGlobal.Domain.Models;
+using PayItGlobalApi.Application.Interfaces;
+using PayItGlobalApi.Domain.Models;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using PayItGlobal.Domain.Interfaces;
-using PayItGlobal.Domain.Entities;
+using PayItGlobalApi.Domain.Interfaces;
+using PayItGlobalApi.Domain.Entities;
 using System.Security.Cryptography;
 
-namespace PayItGlobal.Application.Services
+namespace PayItGlobalApi.Application.Services
 {
     public class TokenService : ITokenService
     {

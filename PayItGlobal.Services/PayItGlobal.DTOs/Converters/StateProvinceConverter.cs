@@ -11,18 +11,18 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PayItGlobal.DTOs.Generated
+namespace PayItGlobalApi.DTOs.Generated
 {
 
     public static partial class StateProvinceConverter
     {
 
-        public static StateProvinceDto ToDto(this PayItGlobal.Domain.Entities.StateProvince source)
+        public static StateProvinceDto ToDto(this PayItGlobalApi.Domain.Entities.StateProvince source)
         {
             return source.ToDtoWithRelated(0);
         }
 
-        public static StateProvinceDto ToDtoWithRelated(this PayItGlobal.Domain.Entities.StateProvince source, int level)
+        public static StateProvinceDto ToDtoWithRelated(this PayItGlobalApi.Domain.Entities.StateProvince source, int level)
         {
             if (source == null)
               return null;
@@ -45,12 +45,12 @@ namespace PayItGlobal.DTOs.Generated
             return target;
         }
 
-        public static PayItGlobal.Domain.Entities.StateProvince ToEntity(this StateProvinceDto source)
+        public static PayItGlobalApi.Domain.Entities.StateProvince ToEntity(this StateProvinceDto source)
         {
             if (source == null)
               return null;
 
-            var target = new PayItGlobal.Domain.Entities.StateProvince();
+            var target = new PayItGlobalApi.Domain.Entities.StateProvince();
 
             // Properties
             target.StateprovinceId = source.StateprovinceId;
@@ -68,7 +68,7 @@ namespace PayItGlobal.DTOs.Generated
             return target;
         }
 
-        public static List<StateProvinceDto> ToDtos(this IEnumerable<PayItGlobal.Domain.Entities.StateProvince> source)
+        public static List<StateProvinceDto> ToDtos(this IEnumerable<PayItGlobalApi.Domain.Entities.StateProvince> source)
         {
             if (source == null)
               return null;
@@ -80,7 +80,7 @@ namespace PayItGlobal.DTOs.Generated
             return target;
         }
 
-        public static List<StateProvinceDto> ToDtosWithRelated(this IEnumerable<PayItGlobal.Domain.Entities.StateProvince> source, int level)
+        public static List<StateProvinceDto> ToDtosWithRelated(this IEnumerable<PayItGlobalApi.Domain.Entities.StateProvince> source, int level)
         {
             if (source == null)
               return null;
@@ -92,7 +92,7 @@ namespace PayItGlobal.DTOs.Generated
             return target;
         }
 
-        public static List<PayItGlobal.Domain.Entities.StateProvince> ToEntities(this IEnumerable<StateProvinceDto> source)
+        public static List<PayItGlobalApi.Domain.Entities.StateProvince> ToEntities(this IEnumerable<StateProvinceDto> source)
         {
             if (source == null)
               return null;
@@ -104,9 +104,9 @@ namespace PayItGlobal.DTOs.Generated
             return target;
         }
 
-        static partial void OnDtoCreating(PayItGlobal.Domain.Entities.StateProvince source, StateProvinceDto target);
+        static partial void OnDtoCreating(PayItGlobalApi.Domain.Entities.StateProvince source, StateProvinceDto target);
 
-        static partial void OnEntityCreating(StateProvinceDto source, PayItGlobal.Domain.Entities.StateProvince target);
+        static partial void OnEntityCreating(StateProvinceDto source, PayItGlobalApi.Domain.Entities.StateProvince target);
 
     }
 

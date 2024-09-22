@@ -9,8 +9,8 @@ using MauiReactor.Canvas;
 using MauiReactor.Compatibility;
 using Microsoft.Maui.Devices;
 
-namespace PayItGlobal.App.Pages;
-using PayItGlobal.App.Themes;
+namespace PayItGlobalApi.App.Pages;
+using PayItGlobalApi.App.Themes;
 class EventsPageState
 {
 

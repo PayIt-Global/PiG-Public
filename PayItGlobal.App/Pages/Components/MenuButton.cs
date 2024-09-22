@@ -1,8 +1,8 @@
 ﻿using MauiReactor;
-using PayItGlobal.App.Resources;
+using PayItGlobalApi.App.Resources;
 using System;
 
-namespace PayItGlobal.App.Pages.Components
+namespace PayItGlobalApi.App.Pages.Components
 {
 
     class MenuButtonState
