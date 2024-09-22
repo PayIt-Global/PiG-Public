@@ -1,19 +1,12 @@
-﻿using MauiReactor;
-using MauiReactor.Animations;
+﻿using MauiReactor.Animations;
 using MauiReactor.Canvas;
 using MauiReactor.Shapes;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Maui.Devices;
-using Microsoft.Maui.Platform;
 using PayItGlobalApp.Application.Infrastructure.Utilities;
 using PayItGlobalApp.Application.Interfaces;
 using PayItGlobalApp.Controls;
-using PayItGlobalApp.Resources;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PayItGlobalApp.Pages.Components;
 
@@ -46,6 +39,13 @@ partial class Login : Component<LoginState>
 
     [Prop]
     private bool _show;
+
+    private readonly IClientAuthenticationService _authService;
+
+    public Login()
+    {
+        _authService = IPlatformApplication.Current.Services.GetService<IClientAuthenticationService>();
+    }
 
     protected override void OnMountedOrPropsChanged()
     {
@@ -248,15 +248,16 @@ partial class Login : Component<LoginState>
             PerformLogin();
         }
     }
+
     private async void PerformLogin()
     {
         try
         {
-            string username = State.Email; 
+            string username = State.Email;
             string password = State.Password;
             string userIpAddress = await NetworkUtilities.GetUserIpAddressAsync();
-            var authService = Services.GetRequiredService<IClientAuthenticationService>();
-            bool isLoggedIn = await authService.LogInAsync(username, password, userIpAddress);
+
+            bool isLoggedIn = await _authService.LogInAsync(username, password, userIpAddress);
 
             if (isLoggedIn)
             {

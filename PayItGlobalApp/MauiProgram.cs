@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Storage;
 using PayItGlobalApp.Application.ConfigurationModels;
 using PayItGlobalApp.Application.Interfaces;
+using PayItGlobalApp.Application.Services;
 using PayItGlobalApp.Pages;
 using PayItGlobalApp.Services;
 using SkiaSharp.Views.Maui.Controls.Hosting;
@@ -41,7 +42,10 @@ namespace PayItGlobalApp
             builder.Services.AddHttpClient();
 
             // Register your services here
+            // Register your services here
             builder.Services.AddSingleton<IClientTokenService, ClientTokenService>();
+            builder.Services.AddSingleton<IClientAuthenticationService, ClientAuthenticationService>();
+            builder.Services.AddSingleton<IApiSettingsService, ApiSettingsService>();
             builder.Services.AddSingleton<AuthService>();
 
 
