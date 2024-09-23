@@ -20,6 +20,12 @@ partial class NavBar : Component<NavBarState>
     private Action _onHelpSelected;
     [Prop]
     private Action _onHomeSelected;
+    [Prop]
+    private Action _onReportsSelected;
+    [Prop]
+    private Action _onTeamsSelected;
+    [Prop]
+    private Action _onKeysSelected;
 
     protected override void OnMountedOrPropsChanged()
     {
@@ -58,25 +64,38 @@ partial class NavBar : Component<NavBarState>
                                     _onHomeSelected?.Invoke(); // Invoke the callback
                                 }),
                             new NavBarButtonIcon()
-                                .Icon("search_img.png")
-                                .IsSelected(State.SelectedItem == NavItem.Search)
-                                .OnSelected(()=>SetState(s => s.SelectedItem = NavItem.Search)),
+                                .Icon("team_img.png")
+                                .IsSelected(State.SelectedItem == NavItem.Teams)
+                                .OnSelected(() =>
+                                {
+                                    SetState(s => s.SelectedItem = NavItem.Teams);
+                                    _onTeamsSelected?.Invoke(); // Invoke the callback
+                                }),
                             new NavBarButtonIcon()
-                                .Icon("favorites_img.png")
-                                .IsSelected(State.SelectedItem == NavItem.Favorites)
-                                .OnSelected(()=>SetState(s => s.SelectedItem = NavItem.Favorites)),
+                                .Icon("key_img.png")
+                                .IsSelected(State.SelectedItem == NavItem.Keys)
+                                .OnSelected(() =>
+                                {
+                                    SetState(s => s.SelectedItem = NavItem.Keys);
+                                    _onKeysSelected?.Invoke(); // Invoke the callback
+                                }),
                             new NavBarButtonIcon()
-                                .Icon("billing_img.png")
-                                .IsSelected(State.SelectedItem == NavItem.Billing)
-                                .OnSelected(()=>SetState(s => s.SelectedItem = NavItem.Billing)),
+                                .Icon("reports_img.png") // Update the icon name
+                                .IsSelected(State.SelectedItem == NavItem.Reports)
+                                .OnSelected(() =>
+                                {
+                                    SetState(s => s.SelectedItem = NavItem.Reports);
+                                    _onReportsSelected?.Invoke(); // Invoke the callback
+                                }),
                             new NavBarButtonIcon()
                                 .Icon("help_img.png")
                                 .IsSelected(State.SelectedItem == NavItem.Help)
-                                .OnSelected(()=>
+                                .OnSelected(() =>
                                 {
                                     SetState(s => s.SelectedItem = NavItem.Help);
                                     _onHelpSelected?.Invoke(); // Invoke the callback
                                 }),
+
                         }
                     }
                     .Padding(22, 7)

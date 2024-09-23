@@ -1,4 +1,5 @@
-﻿using PayItGlobalApp.Pages.Components;
+﻿using PayItGlobalApp.Models;
+using PayItGlobalApp.Pages.Components;
 using System;
 using Theme = PayItGlobalApp.Resources.Theme;
 
@@ -9,22 +10,29 @@ class MainPageState
     public bool IsSideMenuShown { get; set; }
     public bool ShowOnboarding { get; set; }
     public bool ShowHome { get; set; } = true;
+    public NavItem CurrentPage { get; set; } = NavItem.Home;
 }
 
 class MainPage : Component<MainPageState>
 {
     public override VisualNode Render()
     {
-        Console.WriteLine($"ShowHome: {State.ShowHome}"); // Add this line for debugging
+        Console.WriteLine($"CurrentPage: {State.CurrentPage}"); // Add this line for debugging
 
         return ContentPage(
             Grid("*", "*",
-                State.ShowHome
-                    ? (VisualNode)new Home()
+                State.CurrentPage switch
+                {
+                    NavItem.Home => (VisualNode)new Home()
                         .IsShown(!State.IsSideMenuShown)
                         .IsMovedBack(State.ShowOnboarding)
-                        .OnShowOnboarding(() => SetState(s => s.ShowOnboarding = true))
-                    : new Help(), // Ensure this line is present to switch to Help
+                        .OnShowOnboarding(() => SetState(s => s.ShowOnboarding = true)),
+                    NavItem.Teams => new Teams(), // Add this line to switch to Teams
+                    NavItem.Keys => new Keys(), // Add this line to switch to Keys
+                    NavItem.Reports => new Reports(), // Add this line to switch to Reports
+                    NavItem.Help => new Help(),
+                    _ => new Home() // Default to Home
+                },
 
                 new SideMenu()
                     .IsShown(State.IsSideMenuShown),
@@ -38,8 +46,11 @@ class MainPage : Component<MainPageState>
                     .OnClose(() => SetState(s => s.ShowOnboarding = false)),
 
                 new NavBar()
-                    .OnHelpSelected(() => SetState(s => s.ShowHome = false)) 
-                    .OnHomeSelected(() => SetState(s => s.ShowHome = true)) 
+                    .OnHelpSelected(() => SetState(s => s.CurrentPage = NavItem.Help)) // Update this line
+                    .OnHomeSelected(() => SetState(s => s.CurrentPage = NavItem.Home)) // Update this line
+                    .OnTeamsSelected(() => SetState(s => s.CurrentPage = NavItem.Teams)) // Add this line
+                    .OnKeysSelected(() => SetState(s => s.CurrentPage = NavItem.Keys)) // Add this line
+                    .OnReportsSelected(() => SetState(s => s.CurrentPage = NavItem.Reports)) // Add this line
                     .Show(!State.IsSideMenuShown && !State.ShowOnboarding)
             )
         )
@@ -47,4 +58,5 @@ class MainPage : Component<MainPageState>
         .BackgroundColor(Theme.Background2);
     }
 }
+
 

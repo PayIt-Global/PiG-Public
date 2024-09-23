@@ -26,13 +26,13 @@ enum CommandMenuItem
 
 enum NavItem
 {
-    Billing,
+    Reports,
 
     Home,
 
-    Search,
+    Teams,
 
-    Favorites,
+    Keys,
 
     Help,
 }
