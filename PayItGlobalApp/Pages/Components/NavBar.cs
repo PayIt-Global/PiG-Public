@@ -17,7 +17,9 @@ partial class NavBar : Component<NavBarState>
     [Prop]
     private bool _show;
     [Prop]
-    private Action _onHelpSelected; 
+    private Action _onHelpSelected;
+    [Prop]
+    private Action _onHomeSelected;
 
     protected override void OnMountedOrPropsChanged()
     {
@@ -50,8 +52,11 @@ partial class NavBar : Component<NavBarState>
                             new NavBarButtonIcon()
                                 .Icon("home_img.png")
                                 .IsSelected(State.SelectedItem == NavItem.Home)
-                                .OnSelected(()=>SetState(s => s.SelectedItem = NavItem.Home))
-                                ,
+                                .OnSelected(() =>
+                                {
+                                    SetState(s => s.SelectedItem = NavItem.Home);
+                                    _onHomeSelected?.Invoke(); // Invoke the callback
+                                }),
                             new NavBarButtonIcon()
                                 .Icon("search_img.png")
                                 .IsSelected(State.SelectedItem == NavItem.Search)

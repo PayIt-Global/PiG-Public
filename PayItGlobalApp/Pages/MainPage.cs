@@ -38,7 +38,8 @@ class MainPage : Component<MainPageState>
                     .OnClose(() => SetState(s => s.ShowOnboarding = false)),
 
                 new NavBar()
-                    .OnHelpSelected(() => SetState(s => s.ShowHome = false)) // Ensure this line is present
+                    .OnHelpSelected(() => SetState(s => s.ShowHome = false)) 
+                    .OnHomeSelected(() => SetState(s => s.ShowHome = true)) 
                     .Show(!State.IsSideMenuShown && !State.ShowOnboarding)
             )
         )
