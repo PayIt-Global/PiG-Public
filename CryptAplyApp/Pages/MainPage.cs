@@ -27,9 +27,9 @@ class MainPage : Component<MainPageState>
                         .IsShown(!State.IsSideMenuShown)
                         .IsMovedBack(State.ShowOnboarding)
                         .OnShowOnboarding(() => SetState(s => s.ShowOnboarding = true)),
-                    NavItem.Teams => new Teams(), // Add this line to switch to Teams
-                    NavItem.Keys => new Keys(), // Add this line to switch to Keys
-                    NavItem.Reports => new Reports(), // Add this line to switch to Reports
+                    NavItem.Teams => new Teams(),
+                    NavItem.Keys => new Keys(), 
+                    NavItem.Reports => new Reports(), 
                     NavItem.Help => new Help(),
                     _ => new Home() // Default to Home
                 },

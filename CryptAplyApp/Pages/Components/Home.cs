@@ -61,6 +61,7 @@ partial class Home : Component<HomeMenuState>
     public override VisualNode Render()
     {
         return Grid("*", "*",
+            RenderUserButton(),
             Label("Home Page Content")
                 .FontSize(24)
                 .TextColor(Colors.Black)
