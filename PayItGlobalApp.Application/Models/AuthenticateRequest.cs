@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PayItGlobalApp.Application.Models
+namespace CryptAplyApp.Application.Models
 {
     public class AuthenticateRequest
     {

@@ -1,10 +1,10 @@
-﻿using PayItGlobalApp.Application.Interfaces;
-using PayItGlobalApp.Infrastructure.Storage;
+﻿using CryptAplyApp.Application.Interfaces;
+using CryptAplyApp.Infrastructure.Storage;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace PayItGlobalApp.Application.Services
+namespace CryptAplyApp.Application.Services
 {
     public class AppTokenService : IAppTokenService
     {

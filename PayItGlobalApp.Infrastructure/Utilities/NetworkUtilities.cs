@@ -1,4 +1,4 @@
-namespace PayItGlobalApp.Application.Infrastructure.Utilities
+namespace CryptAplyApp.Application.Infrastructure.Utilities
 {
     public static class NetworkUtilities
     {

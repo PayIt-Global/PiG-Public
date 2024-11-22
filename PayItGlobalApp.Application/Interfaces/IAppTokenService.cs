@@ -1,4 +1,4 @@
-﻿namespace PayItGlobalApp.Application.Interfaces
+﻿namespace CryptAplyApp.Application.Interfaces
 {
     public interface IAppTokenService
     {

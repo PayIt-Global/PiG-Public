@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace PayItGlobalApp
+namespace CryptAplyApp
 {
     [Register("AppDelegate")]
     public class AppDelegate : MauiUIApplicationDelegate

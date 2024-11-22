@@ -1,7 +1,7 @@
 ﻿using Microsoft.Maui.Storage;
 using System.Threading.Tasks;
 
-namespace PayItGlobalApp.Infrastructure.Storage
+namespace CryptAplyApp.Infrastructure.Storage
 {
     public static class TokenStorage
     {

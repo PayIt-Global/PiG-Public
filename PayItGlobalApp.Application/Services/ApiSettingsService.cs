@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Options;
-using PayItGlobalApp.Application.ConfigurationModels;
-using PayItGlobalApp.Application.Interfaces;
+using CryptAplyApp.Application.ConfigurationModels;
+using CryptAplyApp.Application.Interfaces;
 
-namespace PayItGlobalApp.Application.Services
+namespace CryptAplyApp.Application.Services
 {
     public class ApiSettingsService : IApiSettingsService
     {

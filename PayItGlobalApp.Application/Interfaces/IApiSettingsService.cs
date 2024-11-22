@@ -1,6 +1,6 @@
-﻿using PayItGlobalApp.Application.ConfigurationModels;
+﻿using CryptAplyApp.Application.ConfigurationModels;
 
-namespace PayItGlobalApp.Application.Interfaces
+namespace CryptAplyApp.Application.Interfaces
 {
     public interface IApiSettingsService
     {

@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{06
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{C50EFB97-D941-45B2-9590-8EDEBB7E8BED}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayItGlobalApp", "PayItGlobalApp\PayItGlobalApp.csproj", "{0E377DC3-3CB3-4DFE-A69D-6425CEA2C7E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptAplyApp", "PayItGlobalApp\CryptAplyApp.csproj", "{0E377DC3-3CB3-4DFE-A69D-6425CEA2C7E7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayItGlobal.DTOs", "PayItGlobal.Services\PayItGlobal.DTOs\PayItGlobal.DTOs.csproj", "{C904481C-99F6-46EC-AAE4-3ACB21FB23FA}"
 EndProject
