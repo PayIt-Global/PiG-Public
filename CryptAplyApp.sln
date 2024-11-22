@@ -29,6 +29,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayItGlobalApp.Application"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PayItGlobalApp.Infrastructure", "PayItGlobalApp.Infrastructure\PayItGlobalApp.Infrastructure.csproj", "{2C26C578-9B5F-49C2-BA49-E66732E5F638}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{E60CEFF3-E6A1-4B0C-B07A-A6818B84EFDF}"
+	ProjectSection(SolutionItems) = preProject
+		SolutionItems\CryptAply.sql = SolutionItems\CryptAply.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
