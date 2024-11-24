@@ -2,7 +2,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
 
@@ -12,7 +11,7 @@
 		The Mac App Store will NOT accept apps with ONLY maccatalyst-arm64 indicated;
 		either BOTH runtimes must be indicated or ONLY macatalyst-x64. -->
 		<!-- For example: <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers> -->
-		
+
 		<OutputType>Exe</OutputType>
 		<RootNamespace>PayItGlobalApp</RootNamespace>
 		<UseMaui>true</UseMaui>
@@ -29,29 +28,27 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
-		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
 		<CreatePackage>false</CreatePackage>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(TargetFramework)'=='net8.0-ios'">
-	  <ProvisioningType>manual</ProvisioningType>
-	  <CodesignProvision>iOS Team Provisioning Profile: global.payit.iosapptest</CodesignProvision>
+		<ProvisioningType>manual</ProvisioningType>
+		<CodesignProvision>iOS Team Provisioning Profile: com.cryptaply.iosapptest</CodesignProvision>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
-	  <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+		<CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|AnyCPU'">
-	  <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+		<CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
 	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 		<MauiSplashScreen Include="Assets\splash.svg">
-		  <Color>#512BD4</Color>
-		  <BaseSize>128,128</BaseSize>
+			<Color>#512BD4</Color>
+			<BaseSize>128,128</BaseSize>
 		</MauiSplashScreen>
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
@@ -77,13 +74,13 @@
 		<MauiImage Remove="Resources\Images\videos_img.png" />
 	</ItemGroup>
 	<ItemGroup>
-	  <None Remove="Assets\splash.svg" />
-	  <None Remove="Resources\Images\icon.png" />
-	  <None Remove="Resources\Images\key.svg" />
-	  <None Remove="Resources\Images\key_img.png" />
-	  <None Remove="Resources\Images\logo.png" />
-	  <None Remove="Resources\Images\team.svg" />
-	  <None Remove="Resources\Images\team_img.png" />
+		<None Remove="Assets\splash.svg" />
+		<None Remove="Resources\Images\icon.png" />
+		<None Remove="Resources\Images\key.svg" />
+		<None Remove="Resources\Images\key_img.png" />
+		<None Remove="Resources\Images\logo.png" />
+		<None Remove="Resources\Images\team.svg" />
+		<None Remove="Resources\Images\team_img.png" />
 	</ItemGroup>
 	<ItemGroup>
 		<MauiAsset Include="appsettings.json" />
@@ -114,7 +111,6 @@
 		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Maui.Essentials" Version="8.0.90" />
-		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1" />
 		<PackageReference Include="Reactor.Maui" Version="2.0.47" />
 		<PackageReference Include="Reactor.Maui.Canvas" Version="2.0.47" />
 		<PackageReference Include="Reactor.Maui.ScaffoldGenerator" Version="2.0.14-beta" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
@@ -124,8 +120,8 @@
 		<PackageReference Include="System.Text.Json" Version="9.0.0" />
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\PayItGlobalApp.Application\PayItGlobalApp.Application.csproj" />
-	  <ProjectReference Include="..\PayItGlobalApp.Infrastructure\PayItGlobalApp.Infrastructure.csproj" />
+		<ProjectReference Include="..\PayItGlobalApp.Application\PayItGlobalApp.Application.csproj" />
+		<ProjectReference Include="..\PayItGlobalApp.Infrastructure\PayItGlobalApp.Infrastructure.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<BundleResource Include="Entitlements.plist" />
