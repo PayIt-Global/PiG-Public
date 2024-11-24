@@ -67,7 +67,7 @@ partial class Login : Component<LoginState>
 
                     new CanvasView()
                     {
-                        new Text("Access to 240+ hours of content. \r\nLearn design and code, by building real apps with React and Swift.")
+                        new Text("Login To CryptAply For Multiple Cyphers With Multiple Custodians.")
                             .FontSize(15)
                             .FontColor(Colors.Black.WithAlpha(0.5f))
                             .FontWeight(700)

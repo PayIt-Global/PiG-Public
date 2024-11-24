@@ -24,6 +24,7 @@
 		<ApplicationIdGuid>25f39401-8c74-4bc9-abeb-61c13bdb1fd7</ApplicationIdGuid>
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
 		<ApplicationVersion>1</ApplicationVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
@@ -34,6 +35,16 @@
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
 		<CreatePackage>false</CreatePackage>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)'=='net8.0-ios'">
+	  <ProvisioningType>manual</ProvisioningType>
+	  <CodesignProvision>iOS Team Provisioning Profile: global.payit.iosapptest</CodesignProvision>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
+	  <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|AnyCPU'">
+	  <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
 	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
@@ -110,10 +121,13 @@
 		<PackageReference Include="SkiaSharp.Extended.UI.Maui" Version="2.0.0" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="System.Text.Json" Version="8.0.4" />
+		<PackageReference Include="System.Text.Json" Version="9.0.0" />
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\PayItGlobalApp.Application\PayItGlobalApp.Application.csproj" />
 	  <ProjectReference Include="..\PayItGlobalApp.Infrastructure\PayItGlobalApp.Infrastructure.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<BundleResource Include="Entitlements.plist" />
 	</ItemGroup>
 </Project>
