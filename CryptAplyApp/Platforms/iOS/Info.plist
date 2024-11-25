@@ -29,6 +29,6 @@
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/appicon.appiconset</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.cryptaply.iosapptest</string>
+	<string>com.cryptaply.keymanager.app</string>
 </dict>
 </plist>
