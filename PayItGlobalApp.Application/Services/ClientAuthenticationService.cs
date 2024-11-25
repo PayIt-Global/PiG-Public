@@ -15,7 +15,12 @@ namespace CryptAplyApp.Application.Services
         public ClientAuthenticationService(HttpClient httpClient, IApiSettingsService apiSettingsService)
         {
             _httpClient = httpClient;
-            _baseUrl = apiSettingsService.GetApiBaseUrl(); // Assuming this method returns the base URL of your API
+            _httpClient = httpClient;
+#if DEBUG
+            _baseUrl = "http://10.0.0.93:8080"; // Use HTTP for Debug build
+#else
+            _baseUrl = apiSettingsService.GetApiBaseUrl(); // Use HTTPS for Release build
+#endif
         }
         public async Task<bool> LogInAsync(string username, string password, string userIpAddress)
         {
