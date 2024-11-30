@@ -1,12 +1,22 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
 	<scenes>
 		<!--View Controller-->
 		<scene sceneID="EHf-IW-A2E">
 			<objects>
 				<viewController id="01J-lp-oVM" sceneMemberID="viewController">
 					<view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-						<color key="backgroundColor" systemColor="whiteColor"/>
+						<rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+						<autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+						<subviews>
+							<label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to CryptAply" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="label-1">
+								<rect key="frame" x="20" y="300" width="335" height="67"/>
+								<fontDescription key="fontDescription" type="system" pointSize="24"/>
+								<color key="textColor" red="0" green="0" blue="0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+								<nil key="highlightedColor"/>
+							</label>
+						</subviews>
+						<color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 					</view>
 				</viewController>
 				<placeholder placeholderIdentifier="IBFirstResponder" id="iYj-9v-a3C" userLabel="First Responder" sceneMemberID="firstResponder"/>
