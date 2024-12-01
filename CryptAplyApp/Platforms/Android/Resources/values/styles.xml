@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <style name="no_title" parent="AppTheme">
-    <item name="android:windowNoTitle">true</item>
-    <item name="android:windowContentOverlay">@null</item>
+  <style name="Maui.SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="android:windowBackground">@drawable/splash_screen</item>
+  </style>
+  <style name="MainTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <!-- Customize your main theme here -->
   </style>
 </resources>

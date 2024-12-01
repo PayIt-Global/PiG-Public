@@ -34,7 +34,7 @@
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|AnyCPU'">
 		<CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
 	</PropertyGroup>
-
+	
 	<ItemGroup>
 		<!-- Include the LaunchScreen.storyboard -->
 		<MauiAsset Include="Platforms\iOS\LaunchScreen.storyboard">
@@ -57,6 +57,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Platforms\Android\Resources\splash\logo.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<Compile Remove="Platforms\iOS\Program.cs" />
 	</ItemGroup>
 
@@ -74,6 +78,7 @@
 
 	<ItemGroup>
 		<None Remove="Assets\splash.svg" />
+		<None Remove="Platforms\Android\Resources\splash\logo.png" />
 		<None Remove="Resources\Fonts\Kanit-Black.ttf" />
 		<None Remove="Resources\Fonts\Kanit-BlackItalic.ttf" />
 		<None Remove="Resources\Fonts\Kanit-Bold.ttf" />
@@ -154,5 +159,11 @@
 
 	<ItemGroup>
 		<Compile Include="Platforms\iOS\Program.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiSplashScreen Include="Platforms\Android\Resources\splash\logo.png">
+	    <Generator></Generator>
+	  </MauiSplashScreen>
 	</ItemGroup>
 </Project>
