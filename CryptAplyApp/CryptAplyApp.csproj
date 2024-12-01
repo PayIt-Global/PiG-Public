@@ -74,6 +74,7 @@
 
 	<ItemGroup>
 		<None Remove="Assets\splash.svg" />
+		<None Remove="Platforms\Android\Resources\logoandroidsplash.png" />
 		<None Remove="Resources\Fonts\Kanit-Black.ttf" />
 		<None Remove="Resources\Fonts\Kanit-BlackItalic.ttf" />
 		<None Remove="Resources\Fonts\Kanit-Bold.ttf" />
@@ -154,5 +155,9 @@
 
 	<ItemGroup>
 		<Compile Include="Platforms\iOS\Program.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiSplashScreen Include="Platforms\Android\Resources\logoandroidsplash.png" />
 	</ItemGroup>
 </Project>
