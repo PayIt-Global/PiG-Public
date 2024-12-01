@@ -9,14 +9,16 @@
 						<rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
 						<autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
 						<subviews>
-							<imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="logoImageView">
-								<rect key="frame" x="87.5" y="233.5" width="200" height="200"/>
+							<imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="logoiossplash" translatesAutoresizingMaskIntoConstraints="NO" id="logoImageView">
+								<rect key="frame" x="37.5" y="233.5" width="300" height="200"/>
 							</imageView>
 						</subviews>
 						<color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 						<constraints>
 							<constraint firstItem="logoImageView" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="centerXConstraint"/>
 							<constraint firstItem="logoImageView" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="centerYConstraint"/>
+							<constraint firstItem="logoImageView" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="0.8" id="widthConstraint"/>
+							<constraint firstItem="logoImageView" firstAttribute="height" secondItem="logoImageView" secondAttribute="width" multiplier="0.5" id="aspectRatioConstraint"/>
 						</constraints>
 					</view>
 				</viewController>

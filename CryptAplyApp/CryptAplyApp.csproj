@@ -74,7 +74,7 @@
 
 	<ItemGroup>
 		<None Remove="Assets\splash.svg" />
-		<None Remove="Platforms\Android\Resources\logoandroidsplash.png" />
+		<None Remove="Platforms\iOS\Resources\logoiossplash.svg" />
 		<None Remove="Resources\Fonts\Kanit-Black.ttf" />
 		<None Remove="Resources\Fonts\Kanit-BlackItalic.ttf" />
 		<None Remove="Resources\Fonts\Kanit-Bold.ttf" />
@@ -93,9 +93,11 @@
 		<None Remove="Resources\Fonts\Kanit-SemiBoldItalic.ttf" />
 		<None Remove="Resources\Fonts\Kanit-Thin.ttf" />
 		<None Remove="Resources\Fonts\Kanit-ThinItalic.ttf" />
+		<None Remove="Resources\Images\icontest.svg" />
 		<None Remove="Resources\Images\key.svg" />
 		<None Remove="Resources\Images\key_img.png" />
 		<None Remove="Resources\Images\logo.png" />
+		<None Remove="Resources\Images\logoandroidsplash.svg" />
 		<None Remove="Resources\Images\splash.png" />
 		<None Remove="Resources\Images\team.svg" />
 		<None Remove="Resources\Images\team_img.png" />
@@ -157,7 +159,10 @@
 		<Compile Include="Platforms\iOS\Program.cs" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <MauiSplashScreen Include="Platforms\Android\Resources\logoandroidsplash.png" />
-	</ItemGroup>
+   <ItemGroup>
+        <MauiSplashScreen Include="Platforms\Android\Resources\logoandroidsplash.svg" Color="#FFFFFF" />
+        <MauiImage Include="Platforms\iOS\Resources\logoiossplash.svg">
+          <Color>#FFFFFF</Color>
+        </MauiImage>
+    </ItemGroup>
 </Project>
