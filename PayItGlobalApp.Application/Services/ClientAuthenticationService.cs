@@ -22,6 +22,7 @@ namespace CryptAplyApp.Application.Services
             _baseUrl = apiSettingsService.GetApiBaseUrl(); // Use HTTPS for Release build
 #endif
         }
+
         public async Task<bool> LogInAsync(string username, string password, string userIpAddress)
         {
             var request = new AuthenticateRequest { Username = username, Password = password, UserIpAddress = userIpAddress };
@@ -179,6 +180,7 @@ namespace CryptAplyApp.Application.Services
             await SecureStorage.SetAsync("refresh_token", refreshToken);
             await SecureStorage.SetAsync("jwt_expiry", expiryTime.ToString());
         }
+
         public DateTimeOffset ExtractExpiryTimeFromJwt(string jwtToken)
         {
             var payload = jwtToken.Split('.')[1];
@@ -209,6 +211,7 @@ namespace CryptAplyApp.Application.Services
 
             return jwtToken;
         }
+
         public async Task<string> EnsureValidTokenAsync()
         {
             var jwtToken = await SecureStorage.GetAsync("jwt_token");
@@ -228,6 +231,35 @@ namespace CryptAplyApp.Application.Services
                 return jwtToken;
             }
         }
-    }
 
+        public async Task LogOutAsync()
+        {
+            // Optionally notify the server about the logout
+            try
+            {
+                var refreshToken = await SecureStorage.GetAsync("refresh_token");
+                if (!string.IsNullOrEmpty(refreshToken))
+                {
+                    var response = await _httpClient.PostAsJsonAsync($"{_baseUrl}/Token/logout", new { refreshToken });
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        Console.WriteLine($"Logout failed with status code: {response.StatusCode}, reason: {response.ReasonPhrase}");
+                    }
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"HttpRequestException: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception: {ex.Message}");
+            }
+
+            // Clear the stored tokens
+            SecureStorage.Remove("jwt_token");
+            SecureStorage.Remove("refresh_token");
+            SecureStorage.Remove("jwt_expiry");
+        }
+    }
 }

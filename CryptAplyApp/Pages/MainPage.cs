@@ -1,5 +1,7 @@
-﻿using CryptAplyApp.Models;
+﻿using CryptAplyApp.Application.Interfaces;
+using CryptAplyApp.Models;
 using CryptAplyApp.Pages.Components;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using Theme = CryptAplyApp.Resources.Theme;
 
@@ -11,12 +13,38 @@ class MainPageState
     public bool ShowOnboarding { get; set; }
     public bool ShowHome { get; set; } = true;
     public NavItem CurrentPage { get; set; } = NavItem.Home;
+    public bool IsAuthenticated { get; set; } = false; // Add this property
 }
 
 class MainPage : Component<MainPageState>
 {
+    private readonly IClientAuthenticationService _authService;
+
+    public MainPage()
+    {
+        _authService = IPlatformApplication.Current.Services.GetService<IClientAuthenticationService>();
+    }
+
+    protected override async void OnMounted()
+    {
+        base.OnMounted();
+        State.IsAuthenticated = await _authService.IsLoggedInAsync();
+        Invalidate();
+    }
+
     public override VisualNode Render()
     {
+        // Check if the user is authenticated
+        if (!State.IsAuthenticated)
+        {
+            // Show the login component within the main page
+            return ContentPage(
+                new Login()
+                    .OnClose(() => SetState(s => s.IsAuthenticated = true))
+                    .Show(true)
+            );
+        }
+
         Console.WriteLine($"CurrentPage: {State.CurrentPage}"); // Add this line for debugging
 
         return ContentPage(
@@ -28,8 +56,8 @@ class MainPage : Component<MainPageState>
                         .IsMovedBack(State.ShowOnboarding)
                         .OnShowOnboarding(() => SetState(s => s.ShowOnboarding = true)),
                     NavItem.Teams => new Teams(),
-                    NavItem.Keys => new Keys(), 
-                    NavItem.Reports => new Reports(), 
+                    NavItem.Keys => new Keys(),
+                    NavItem.Reports => new Reports(),
                     NavItem.Help => new Help(),
                     _ => new Home() // Default to Home
                 },
@@ -58,5 +86,3 @@ class MainPage : Component<MainPageState>
         .BackgroundColor(Theme.Background2);
     }
 }
-
-

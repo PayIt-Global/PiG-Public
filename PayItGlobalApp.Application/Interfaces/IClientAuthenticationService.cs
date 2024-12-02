@@ -23,6 +23,12 @@
         /// <param name="refreshToken">The refresh token.</param>
         /// <returns>A task that represents the asynchronous operation. The task result contains the new JWT token.</returns>
         Task<string> RefreshJwtTokenAsync(string refreshToken);
+
+        /// <summary>
+        /// Logs out the user by clearing stored tokens and optionally notifying the server.
+        /// </summary>
+        /// <returns>A task that represents the asynchronous operation.</returns>
+        Task LogOutAsync();
     }
 }
 

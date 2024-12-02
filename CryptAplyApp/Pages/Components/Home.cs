@@ -7,20 +7,17 @@ using System.Linq;
 using MauiReactor.Animations;
 using Microsoft.Maui.Devices;
 using Theme = CryptAplyApp.Resources.Theme;
+using CryptAplyApp.Application.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CryptAplyApp.Pages.Components;
-
 
 class HomeMenuState
 {
     public double TranslationX { get; set; } = 220;
-
     public double RotationY { get; set; } = -12;
-
     public double MarginLeft { get; set; } = -30.0;
-
     public double MainScale { get; set; } = 1.0;
-
     public double MainOpacity { get; set; } = 1.0;
 }
 
@@ -34,6 +31,16 @@ partial class Home : Component<HomeMenuState>
 
     [Prop]
     private bool _isMovedBack;
+
+    [Prop]
+    private Action _onLogout; // Add this property
+
+    private readonly IClientAuthenticationService _authService;
+
+    public Home()
+    {
+        _authService = IPlatformApplication.Current.Services.GetService<IClientAuthenticationService>();
+    }
 
     protected override void OnMountedOrPropsChanged()
     {
@@ -62,6 +69,7 @@ partial class Home : Component<HomeMenuState>
     {
         return Grid("*", "*",
             RenderUserButton(),
+            RenderLogoutButton(), // Add this line
             Label("Home Page Content")
                 .FontSize(24)
                 .TextColor(Colors.Black)
@@ -85,6 +93,24 @@ partial class Home : Component<HomeMenuState>
             .BackgroundColor(Colors.White)
             .OnClicked(_onShowOnboarding);
 
+    // Add this method
+    Button RenderLogoutButton() =>
+        Button("Logout")
+            .FontSize(16)
+            .TextColor(Colors.White)
+            .BackgroundColor(Colors.Red)
+            .CornerRadius(10)
+            .Padding(10)
+            .Margin(24, 100)
+            .HEnd()
+            .OnClicked(OnLogout);
+
+    // Add this method
+    private async void OnLogout()
+    {
+        await _authService.LogOutAsync();
+        _onLogout?.Invoke();
+    }
 }
 
 class MenuButtonState
@@ -106,14 +132,13 @@ partial class MenuButton : Component<MenuButtonState>
         base.OnPropsChanged();
     }
 
-    public override VisualNode Render() 
+    public override VisualNode Render()
         => Grid("44", "44",
             ContentView(
                 RenderButton("menu_black.png", !_isShown)
             )
             .Opacity(!_isShown ? 1.0 : 0.0)
             .WithAnimation(easing: Easing.CubicIn, duration: 300),
-
 
             ContentView(
                 RenderButton("close_black.png", _isShown)
@@ -127,7 +152,7 @@ partial class MenuButton : Component<MenuButtonState>
         .TranslationX(State.TranslationX)
         .WithAnimation(easing: Easing.CubicIn, duration: 300);
 
-    ImageButton RenderButton(string image, bool show) 
+    ImageButton RenderButton(string image, bool show)
         => ImageButton(image)
             .Aspect(Aspect.Center)
             .CornerRadius(18)
