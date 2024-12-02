@@ -23,9 +23,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.EntityFrameworkCore.Metadata;
-using PayItGlobalApi.Domain.Entities;
+using CryptAplyApi.Domain.Entities;
 
-namespace PayItGlobalApi.Infrastructure.Context
+namespace CryptAplyApi.Infrastructure.Context
 {
 
     public partial class PayItGlobalDb : DbContext

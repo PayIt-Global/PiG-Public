@@ -14,12 +14,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\PayItGlobal.Domain\PayItGlobal.Domain.csproj" />
+    <Folder Include="Converters\" />
+    <Folder Include="Generated\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Converters\" />
-    <Folder Include="Generated\" />
+    <ProjectReference Include="..\..\PayItGlobal.Domain\CryptAply.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using PayItGlobalApi.Domain.Entities;
-using PayItGlobalApi.Domain.Interfaces;
-using PayItGlobalApi.Infrastructure.Context;
+using CryptAplyApi.Domain.Entities;
+using CryptAplyApi.Domain.Interfaces;
+using CryptAplyApi.Infrastructure.Context;
 
 public class MiscRepository : IMiscRepository
 {

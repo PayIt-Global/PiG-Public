@@ -1,6 +1,6 @@
-using PayItGlobalApi.Domain.Entities;
+using CryptAplyApi.Domain.Entities;
 
-namespace PayItGlobalApi.Domain.Interfaces
+namespace CryptAplyApi.Domain.Interfaces
 {
     public interface IRefreshTokenRepository
     {

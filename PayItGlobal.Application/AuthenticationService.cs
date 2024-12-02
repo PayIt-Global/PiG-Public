@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
-using PayItGlobalApi.Application.Interfaces;
-using PayItGlobalApi.Domain.Entities;
-using PayItGlobalApi.Domain.Interfaces;
+using CryptAplyApi.Application.Interfaces;
+using CryptAplyApi.Domain.Entities;
+using CryptAplyApi.Domain.Interfaces;
 using System.Net.Http.Json;
 
-namespace PayItGlobalApi.Application.Services
+namespace CryptAplyApi.Application.Services
 {
     public class AuthenticationService : IAuthenticationService
     {

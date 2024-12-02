@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using PayItGlobalApi.Domain.Entities;
-using PayItGlobalApi.Domain.Interfaces;
-using PayItGlobalApi.Infrastructure.Context;
+using CryptAplyApi.Domain.Entities;
+using CryptAplyApi.Domain.Interfaces;
+using CryptAplyApi.Infrastructure.Context;
 
-namespace PayItGlobalApi.Infrastructure.Repository
+namespace CryptAplyApi.Infrastructure.Repository
 {
     public class RefreshTokenRepository : IRefreshTokenRepository
     {

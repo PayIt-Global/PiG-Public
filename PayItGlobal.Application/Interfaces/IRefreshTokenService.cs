@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace PayItGlobalApi.Application.Interfaces
+namespace CryptAplyApi.Application.Interfaces
 {
     public interface IRefreshTokenService
     {

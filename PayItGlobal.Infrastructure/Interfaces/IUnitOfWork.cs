@@ -1,9 +1,9 @@
 ﻿using System;
-using PayItGlobalApi.Infrastructure;
-using PayItGlobalApi.Domain.Interfaces;
-using PayItGlobalApi.Domain.Entities;
+using CryptAplyApi.Infrastructure;
+using CryptAplyApi.Domain.Interfaces;
+using CryptAplyApi.Domain.Entities;
 
-namespace PayItGlobalApi.Infrastructure.Interfaces
+namespace CryptAplyApi.Infrastructure.Interfaces
 {
     public partial interface IUnitOfWork
     {

@@ -1,4 +1,4 @@
-namespace PayItGlobalApi.Domain.Models
+namespace CryptAplyApi.Domain.Models
 {
     public class AppSettings
     {

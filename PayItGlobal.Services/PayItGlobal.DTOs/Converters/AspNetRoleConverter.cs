@@ -11,18 +11,18 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PayItGlobalApi.DTOs.Generated
+namespace CryptAplyApi.DTOs.Generated
 {
 
     public static partial class AspNetRoleConverter
     {
 
-        public static AspNetRoleDto ToDto(this PayItGlobalApi.Domain.Entities.AspNetRole source)
+        public static AspNetRoleDto ToDto(this CryptAplyApi.Domain.Entities.AspNetRole source)
         {
             return source.ToDtoWithRelated(0);
         }
 
-        public static AspNetRoleDto ToDtoWithRelated(this PayItGlobalApi.Domain.Entities.AspNetRole source, int level)
+        public static AspNetRoleDto ToDtoWithRelated(this CryptAplyApi.Domain.Entities.AspNetRole source, int level)
         {
             if (source == null)
               return null;
@@ -47,12 +47,12 @@ namespace PayItGlobalApi.DTOs.Generated
             return target;
         }
 
-        public static PayItGlobalApi.Domain.Entities.AspNetRole ToEntity(this AspNetRoleDto source)
+        public static CryptAplyApi.Domain.Entities.AspNetRole ToEntity(this AspNetRoleDto source)
         {
             if (source == null)
               return null;
 
-            var target = new PayItGlobalApi.Domain.Entities.AspNetRole();
+            var target = new CryptAplyApi.Domain.Entities.AspNetRole();
 
             // Properties
             target.Id = source.Id;
@@ -66,7 +66,7 @@ namespace PayItGlobalApi.DTOs.Generated
             return target;
         }
 
-        public static List<AspNetRoleDto> ToDtos(this IEnumerable<PayItGlobalApi.Domain.Entities.AspNetRole> source)
+        public static List<AspNetRoleDto> ToDtos(this IEnumerable<CryptAplyApi.Domain.Entities.AspNetRole> source)
         {
             if (source == null)
               return null;
@@ -78,7 +78,7 @@ namespace PayItGlobalApi.DTOs.Generated
             return target;
         }
 
-        public static List<AspNetRoleDto> ToDtosWithRelated(this IEnumerable<PayItGlobalApi.Domain.Entities.AspNetRole> source, int level)
+        public static List<AspNetRoleDto> ToDtosWithRelated(this IEnumerable<CryptAplyApi.Domain.Entities.AspNetRole> source, int level)
         {
             if (source == null)
               return null;
@@ -90,7 +90,7 @@ namespace PayItGlobalApi.DTOs.Generated
             return target;
         }
 
-        public static List<PayItGlobalApi.Domain.Entities.AspNetRole> ToEntities(this IEnumerable<AspNetRoleDto> source)
+        public static List<CryptAplyApi.Domain.Entities.AspNetRole> ToEntities(this IEnumerable<AspNetRoleDto> source)
         {
             if (source == null)
               return null;
@@ -102,9 +102,9 @@ namespace PayItGlobalApi.DTOs.Generated
             return target;
         }
 
-        static partial void OnDtoCreating(PayItGlobalApi.Domain.Entities.AspNetRole source, AspNetRoleDto target);
+        static partial void OnDtoCreating(CryptAplyApi.Domain.Entities.AspNetRole source, AspNetRoleDto target);
 
-        static partial void OnEntityCreating(AspNetRoleDto source, PayItGlobalApi.Domain.Entities.AspNetRole target);
+        static partial void OnEntityCreating(AspNetRoleDto source, CryptAplyApi.Domain.Entities.AspNetRole target);
 
     }
 

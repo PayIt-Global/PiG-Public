@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using System.Security.Principal;
 using System.Threading.Tasks;
 
-namespace PayItGlobalApi.Domain.Interfaces
+namespace CryptAplyApi.Domain.Interfaces
 {
     public interface IRepository<TEntity, TKey> where TEntity : class
     {

@@ -1,4 +1,4 @@
-﻿namespace PayItGlobalApi.Application.Models
+﻿namespace CryptAplyApi.Application.Models
 {
     public class AuthenticateResponse
     {

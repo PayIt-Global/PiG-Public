@@ -11,18 +11,18 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PayItGlobalApi.DTOs.Generated
+namespace CryptAplyApi.DTOs.Generated
 {
 
     public static partial class RefreshTokenConverter
     {
 
-        public static RefreshTokenDto ToDto(this PayItGlobalApi.Domain.Entities.RefreshToken source)
+        public static RefreshTokenDto ToDto(this CryptAplyApi.Domain.Entities.RefreshToken source)
         {
             return source.ToDtoWithRelated(0);
         }
 
-        public static RefreshTokenDto ToDtoWithRelated(this PayItGlobalApi.Domain.Entities.RefreshToken source, int level)
+        public static RefreshTokenDto ToDtoWithRelated(this CryptAplyApi.Domain.Entities.RefreshToken source, int level)
         {
             if (source == null)
               return null;
@@ -52,12 +52,12 @@ namespace PayItGlobalApi.DTOs.Generated
             return target;
         }
 
-        public static PayItGlobalApi.Domain.Entities.RefreshToken ToEntity(this RefreshTokenDto source)
+        public static CryptAplyApi.Domain.Entities.RefreshToken ToEntity(this RefreshTokenDto source)
         {
             if (source == null)
               return null;
 
-            var target = new PayItGlobalApi.Domain.Entities.RefreshToken();
+            var target = new CryptAplyApi.Domain.Entities.RefreshToken();
 
             // Properties
             target.Id = source.Id;
@@ -77,7 +77,7 @@ namespace PayItGlobalApi.DTOs.Generated
             return target;
         }
 
-        public static List<RefreshTokenDto> ToDtos(this IEnumerable<PayItGlobalApi.Domain.Entities.RefreshToken> source)
+        public static List<RefreshTokenDto> ToDtos(this IEnumerable<CryptAplyApi.Domain.Entities.RefreshToken> source)
         {
             if (source == null)
               return null;
@@ -89,7 +89,7 @@ namespace PayItGlobalApi.DTOs.Generated
             return target;
         }
 
-        public static List<RefreshTokenDto> ToDtosWithRelated(this IEnumerable<PayItGlobalApi.Domain.Entities.RefreshToken> source, int level)
+        public static List<RefreshTokenDto> ToDtosWithRelated(this IEnumerable<CryptAplyApi.Domain.Entities.RefreshToken> source, int level)
         {
             if (source == null)
               return null;
@@ -101,7 +101,7 @@ namespace PayItGlobalApi.DTOs.Generated
             return target;
         }
 
-        public static List<PayItGlobalApi.Domain.Entities.RefreshToken> ToEntities(this IEnumerable<RefreshTokenDto> source)
+        public static List<CryptAplyApi.Domain.Entities.RefreshToken> ToEntities(this IEnumerable<RefreshTokenDto> source)
         {
             if (source == null)
               return null;
@@ -113,9 +113,9 @@ namespace PayItGlobalApi.DTOs.Generated
             return target;
         }
 
-        static partial void OnDtoCreating(PayItGlobalApi.Domain.Entities.RefreshToken source, RefreshTokenDto target);
+        static partial void OnDtoCreating(CryptAplyApi.Domain.Entities.RefreshToken source, RefreshTokenDto target);
 
-        static partial void OnEntityCreating(RefreshTokenDto source, PayItGlobalApi.Domain.Entities.RefreshToken target);
+        static partial void OnEntityCreating(RefreshTokenDto source, CryptAplyApi.Domain.Entities.RefreshToken target);
 
     }
 

@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace PayItGlobalApi.Infrastructure.Utilities
+namespace CryptAplyApi.Infrastructure.Utilities
 {
     public static class TokenEncryption
     {

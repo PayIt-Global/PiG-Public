@@ -11,18 +11,18 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PayItGlobalApi.DTOs.Generated
+namespace CryptAplyApi.DTOs.Generated
 {
 
     public static partial class AspNetUserClaimConverter
     {
 
-        public static AspNetUserClaimDto ToDto(this PayItGlobalApi.Domain.Entities.AspNetUserClaim source)
+        public static AspNetUserClaimDto ToDto(this CryptAplyApi.Domain.Entities.AspNetUserClaim source)
         {
             return source.ToDtoWithRelated(0);
         }
 
-        public static AspNetUserClaimDto ToDtoWithRelated(this PayItGlobalApi.Domain.Entities.AspNetUserClaim source, int level)
+        public static AspNetUserClaimDto ToDtoWithRelated(this CryptAplyApi.Domain.Entities.AspNetUserClaim source, int level)
         {
             if (source == null)
               return null;
@@ -46,12 +46,12 @@ namespace PayItGlobalApi.DTOs.Generated
             return target;
         }
 
-        public static PayItGlobalApi.Domain.Entities.AspNetUserClaim ToEntity(this AspNetUserClaimDto source)
+        public static CryptAplyApi.Domain.Entities.AspNetUserClaim ToEntity(this AspNetUserClaimDto source)
         {
             if (source == null)
               return null;
 
-            var target = new PayItGlobalApi.Domain.Entities.AspNetUserClaim();
+            var target = new CryptAplyApi.Domain.Entities.AspNetUserClaim();
 
             // Properties
             target.Id = source.Id;
@@ -65,7 +65,7 @@ namespace PayItGlobalApi.DTOs.Generated
             return target;
         }
 
-        public static List<AspNetUserClaimDto> ToDtos(this IEnumerable<PayItGlobalApi.Domain.Entities.AspNetUserClaim> source)
+        public static List<AspNetUserClaimDto> ToDtos(this IEnumerable<CryptAplyApi.Domain.Entities.AspNetUserClaim> source)
         {
             if (source == null)
               return null;
@@ -77,7 +77,7 @@ namespace PayItGlobalApi.DTOs.Generated
             return target;
         }
 
-        public static List<AspNetUserClaimDto> ToDtosWithRelated(this IEnumerable<PayItGlobalApi.Domain.Entities.AspNetUserClaim> source, int level)
+        public static List<AspNetUserClaimDto> ToDtosWithRelated(this IEnumerable<CryptAplyApi.Domain.Entities.AspNetUserClaim> source, int level)
         {
             if (source == null)
               return null;
@@ -89,7 +89,7 @@ namespace PayItGlobalApi.DTOs.Generated
             return target;
         }
 
-        public static List<PayItGlobalApi.Domain.Entities.AspNetUserClaim> ToEntities(this IEnumerable<AspNetUserClaimDto> source)
+        public static List<CryptAplyApi.Domain.Entities.AspNetUserClaim> ToEntities(this IEnumerable<AspNetUserClaimDto> source)
         {
             if (source == null)
               return null;
@@ -101,9 +101,9 @@ namespace PayItGlobalApi.DTOs.Generated
             return target;
         }
 
-        static partial void OnDtoCreating(PayItGlobalApi.Domain.Entities.AspNetUserClaim source, AspNetUserClaimDto target);
+        static partial void OnDtoCreating(CryptAplyApi.Domain.Entities.AspNetUserClaim source, AspNetUserClaimDto target);
 
-        static partial void OnEntityCreating(AspNetUserClaimDto source, PayItGlobalApi.Domain.Entities.AspNetUserClaim target);
+        static partial void OnEntityCreating(AspNetUserClaimDto source, CryptAplyApi.Domain.Entities.AspNetUserClaim target);
 
     }
 

@@ -20,7 +20,7 @@ using System.Data.Common;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace PayItGlobalApi.Domain.Entities
+namespace CryptAplyApi.Domain.Entities
 {
     public partial class AspNetRole : IdentityRole<int>
     {

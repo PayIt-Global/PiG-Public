@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PayItGlobalApi.DTOs.Shared
+namespace CryptAplyApi.DTOs.Shared
 {
     public record UserCreateModel(Guid Id, string FirstName, string LastName, string Avatar);
 

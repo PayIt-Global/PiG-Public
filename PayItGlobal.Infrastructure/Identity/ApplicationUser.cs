@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
-using PayItGlobalApi.Domain.Models;
+using CryptAplyApi.Domain.Models;
 
-namespace PayItGlobalApi.Infrastructure.Identity
+namespace CryptAplyApi.Infrastructure.Identity
 {
     public class ApplicationUser : IdentityUser<int>, IApplicationUser
     {

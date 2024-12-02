@@ -14,8 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PayItGlobal.Domain\PayItGlobal.Domain.csproj" />
-    <ProjectReference Include="..\PayItGlobal.Services\PayItGlobal.DTOs\PayItGlobal.DTOs.csproj" />
+    <ProjectReference Include="..\PayItGlobal.Services\PayItGlobal.DTOs\CryptAply.DTOs.csproj" />
   </ItemGroup>
 
   <ItemGroup>

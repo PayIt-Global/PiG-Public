@@ -16,14 +16,17 @@
     <PackageReference Include="System.Text.Json" Version="9.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\PayItGlobal.Application\PayItGlobalApi.Application.csproj" />
-    <ProjectReference Include="..\PayItGlobal.Domain\PayItGlobal.Domain.csproj" />
-  </ItemGroup>
+
 
   <ItemGroup>
     <Folder Include="Identity\" />
     <Folder Include="Services\" />
+  </ItemGroup>
+
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\PayItGlobal.Application\CryptAplyApi.Application.csproj" />
   </ItemGroup>
 
 </Project>

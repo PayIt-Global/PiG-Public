@@ -10,7 +10,7 @@
 
 using System.Collections.Generic;
 
-namespace PayItGlobalApi.DTOs.Generated
+namespace CryptAplyApi.DTOs.Generated
 {
 
     public partial class RefreshTokenDto

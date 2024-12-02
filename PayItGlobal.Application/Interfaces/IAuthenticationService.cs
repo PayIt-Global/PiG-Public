@@ -1,4 +1,4 @@
-﻿namespace PayItGlobalApi.Application.Interfaces
+﻿namespace CryptAplyApi.Application.Interfaces
 {
     public interface IAuthenticationService
     {

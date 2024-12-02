@@ -1,9 +1,9 @@
-﻿using PayItGlobalApi.Domain.Interfaces;
-using PayItGlobalApi.Infrastructure.Context;
-using PayItGlobalApi.Infrastructure.Interfaces;
-using PayItGlobalApi.Infrastructure.Repository;
+﻿using CryptAplyApi.Domain.Interfaces;
+using CryptAplyApi.Infrastructure.Context;
+using CryptAplyApi.Infrastructure.Interfaces;
+using CryptAplyApi.Infrastructure.Repository;
 
-namespace PayItGlobalApi.Infrastructure
+namespace CryptAplyApi.Infrastructure
 {
     public partial class UnitOfWork : IUnitOfWork
     {

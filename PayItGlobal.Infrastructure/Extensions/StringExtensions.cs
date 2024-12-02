@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PayItGlobalApi.Infrastructure.Extensions
+namespace CryptAplyApi.Infrastructure.Extensions
 {
     public static class StringExtensions
     {

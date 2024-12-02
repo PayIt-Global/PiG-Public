@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using PayItGlobalApi.Domain.Entities;
+using CryptAplyApi.Domain.Entities;
 
-namespace PayItGlobalApi.Domain.Interfaces
+namespace CryptAplyApi.Domain.Interfaces
 {
     public partial interface IMiscRepository
     {

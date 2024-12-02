@@ -1,7 +1,7 @@
-﻿using PayItGlobalApi.Domain.Entities;
+﻿using CryptAplyApi.Domain.Entities;
 using System.Security.Claims;
 
-namespace PayItGlobalApi.Domain.Interfaces
+namespace CryptAplyApi.Domain.Interfaces
 {
     public partial interface IUserRepository 
     {

@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35017.193
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptAplyApi.Application", "PayItGlobal.Application\CryptAplyApi.Application.csproj", "{1ABF2912-A5BE-4643-8996-60C8A64E1176}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptAplyApi.Infrastructure", "PayItGlobal.Infrastructure\CryptAplyApi.Infrastructure.csproj", "{2D51A024-8324-4BC3-B456-FE78F1A7B047}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{063C467D-F9F9-4EE4-9FE8-58CA31B67C0A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{C50EFB97-D941-45B2-9590-8EDEBB7E8BED}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptAply.DTOs", "PayItGlobal.Services\PayItGlobal.DTOs\CryptAply.DTOs.csproj", "{C904481C-99F6-46EC-AAE4-3ACB21FB23FA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{E60CEFF3-E6A1-4B0C-B07A-A6818B84EFDF}"
+	ProjectSection(SolutionItems) = preProject
+		SolutionItems\CryptAply.sql = SolutionItems\CryptAply.sql
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptAplyApi", "CryptAply.Api\CryptAplyApi.csproj", "{B8571E66-7A41-4502-BE2F-1F841FEBEA3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptAply.Domain", "PayItGlobal.Domain\CryptAply.Domain.csproj", "{F0751628-9A9A-4DAD-BF34-03AB93319E83}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1ABF2912-A5BE-4643-8996-60C8A64E1176}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ABF2912-A5BE-4643-8996-60C8A64E1176}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ABF2912-A5BE-4643-8996-60C8A64E1176}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ABF2912-A5BE-4643-8996-60C8A64E1176}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D51A024-8324-4BC3-B456-FE78F1A7B047}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D51A024-8324-4BC3-B456-FE78F1A7B047}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D51A024-8324-4BC3-B456-FE78F1A7B047}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D51A024-8324-4BC3-B456-FE78F1A7B047}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C904481C-99F6-46EC-AAE4-3ACB21FB23FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C904481C-99F6-46EC-AAE4-3ACB21FB23FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C904481C-99F6-46EC-AAE4-3ACB21FB23FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C904481C-99F6-46EC-AAE4-3ACB21FB23FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8571E66-7A41-4502-BE2F-1F841FEBEA3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8571E66-7A41-4502-BE2F-1F841FEBEA3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8571E66-7A41-4502-BE2F-1F841FEBEA3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8571E66-7A41-4502-BE2F-1F841FEBEA3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0751628-9A9A-4DAD-BF34-03AB93319E83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0751628-9A9A-4DAD-BF34-03AB93319E83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0751628-9A9A-4DAD-BF34-03AB93319E83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0751628-9A9A-4DAD-BF34-03AB93319E83}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1ABF2912-A5BE-4643-8996-60C8A64E1176} = {063C467D-F9F9-4EE4-9FE8-58CA31B67C0A}
+		{2D51A024-8324-4BC3-B456-FE78F1A7B047} = {063C467D-F9F9-4EE4-9FE8-58CA31B67C0A}
+		{C904481C-99F6-46EC-AAE4-3ACB21FB23FA} = {C50EFB97-D941-45B2-9590-8EDEBB7E8BED}
+		{F0751628-9A9A-4DAD-BF34-03AB93319E83} = {C50EFB97-D941-45B2-9590-8EDEBB7E8BED}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6B0A53AA-6D8D-449C-AB68-8180853951BF}
+	EndGlobalSection
+EndGlobal

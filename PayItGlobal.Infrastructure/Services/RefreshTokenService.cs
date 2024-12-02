@@ -1,9 +1,9 @@
-using PayItGlobalApi.Application.Interfaces;
-using PayItGlobalApi.Domain.Entities;
-using PayItGlobalApi.Domain.Interfaces;
-using PayItGlobalApi.Infrastructure.Utilities;
+using CryptAplyApi.Application.Interfaces;
+using CryptAplyApi.Domain.Entities;
+using CryptAplyApi.Domain.Interfaces;
+using CryptAplyApi.Infrastructure.Utilities;
 
-namespace PayItGlobalApi.Infrastructure.Services
+namespace CryptAplyApi.Infrastructure.Services
 {
     public class RefreshTokenService : IRefreshTokenService
     {

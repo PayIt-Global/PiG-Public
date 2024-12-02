@@ -11,18 +11,18 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PayItGlobalApi.DTOs.Generated
+namespace CryptAplyApi.DTOs.Generated
 {
 
     public static partial class AspNetUserConverter
     {
 
-        public static AspNetUserDto ToDto(this PayItGlobalApi.Domain.Entities.AspNetUser source)
+        public static AspNetUserDto ToDto(this CryptAplyApi.Domain.Entities.AspNetUser source)
         {
             return source.ToDtoWithRelated(0);
         }
 
-        public static AspNetUserDto ToDtoWithRelated(this PayItGlobalApi.Domain.Entities.AspNetUser source, int level)
+        public static AspNetUserDto ToDtoWithRelated(this CryptAplyApi.Domain.Entities.AspNetUser source, int level)
         {
             if (source == null)
               return null;
@@ -62,12 +62,12 @@ namespace PayItGlobalApi.DTOs.Generated
             return target;
         }
 
-        public static PayItGlobalApi.Domain.Entities.AspNetUser ToEntity(this AspNetUserDto source)
+        public static CryptAplyApi.Domain.Entities.AspNetUser ToEntity(this AspNetUserDto source)
         {
             if (source == null)
               return null;
 
-            var target = new PayItGlobalApi.Domain.Entities.AspNetUser();
+            var target = new CryptAplyApi.Domain.Entities.AspNetUser();
 
             // Properties
             target.Id = source.Id;
@@ -93,7 +93,7 @@ namespace PayItGlobalApi.DTOs.Generated
             return target;
         }
 
-        public static List<AspNetUserDto> ToDtos(this IEnumerable<PayItGlobalApi.Domain.Entities.AspNetUser> source)
+        public static List<AspNetUserDto> ToDtos(this IEnumerable<CryptAplyApi.Domain.Entities.AspNetUser> source)
         {
             if (source == null)
               return null;
@@ -105,7 +105,7 @@ namespace PayItGlobalApi.DTOs.Generated
             return target;
         }
 
-        public static List<AspNetUserDto> ToDtosWithRelated(this IEnumerable<PayItGlobalApi.Domain.Entities.AspNetUser> source, int level)
+        public static List<AspNetUserDto> ToDtosWithRelated(this IEnumerable<CryptAplyApi.Domain.Entities.AspNetUser> source, int level)
         {
             if (source == null)
               return null;
@@ -117,7 +117,7 @@ namespace PayItGlobalApi.DTOs.Generated
             return target;
         }
 
-        public static List<PayItGlobalApi.Domain.Entities.AspNetUser> ToEntities(this IEnumerable<AspNetUserDto> source)
+        public static List<CryptAplyApi.Domain.Entities.AspNetUser> ToEntities(this IEnumerable<AspNetUserDto> source)
         {
             if (source == null)
               return null;
@@ -129,9 +129,9 @@ namespace PayItGlobalApi.DTOs.Generated
             return target;
         }
 
-        static partial void OnDtoCreating(PayItGlobalApi.Domain.Entities.AspNetUser source, AspNetUserDto target);
+        static partial void OnDtoCreating(CryptAplyApi.Domain.Entities.AspNetUser source, AspNetUserDto target);
 
-        static partial void OnEntityCreating(AspNetUserDto source, PayItGlobalApi.Domain.Entities.AspNetUser target);
+        static partial void OnEntityCreating(AspNetUserDto source, CryptAplyApi.Domain.Entities.AspNetUser target);
 
     }
 
