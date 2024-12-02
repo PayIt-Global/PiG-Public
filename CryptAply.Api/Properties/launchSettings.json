@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "AuthDemoApi": {
+    "CryptAplyApi": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
