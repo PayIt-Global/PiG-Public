@@ -20,6 +20,9 @@ builder.Services.AddPciComplianceDatabase(builder.Configuration);
 // Add application services
 builder.Services.AddApplicationServices(builder.Configuration);
 
+// Add background services
+builder.Services.AddBackgroundServices(builder.Configuration);
+
 // Add Swagger with JWT authentication
 builder.Services.AddSwaggerGen(c =>
 {
